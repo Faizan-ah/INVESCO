@@ -15,6 +15,7 @@ export class Login extends Component {
 
     componentDidMount(){
         const obj =this.getFromStorage('the_main_app')
+        console.log('obje',obj.token)
         if(obj && obj.token){
             const {token} = obj.token
             //verify token
@@ -111,6 +112,7 @@ export class Login extends Component {
             .then(json =>{
                 console.log('json',json)
                 if(json.success){
+                    alert('signin successful')
                     this.setInStorage('the_main_app',{ token: json.token })   
                     console.log(json.message," successfull i guess");
                     this.resetInputs();
@@ -118,10 +120,11 @@ export class Login extends Component {
                         token:json.token
                     })
                 } else{
-                     console.log("login eroror")
-                     this.setState({
-                         isLoading:false,
-                     }) 
+                    alert(json.message)
+                    console.log("login eroror")
+                    this.setState({
+                        isLoading:false,
+                    }) 
                 }
             })
             // .catch((err)=>{

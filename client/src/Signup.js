@@ -6,7 +6,7 @@ export class Signup extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isLoading: true,
+            isLoading: false,
             token: '',
             signUpError: '',
             signUpFirstName: '',
@@ -122,7 +122,7 @@ export class Signup extends Component {
         })
     }
     
-    onSignup = () =>{
+    onSignup = (event) =>{
         //event.preventDefault()
         //Grab State
         const {
@@ -157,13 +157,16 @@ export class Signup extends Component {
             if(json.success){
                 console.log(json.message," successfull i guess");
                 this.resetInputs();
+                //maybe routing code here
             } else{
+                alert(json.message)
                  console.log("eroror")
                  this.setState({
                      isLoading:false,
                  }) 
             }
         })
+   
 
     }
     render(props) {
@@ -178,9 +181,9 @@ export class Signup extends Component {
             signUpMobile,
             signUpPassword,
         }   = this.state;
-        if(isLoading){
-            return(<div><p>Loading...</p></div>)
-        }
+        // if(isLoading){
+        //     return(<div><p>Loading...</p></div>)
+        // }
         // if(!token){
         //     return(<div><p>token not set</p></div>)
         // }
@@ -194,7 +197,7 @@ export class Signup extends Component {
                 <div class='signupDataRow1'>
                     <div class='signupDataRow1Col1'>
                         <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="signUpFirstName" value={this.state.signUpFirstName} onChange={this.onChange} required></input>
+                        <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange} required></input>
                     </div>
                     <div class='signupDataRow1Col2'>
                         <label for="lname">Last Name</label>

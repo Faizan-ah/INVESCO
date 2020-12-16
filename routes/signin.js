@@ -45,8 +45,10 @@ router.post('/signup', (req,res,next)=>{
     if(!mobileNum){
         return res.send({
             success:false,
-            message: 'Error: Enter Your Phone Number!'
+            message: 'Error: Enter Your Phone Number!',
+            
         })
+        
     }
     
     if(!password){
@@ -129,7 +131,7 @@ router.post('/signin', (req,res,next)=>{
         if(users.length!=1){
             return res.send({
                 success:false,
-                message:'error: invalid'
+                message:'Error: Invalid Inputs'
             })
         }
         

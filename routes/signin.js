@@ -182,7 +182,7 @@ router.get('/verify',(req,res,next)=>{
         if(sessions.length!=1){
             return res.send({
                 success:false,
-                message:'Account Already Exists.'
+                message:'Error: Invalid'
             })
         }
         else{

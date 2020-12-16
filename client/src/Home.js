@@ -2,11 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Components/Header'
 import './StyleSheets/Header.css'
+import withAuth from './Components/withAuth'
 class Home extends React.Component{
-    onSelectProperty = () =>{
-
-    }
     render(){
+        const auth = new withAuth();
         return(
             <div className="home-main">
                 <Header/>
@@ -25,9 +24,11 @@ class Home extends React.Component{
                     <div className="options-inside">
                         <h3>Investment Recommendation</h3>
                         <p>Our personal investment recommender. This will tell you where you need to invest right now!</p>
-                    </div>
-                     
+                    </div> 
                 </div>
+                <button onClick={()=>{
+                    this.props.history.push('/LandingPage')
+                }}>logout</button>
             </div>
         );
     }   

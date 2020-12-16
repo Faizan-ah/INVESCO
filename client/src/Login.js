@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link,Redirect,withRouter } from 'react-router-dom';
 import Signup from './Signup'
 import './StyleSheets/Login.css'
+import withAuth from "./Components/withAuth";
+import Home from './Home'
 export class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
             isLoading: true,
+            success:false,
             token: '',
             signInEmail: '',
             signInPassword: '',
@@ -15,31 +18,31 @@ export class Login extends Component {
 
     componentDidMount(){
         const obj =this.getFromStorage('the_main_app')
-        console.log('obje',obj.token)
-        if(obj && obj.token){
-            const {token} = obj.token
-            //verify token
-            fetch('/verify?token='+token)
-            .then(res=>res.json())
-            .then(json=>{
-                if(json.success){
-                    this.setState({
-                        token:token,
-                        isLoading:false
-                    })
-                }
-                else{
-                    this.setState({
-                        isLoading:false,
-                    })
-                }
-            })
-        }
-        else{
-            this.setState({
-                isLoading:false,
-            })
-        }
+        // console.log('obje',obj.token)
+        // if(obj && obj.token){
+        //     const {token} = obj.token
+        //     //verify token
+        //     fetch('/verify?token='+token)
+        //     .then(res=>res.json())
+        //     .then(json=>{
+        //         if(json.success){
+        //             this.setState({
+        //                 token:token,
+        //                 isLoading:false
+        //             })
+        //         }
+        //         else{
+        //             this.setState({
+        //                 isLoading:false,
+        //             })
+        //         }
+        //     })
+        // }
+        // else{
+        //     this.setState({
+        //         isLoading:false,
+        //     })
+        // }
     }
     //getting token 
     getFromStorage =(key)=>{
@@ -85,11 +88,25 @@ export class Login extends Component {
                 [name]:value
             })
         }
-        
+
+    loginmadafaka =() =>{
+        console.log('success',this.state.success)
+        if(this.state.success){
+            console.log("hhhh",this.props.history)
+            this.props.history.push("/Home")
+        }
+        else{
+            console.log("isme")
+            this.props.history.push("/login")
+        }
+    }
+
     onSignin = () =>{
             //event.preventDefault()
             //Grab State
+            const auth = new withAuth()
             const {
+                success,
                 signInEmail,
                 signInPassword,
             } = this.state
@@ -117,8 +134,19 @@ export class Login extends Component {
                     console.log(json.message," successfull i guess");
                     this.resetInputs();
                     this.setState({
+                        success:true,
                         token:json.token
                     })
+                    this.loginmadafaka();
+                    // if(success){
+                    //     <Redirect to="/Home"/>
+                    // }
+                    // auth.checkAuth(()=>{
+                    //     this.props.history.push('/Home')
+                    // })
+
+
+                    console.log(this.state)
                 } else{
                     alert(json.message)
                     console.log("login eroror")
@@ -201,4 +229,5 @@ export class Login extends Component {
     }
 }
 
-export default Login
+// export default withAuth(Login)
+export default withRouter(Login)

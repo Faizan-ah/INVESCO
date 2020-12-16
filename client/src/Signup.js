@@ -6,7 +6,7 @@ export class Signup extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isLoading: false,
+            isLoading: true,
             token: '',
             signUpError: '',
             signUpFirstName: '',
@@ -197,7 +197,7 @@ export class Signup extends Component {
                 <div class='signupDataRow1'>
                     <div class='signupDataRow1Col1'>
                         <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange} required></input>
+                        <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
                     </div>
                     <div class='signupDataRow1Col2'>
                         <label for="lname">Last Name</label>

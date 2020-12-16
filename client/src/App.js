@@ -6,6 +6,8 @@ import Login from './Login'
 import './StyleSheets/Home.css';
 import RealEstateMain from './RealEstateMainPage'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import LandingPage from "./LandingPage";
+import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
   //submiting form data
@@ -40,7 +42,9 @@ class App extends React.Component{
         {/*<button onClick={this.submit}>submit</button>*/}
         {/*use Switch instead of router*/}
         <Router> 
-          <Route path="/" exact component={Home}/>
+          <Route path="/" exact component={LandingPage}/>
+          <Route path="/Home" exact component={Home}/>
+          {/* <ProtectedRoute path="/Home"></ProtectedRoute> */}
           <Route path="/registration" exact component={Signup}/>
           <Route path="/login" exact component={Login}/>
           {/*<Route path="/" exact component={Header}/>*/}

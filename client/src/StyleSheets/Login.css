@@ -86,7 +86,7 @@ body, .login-main{
     cursor: pointer;
   }
   
-  #button-login a {
+  #button-login p {
     font-family: "Helvetica";
     position: relative;
     transition: all .45s ease-Out;
@@ -114,7 +114,7 @@ body, .login-main{
     left: -70px;
   }
   
-  #button-3:hover a {
+  #button-3:hover p {
     color: #2D3142;
   }
   

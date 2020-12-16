@@ -101,7 +101,6 @@ router.post('/signup', (req,res,next)=>{
 })
    
 router.post('/signin', (req,res,next)=>{
-    console.log("reasdasd")
     const {body} = req;
     const {password} = body;
     let {email} = body;

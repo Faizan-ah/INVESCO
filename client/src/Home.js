@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Components/Header'
 import './StyleSheets/Header.css'
-import withAuth from './Components/withAuth'
+
 class Home extends React.Component{
     render(){
-        const auth = new withAuth();
+        
         return(
             <div className="home-main">
                 <Header/>
@@ -27,7 +27,7 @@ class Home extends React.Component{
                     </div> 
                 </div>
                 <button onClick={()=>{
-                    this.props.history.push('/LandingPage')
+                    this.props.history.push('/')
                 }}>logout</button>
             </div>
         );

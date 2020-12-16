@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { Link,Redirect,withRouter } from 'react-router-dom';
-import Signup from './Signup'
+import { Link,withRouter } from 'react-router-dom';
 import './StyleSheets/Login.css'
-import withAuth from "./Components/withAuth";
-import Home from './Home'
 export class Login extends Component {
     constructor(props){
         super(props);
@@ -17,7 +14,8 @@ export class Login extends Component {
     }
 
     componentDidMount(){
-        const obj =this.getFromStorage('the_main_app')
+        //used for future authentication
+        //const obj =this.getFromStorage('the_main_app')
         // console.log('obje',obj.token)
         // if(obj && obj.token){
         //     const {token} = obj.token
@@ -89,7 +87,7 @@ export class Login extends Component {
             })
         }
 
-    loginmadafaka =() =>{
+    signinButtonPush =() =>{
         console.log('success',this.state.success)
         if(this.state.success){
             console.log("hhhh",this.props.history)
@@ -104,9 +102,7 @@ export class Login extends Component {
     onSignin = () =>{
             //event.preventDefault()
             //Grab State
-            const auth = new withAuth()
             const {
-                success,
                 signInEmail,
                 signInPassword,
             } = this.state
@@ -131,21 +127,13 @@ export class Login extends Component {
                 if(json.success){
                     alert('signin successful')
                     this.setInStorage('the_main_app',{ token: json.token })   
-                    console.log(json.message," successfull i guess");
+                    console.log(json.message," Successfull !");
                     this.resetInputs();
                     this.setState({
                         success:true,
                         token:json.token
                     })
-                    this.loginmadafaka();
-                    // if(success){
-                    //     <Redirect to="/Home"/>
-                    // }
-                    // auth.checkAuth(()=>{
-                    //     this.props.history.push('/Home')
-                    // })
-
-
+                    this.signinButtonPush();
                     console.log(this.state)
                 } else{
                     alert(json.message)
@@ -155,12 +143,9 @@ export class Login extends Component {
                     }) 
                 }
             })
-            // .catch((err)=>{
-            //     console.log("123")
-            // })
     
         }
-    //function for logout
+    //function for logout (NOT USING RN)
     isLogout = () =>{
         this.setState({
             isLoading:true,
@@ -208,15 +193,13 @@ export class Login extends Component {
                         <div>
                             <div class="button" id="button-login" onClick = {this.onSignin}>
                                 <div id="circle"></div>
-                                <a>LOGIN</a>
+                                <p>LOGIN</p>
                                 {/* <Link to="/">LOGIN</Link> */}
                             </div>
                         </div>
                         <div class='links'>
                             <Link id="fpass" >Forgot Password?</Link>
                             <Link id="regAcc" to="/registration">Register Account</Link>
-                            {/* check */}
-                            
                         </div>
                     </div>
                     

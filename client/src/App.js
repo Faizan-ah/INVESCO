@@ -7,7 +7,7 @@ import './StyleSheets/Home.css';
 import RealEstateMain from './RealEstateMainPage'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from "./LandingPage";
-import ProtectedRoute from './ProtectedRoute'
+// import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
   //submiting form data

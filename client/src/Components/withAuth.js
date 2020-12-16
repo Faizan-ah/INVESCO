@@ -1,6 +1,3 @@
-// import { Component } from 'react';
-import {Redirect} from 'react-router-dom'
-
 class withAuth {
     constructor(){
         this.isAuthenticated= false

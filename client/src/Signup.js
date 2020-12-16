@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link ,withRouter} from 'react-router-dom';
 import './StyleSheets/Signup.css';
-import axios from 'axios';
 export class Signup extends Component {
     constructor(props){
         super(props);
         this.state = {
             isLoading: true,
+            success:false,
             token: '',
-            signUpError: '',
             signUpFirstName: '',
             signUpLastName: '',
             signUpEmail: '',
@@ -16,32 +15,32 @@ export class Signup extends Component {
             signUpPassword: '',
         }
     }
-
     componentDidMount(){
-        const token =this.getFromStorage('the_main_app')
-        if(token){
-            //verify token
-            fetch('/verify?token='+token)
-            .then(res=>res.json())
-            .then(json=>{
-                if(json.success){
-                    this.setState({
-                        token:token,
-                        isLoading:false
-                    })
-                }
-                else{
-                    this.setState({
-                        isLoading:false,
-                    })
-                }
-            })
-        }
-        else{
-            this.setState({
-                isLoading:false,
-            })
-        }
+        //used for future authentication
+        // const token =this.getFromStorage('the_main_app')
+        // if(token){
+        //     //verify token
+        //     fetch('/verify?token='+token)
+        //     .then(res=>res.json())
+        //     .then(json=>{
+        //         if(json.success){
+        //             this.setState({
+        //                 token:token,
+        //                 isLoading:false
+        //             })
+        //         }
+        //         else{
+        //             this.setState({
+        //                 isLoading:false,
+        //             })
+        //         }
+        //     })
+        // }
+        // else{
+        //     this.setState({
+        //         isLoading:false,
+        //     })
+        // }
     }
     //getting token 
     getFromStorage =(key)=>{
@@ -58,7 +57,7 @@ export class Signup extends Component {
             return null;
         }
     }
-
+    //setting token
     setInStorage =(key,obj)=>{
         if(!key){
             console.log("key missing");
@@ -70,7 +69,6 @@ export class Signup extends Component {
             console.log("errrr");
         }
     }
-
     //blank inputs
     resetInputs = ()=>{
         this.setState({
@@ -84,35 +82,7 @@ export class Signup extends Component {
             signUpPassword: '',
         })
     }
-
-    // submit = (event)=>{
-    //     //stops rendering until submit button
-    //     event.preventDefault();
-    
-    //     const payload = {
-    //       firstName:"a",
-    //       lastName:"ahmed",
-    //       email:"a@g.com",
-    //       mobileNum:"1111",
-    //       password:"asd",
-    //     }
-    
-    //     //sending data to server
-    //     axios({
-    //       url:'/signup',
-    //       method:'POST',
-    //       data: payload
-    //     })
-    //     .then(()=>{
-    //       console.log("data sent to server")
-    //       //this.resetUserInputs();
-    //       //this.getBlogPost();
-    //     })
-    //     .catch(()=>{
-    //       console.log("data NOT sent to server")
-    //     })
-    //   };
-    
+    //adding onChange event for text fields
     onChange = (event) =>{
     const target = event.target;
     const name = target.name;
@@ -121,7 +91,18 @@ export class Signup extends Component {
             [name]:value
         })
     }
-    
+    //pushing route on signup button
+    signupButtonPush = () =>{
+        if(this.state.success){
+            console.log("hhhh",this.props.history)
+            this.props.history.push("/login")
+        }
+        else{
+            console.log("isme")
+            this.props.history.push("/registration")
+        }
+    }
+    //signup button event call
     onSignup = (event) =>{
         //event.preventDefault()
         //Grab State
@@ -155,9 +136,12 @@ export class Signup extends Component {
         .then(json =>{
             console.log('json',json)
             if(json.success){
-                console.log(json.message," successfull i guess");
+                console.log(json.message," Successfull !");
                 this.resetInputs();
-                //maybe routing code here
+                this.setState({
+                    success:true
+                })
+                this.signupButtonPush();
             } else{
                 alert(json.message)
                  console.log("eroror")
@@ -174,13 +158,13 @@ export class Signup extends Component {
         console.log(this.state)
         const {isLoading,
             token,
-            signUpError,
             signUpFirstName,
             signUpLastName,
             signUpEmail,
             signUpMobile,
             signUpPassword,
         }   = this.state;
+
         // if(isLoading){
         //     return(<div><p>Loading...</p></div>)
         // }
@@ -248,4 +232,4 @@ export class Signup extends Component {
     }
 }
 
-export default Signup
+export default withRouter(Signup)

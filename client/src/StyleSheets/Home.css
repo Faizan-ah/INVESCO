@@ -1,0 +1,75 @@
+body{
+     background-color: #466368; 
+   
+    
+    /* background-image: url("http://ayiekdesain.weebly.com/uploads/4/6/6/1/466103/3650002_orig.jpg?254"); */
+   
+    
+}
+
+.home-main{
+    /* background-color: azure; */
+    background-color: #466368; 
+    align-self: center;
+    margin-top:10%;
+    padding-bottom: 5%;
+    /* background-image: url("http://ayiekdesain.weebly.com/uploads/4/6/6/1/466103/3650002_orig.jpg?254"); */
+}
+h2{
+    text-align: center;
+    padding-top:10px;
+    font-size: 30px;
+    color:antiquewhite;
+    letter-spacing: 0.25rem;
+}
+
+.options{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 4%;
+    
+}
+.options-inside{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 60px;
+    background-color: azure;
+    
+}
+.options-inside h3{
+    letter-spacing: 0.25mm;
+}
+.options-inside p{
+    width: 400px;
+    color: black
+}
+
+.options-inside:hover{
+    background-color: #BFC0C0;
+    transition: all .50s ease-Out;
+    animation: bounce 1s;
+
+}
+
+.home-div-links{
+    text-decoration: none;
+    color: black;
+}
+
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}

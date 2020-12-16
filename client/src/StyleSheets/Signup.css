@@ -1,0 +1,163 @@
+body, .signup-main{
+    background-color:  #466368;
+    height: 100%;
+    width: 100%;
+    align-content: center;
+  }
+  h1{
+    font-style: italic;
+    text-align: center;
+    letter-spacing: 0.2pc;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
+  }
+  .signupForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10%;
+    font-family: 'Ralway';
+    background-color: ivory;
+    border-radius: 10px;
+  }
+  .signupDataRow1,.signupDataRow2,.signupDataRow3{
+      display: flex;
+      flex-direction: row;
+      justify-content:center;
+      height:100%;
+      width:80%;
+      border-bottom-color: transparent;
+      background-color: ivory;
+      margin-left: 8%;
+  }
+  .signupDataRow1Col1,.signupDataRow1Col2,.signupDataRow2Col1,.signupDataRow2Col2,.signupDataRow3Col1,.signupDataRow3Col2{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .signupDataRow1Col2,.signupDataRow2Col2,.signupDataRow3Col2{
+    margin-left: 8%;
+  }
+  
+  .signupForm label{
+      /*border: 4px solid black;*/
+      font-size: 20px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+  }
+  .tac {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      margin: 0 auto;
+      
+  }
+  
+  
+  /*
+  .signupDataRow4>div>label{
+      font-size: 20px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+  }
+  */
+  #termsCond{
+    height: 18px;
+    width: 20px;
+    margin-left: 26%;
+    margin-top: 20px;
+  
+  }
+  .terms{
+    float: right;
+    width: 50%;
+    margin-top: 17px;
+  }
+  .hel{
+    display: flex;
+    flex-direction: row;
+  }
+  .signupForm input{
+      height: 25px;
+      width: 110%;
+  }
+  
+  .button {
+    display: inline-flex;
+    height: 40px;
+    width: 150px;
+    border: 2px solid #BFC0C0;
+    margin: 20px 20px 20px 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    align-self:center;
+  }
+  #button-signup {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  #button-signup a {
+    font-family: "Helvetica";
+    position: relative;
+    transition: all .45s ease-Out;
+    text-decoration: none;
+    color: black;
+  }
+  #circle {
+    width: 0%;
+    height: 0%;
+    opacity: 0;
+    line-height: 40px;
+    border-radius: 50%;
+    background: #BFC0C0;
+    position: absolute;
+    transition: all .5s ease-Out;
+    top: 20px;
+    left: 70px;
+  }
+  #button-signup:hover #circle {
+    width: 200%;
+    height: 500%;
+    opacity: 1;
+    top: -70px;
+    left: -70px;
+  }
+  
+  #button-3:hover a {
+    color: #2D3142;
+  }
+  
+  .terms a{
+    text-decoration: none;
+    color:#2d419b;
+  }
+  #termsLink:hover{
+    color:cadetblue;
+    text-decoration: underline;
+  }
+  #ppLink:hover{
+    color:cadetblue;
+    text-decoration: underline;
+  }
+  .logLink{
+    text-align: center;
+    font-weight: bold;
+  }
+  #loginLink{
+    text-decoration: none;
+    color:#2d419b;
+  }
+  #loginLink:hover{
+    color:cadetblue;
+    text-decoration: underline;
+  }
+  

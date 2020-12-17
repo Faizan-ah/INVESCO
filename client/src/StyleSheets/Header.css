@@ -41,8 +41,16 @@
     margin-bottom: 2rem;
     font-size: 1.5rem;
     background:none;
+    text-decoration: none;
+    color: black;
+    
   }
 
+  .menu-bars span{
+    text-decoration: none;
+    color: black;
+    
+  }
   
   .nav-menu {
     visibility:visible;
@@ -100,8 +108,8 @@
     background-color: ivory;
     width: 100%;
     height: 80px;
-    display: flex;
-    justify-content: start;
+    display:flex;
+    justify-content: flex-start;
     align-items: center;
   }
 

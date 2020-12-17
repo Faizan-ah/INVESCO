@@ -161,7 +161,6 @@ export class Signup extends Component {
             signUpFirstName,
             signUpLastName,
             signUpEmail,
-            signUpMobile,
             signUpPassword,
         }   = this.state;
 
@@ -189,11 +188,7 @@ export class Signup extends Component {
                     </div>
                 </div>
 
-                <div class='signupDataRow1'>
-                    <div class='signupDataRow2Col1'>
-                        <label for="mobileNum">Mobile Number</label>
-                        <input type="text" id="mobileNum" name="signUpMobile" value={signUpMobile} onChange={this.onChange} ></input>
-                    </div>
+                <div class='signupDataRow2'>
                     <div class='signupDataRow2Col2'>
                         <label for="email">Email</label>
                         <input type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>

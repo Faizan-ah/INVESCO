@@ -1,9 +1,9 @@
-import React , {useState} from 'react';
+import React from 'react';
 import '../StyleSheets/Header.css';
 import {RiUserSettingsFill} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import * as FaIcon from 'react-icons/fa'
-import * as AiIconX from 'react-icons/ai'
+// import * as FaIcon from 'react-icons/fa'
+// import * as AiIconX from 'react-icons/ai'
 import {SidebarData} from './SidebarData'
 
 class Header extends React.Component{
@@ -39,19 +39,22 @@ class Header extends React.Component{
                     <ul className='nav-menu-items' onClick={this.showSideBar}>
                         <li className='navbar-toggle'>
                             <Link t0="#" className="menu-bars">
-                                <AiIconX.AiOutlineClose/>
+                                <span>Account Settings</span>
                             </Link>
+                            
                         </li>
-                        {SidebarData.map((item,  index)=>{
-                            return(
-                                <li key={index} className={item.cName}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            )
-                        })}
+                        {
+                            SidebarData.map((item,  index)=>{
+                                return(
+                                    <li key={index} className={item.cName}>
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </li>
+                                )
+                            })
+                        }
                     </ul>
                </nav>
             </div>

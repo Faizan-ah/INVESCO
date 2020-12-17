@@ -15,10 +15,6 @@ const UserSchema = new Schema({
         type:String,
         default: ''
     },
-    mobileNo:{
-        type:String,
-        default: ''
-    },
     password: {
         type:String,
         default: ''

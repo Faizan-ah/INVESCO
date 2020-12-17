@@ -18,7 +18,6 @@ router.post('/signup', (req,res,next)=>{
     const {
         firstName,
         lastName,
-        mobileNum,
         password,
     } = body;
     let {email} = body;
@@ -40,15 +39,6 @@ router.post('/signup', (req,res,next)=>{
             success:false,
             message: 'Error: Enter Email!'
         })
-    }
-    
-    if(!mobileNum){
-        return res.send({
-            success:false,
-            message: 'Error: Enter Your Phone Number!',
-            
-        })
-        
     }
     
     if(!password){
@@ -83,7 +73,6 @@ router.post('/signup', (req,res,next)=>{
         newUser.firstName=firstName;
         newUser.lastName=lastName;
         newUser.email=email;
-        newUser.mobileNum=mobileNum;
         newUser.password=newUser.generateHash(password);
         newUser.save((err,user)=>{
             if(err){

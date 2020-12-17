@@ -10,32 +10,6 @@ import LandingPage from "./LandingPage";
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
-  //submiting form data
-  submit = (event)=>{
-    //stops rendering until submit button
-    event.preventDefault();
-
-    const payload = {
-      name : "umer",
-      age : "12"
-    }
-
-    //sending data to server
-    axios({
-      url:'/api/save',
-      method:'POST',
-      data: payload
-    })
-    .then(()=>{
-      console.log("data sent to server")
-      //this.resetUserInputs();
-      //this.getBlogPost();
-    })
-    .catch(()=>{
-      console.log("data NOT sent to server")
-    })
-  };
-
   render(){
     return(
       <div>

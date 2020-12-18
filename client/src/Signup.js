@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { RiThunderstormsFill } from 'react-icons/ri';
 import { Link ,withRouter} from 'react-router-dom';
 import './StyleSheets/Signup.css';
 export class Signup extends Component {
@@ -13,6 +14,12 @@ export class Signup extends Component {
             signUpEmail: '',
             signUpMobile: '',
             signUpPassword: '',
+            signUpConfirmPassword:'',
+            fnameError: '',
+            lnameError: '',
+            emailError: '',
+            passwordError: '',
+            checked:false       
         }
     }
     componentDidMount(){
@@ -91,6 +98,9 @@ export class Signup extends Component {
             [name]:value
         })
     }
+    onChangeCheckbox = () => {
+        this.setState({checked: !this.state.checked});
+    }
     //pushing route on signup button
     signupButtonPush = () =>{
         if(this.state.success){
@@ -102,6 +112,7 @@ export class Signup extends Component {
             this.props.history.push("/registration")
         }
     }
+
     //signup button event call
     onSignup = (event) =>{
         //event.preventDefault()
@@ -112,49 +123,106 @@ export class Signup extends Component {
             signUpEmail,
             signUpMobile,
             signUpPassword,
+            
         } = this.state
 
         this.setState({
             isLoading:true,
         })
-        //post request to backend
-        fetch('/account/signup', {
-            method:'POST',
-            headers:{
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                firstName:signUpFirstName,
-                lastName:signUpLastName,
-                email:signUpEmail,
-                mobileNum:signUpMobile,
-                password:signUpPassword,
+        this.validate()
+        console.log(this.validate())
+        // this.setState({
+        //     nameError:'',
+        //     emailError:'',
+        //     passwordError:'',
+        // })
+        if(this.validate()){
+            //post request to backend
+            fetch('/account/signup', {
+                method:'POST',
+                headers:{
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName:signUpFirstName,
+                    lastName:signUpLastName,
+                    email:signUpEmail,
+                    mobileNum:signUpMobile,
+                    password:signUpPassword,
 
-            }),
-        })
-        .then(res=>res.json())
-        .then(json =>{
-            console.log('json',json)
-            if(json.success){
-                console.log(json.message," Successfull !");
-                this.resetInputs();
-                this.setState({
-                    success:true
-                })
-                this.signupButtonPush();
-            } else{
-                alert(json.message)
-                 console.log("eroror")
-                 this.setState({
-                     isLoading:false,
-                 }) 
-            }
-        })
+                }),
+            })
+            .then(res=>res.json())
+            .then(json =>{
+                console.log('json',json)
+                if(json.success){
+                    console.log(json.message," Successfull !");
+                    this.resetInputs();
+                    this.setState({
+                        success:true
+                    })
+                    this.signupButtonPush();
+                } else{
+                    console.log("eroror")
+                    this.setState({
+                        isLoading:false,
+                    }) 
+                }
+            })
+
+        }
    
+    
+    }
 
+    validate = (event)=>{
+        let fnameError = '';
+        let lnameError = '';
+        let emailError = '';
+        let passwordError = '';
+        let checkedError = '';
+        const emailRegex = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        const nameRegex = new RegExp(/^[a-z ,.'-]+$/i)
+        const passRegex = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i)
+        
+        if(!nameRegex.test(this.state.signUpFirstName)){
+            fnameError = 'Enter Valid First Name'
+        }
+
+        if(!nameRegex.test(this.state.signUpLastName)){
+            lnameError = 'Enter Valid Last Name'
+        }
+
+        if(!emailRegex.test(this.state.signUpEmail)){
+            emailError = 'Enter Valid Email'
+        }
+
+        // if(!this.state.signUpEmail.includes('@')){
+        //     emailError = 'Invalid Email'
+        // }
+        if(!passRegex.test(this.state.signUpPassword)){
+            passwordError = 'Password must have minimum 8 characters, atleast one letter and one number'
+        }
+        if(this.state.signUpPassword!=this.state.signUpConfirmPassword){
+            passwordError = "Passwords don't Match"
+        }
+        if(emailError || fnameError || lnameError || passwordError){
+            this.setState({
+                emailError,
+                fnameError,
+                lnameError,
+                passwordError,
+                // signUpEmail:''
+            })
+            //this.focusInput.focus()
+            return false;
+        }
+        return true
     }
     render(props) {
-
+        const buttonStyle = {
+            pointerEvents: this.state.checked ? 'all': 'none',
+        }
         console.log(this.state)
         const {isLoading,
             token,
@@ -162,6 +230,8 @@ export class Signup extends Component {
             signUpLastName,
             signUpEmail,
             signUpPassword,
+            signUpConfirmPassword,
+            checked,
         }   = this.state;
 
         // if(isLoading){
@@ -181,17 +251,20 @@ export class Signup extends Component {
                     <div class='signupDataRow1Col1'>
                         <label for="fname">First Name</label>
                         <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
+                        <span className="error-display">{this.state.fnameError}</span>
                     </div>
                     <div class='signupDataRow1Col2'>
                         <label for="lname">Last Name</label>
                         <input type="text" id="lname" name="signUpLastName" value={signUpLastName} onChange={this.onChange} ></input>
+                        <span className="error-display">{this.state.lnameError}</span>
                     </div>
                 </div>
 
                 <div class='signupDataRow2'>
                     <div class='signupDataRow2Col2'>
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>
+                        <input ref={focusInput =>{this.signUpEmail = focusInput}} type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>
+                        <span className="error-display">{this.state.emailError}</span>
                     </div>
                 </div>
                 
@@ -199,17 +272,18 @@ export class Signup extends Component {
                     <div class='signupDataRow3Col1'>
                         <label for="password">Password</label>
                         <input type="password" id="password" name="signUpPassword" value={signUpPassword} onChange={this.onChange} required></input>
+                        <span className="error-display">{this.state.passwordError}</span>
                     </div>
                     <div class='signupDataRow3Col2'>
                         <label for="cpassword">Confirm Password</label>
-                        <input type="password" id="cpassword" value={signUpPassword} ></input> 
+                        <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
                     </div>
                 </div>
                 <div class="hel">
-                <input type='checkbox' id='termsCond' required></input>
+                <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
                 <label class="terms" for='termsCond'>Do you agree to our <span><a id="termsLink" href="#">Terms</a></span> and <span><a id="ppLink" href="#">Privacy Policy</a></span>?</label>                    
                 </div>
-                <div class="button" id="button-signup" onClick={this.onSignup}>
+                <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
                     <div id="circle"></div>
                     <a href="#">SIGNUP</a>
                 </div>

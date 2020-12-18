@@ -118,4 +118,11 @@ body, .login-main{
     color: #2D3142;
   }
   
+  .error-display-login{
+    color: red;
+    text-align: center;
+    /* border: 1px solid black; */
+    margin-right: 12px;
+    width:200px;
+  }
   

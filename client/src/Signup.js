@@ -163,7 +163,7 @@ export class Signup extends Component {
                     })
                     this.signupButtonPush();
                 } else{
-                    console.log("eroror")
+                    alert(json.message)
                     this.setState({
                         isLoading:false,
                     }) 

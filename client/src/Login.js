@@ -10,6 +10,7 @@ export class Login extends Component {
             token: '',
             signInEmail: '',
             signInPassword: '',
+            inputError:'',
         }
     }
 
@@ -125,7 +126,6 @@ export class Login extends Component {
             .then(json =>{
                 console.log('json',json)
                 if(json.success){
-                    alert('signin successful')
                     this.setInStorage('the_main_app',{ token: json.token })   
                     console.log(json.message," Successfull !");
                     this.resetInputs();
@@ -136,7 +136,9 @@ export class Login extends Component {
                     this.signinButtonPush();
                     console.log(this.state)
                 } else{
-                    alert(json.message)
+                    this.setState({
+                        inputError:json.message
+                    })
                     console.log("login eroror")
                     this.setState({
                         isLoading:false,
@@ -190,6 +192,7 @@ export class Login extends Component {
                         <input type="email" name="signInEmail" value = {this.state.signInEmail} id="email" onChange={this.onChange} required></input>
                         <label for="password">Password</label>
                         <input type="password" name="signInPassword" value = {this.state.signInPassword} id="password" onChange={this.onChange} required></input>
+                        <span className="error-display-login">{this.state.inputError}</span>
                         <div>
                             <div class="button" id="button-login" onClick = {this.onSignin}>
                                 <div id="circle"></div>

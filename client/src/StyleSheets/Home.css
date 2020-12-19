@@ -1,5 +1,6 @@
 body{
-     background-color: #466368; 
+    /* #466368 */
+     background-color: #0c2d33; 
    
     
     /* background-image: url("http://ayiekdesain.weebly.com/uploads/4/6/6/1/466103/3650002_orig.jpg?254"); */
@@ -9,7 +10,7 @@ body{
 
 .home-main{
     /* background-color: azure; */
-    background-color: #466368; 
+    background-color: #0c2d33; 
     align-self: center;
     margin-top:10%;
     padding-bottom: 5%;

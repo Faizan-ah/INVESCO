@@ -3,7 +3,8 @@ import Home from './Home';
 import Signup from './Signup'
 import Login from './Login'
 import './StyleSheets/Home.css';
-import RealEstateMain from './RealEstateMainPage'
+import RealEstateMain from './RealEstateMainPage';
+import RealEstateAreaSearchBar from './Components/RealEstateAreaSearchBar'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LandingPage from "./LandingPage";
 // import ProtectedRoute from './ProtectedRoute'
@@ -22,6 +23,7 @@ class App extends React.Component{
           <Route path="/login" exact component={Login}/>
           {/*<Route path="/" exact component={Header}/>*/}
           <Route path = "/RealEstatePrediction" component={RealEstateMain} exact/>
+          <Route path = "/search" component={RealEstateAreaSearchBar} exact/>
         </Router>
       </div>
     );

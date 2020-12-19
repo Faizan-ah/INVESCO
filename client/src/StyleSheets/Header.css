@@ -49,7 +49,6 @@
   .menu-bars span{
     text-decoration: none;
     color: black;
-    
   }
   
   .nav-menu {
@@ -122,3 +121,34 @@
     background-color:royalblue;
   }
   */
+  .property-topbar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(26, 19, 19);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+  }
+  .property-topbar li{
+    float: left;
+    border-right:1px solid #bbb;
+  }
+
+  .property-topbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 17px 20px;
+    text-decoration: none;
+  }
+  
+  .property-topbar li a:hover {
+    background-color:goldenrod;
+    color: Black;
+    transition: all .3s ease-in-out;
+    transform: scale(1.1);
+    
+  }

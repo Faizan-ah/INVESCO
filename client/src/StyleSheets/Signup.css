@@ -1,7 +1,7 @@
 body, .signup-main{
     background-color:  #0c2d33;
-    height: 100%;
-    width: 100%;
+    /* height: 100%;
+    width: 100%; */
     align-content: center;
   }
   h1{
@@ -21,18 +21,35 @@ body, .signup-main{
     font-family: 'Ralway';
     background-color: ivory;
     border-radius: 10px;
+    align-content: center;
   }
+  .signupDataRow1{
+      
+      float: left;
+      height:100%;
+      width:100%;
+      border: 1px solid black;
+      padding-left: 25%;
+  }
+  .signupDataRow3{
+      float: left;
+      height:100%;
+      width:100%;
+      border: 1px solid black;
+      padding-left: 25%;
+  }
+/*   
   .signupDataRow1,.signupDataRow2,.signupDataRow3{
       display: flex;
       flex-direction: row;
       justify-content:center;
-      height:100%;
-      width:80%;
+      
       border-bottom-color: transparent;
       background-color: ivory;
       margin-left: 8%;
-  }
+  } */
   .signupDataRow1Col1,.signupDataRow1Col2,.signupDataRow2Col1,.signupDataRow2Col2,.signupDataRow3Col1,.signupDataRow3Col2{
+    float: left;
     display: flex;
     flex-direction: column;
     
@@ -40,11 +57,9 @@ body, .signup-main{
   .signupDataRow1Col2,.signupDataRow3Col2{
     margin-left: 8%;
   }
-  .signupDataRow3Col2{
-    width: 200px;
-  }
+  
   .signupDataRow2Col2{
-    margin-left: 26px;
+    margin-left: 25%;
   }
   
   .signupForm label{
@@ -87,11 +102,15 @@ body, .signup-main{
   }
   .signupForm input{
       height: 25px;
-      width: 110%;
+      /* width: 110%; */
+      width:100%;
   }
 
   .signupDataRow2Col2 input{
-    width:485px;
+    width:239%; 
+  }
+  .signupDataRow3Col2 input{
+    width:114%; 
   }
   
   .button {
@@ -178,4 +197,60 @@ body, .signup-main{
     margin-left: 2px;
     width:200px;
 }
-  
+@media only screen and (max-width: 1680px) {
+  /* For mobile phones: */
+  [class*="signupForm"] {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+
+  }
+  [class*="signupDataRow1"] {
+    width: 70%;
+    float: none;
+    margin-left: 0%;
+  }
+  [class*="signupDataRow2"] {
+    width: 45.5%;
+    margin-left: 17.3%;
+  }
+  [class*="signupDataRow3"] {
+    width: 70%;
+    float: none;
+    margin-left: 0%;
+  }
+  [class*="signupDataRow2Col2 input"]{
+    width:100%; 
+  }
+  .signupDataRow3Col2 input{
+    width:100%; 
+  }
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="signupForm"] {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  [class*="signupDataRow1"] {
+    width: 70%;
+    float: none;
+    margin-left: 0%;
+  }
+  [class*="signupDataRow2"] {
+    width: 45.5%;
+    margin-left: 17.3%;
+  }
+  [class*="signupDataRow3"] {
+    width: 70%;
+    float: none;
+    margin-left: 0%;
+  }
+  [class*="signupDataRow2Col2 input"]{
+    width:100%; 
+  }
+  .signupDataRow3Col2 input{
+    width:100%; 
+  }
+}

@@ -7,16 +7,20 @@ body{
    
     
 }
-/* .home-blur{
-    -webkit-filter: blur(5px);
+.home-blur{
+    /* -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
     filter: blur(5px);
-    width: 100%;
-    height: 100%;
-    background-color: #ccc;
-} */
+    width: 86%;
+    transition: 850ms;
+    height: 100%; */
+    align-self: center;
+    margin-top:10%;
+    padding-bottom: 5%;
+    
+}
 .home-main{
     /* background-color: azure; */
     background-color: #0c2d33; 
@@ -83,7 +87,7 @@ h2{
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="options-inside"] {
-      width: 100%;
+      width: 89%;
       margin-left: 0%;
     }
   }

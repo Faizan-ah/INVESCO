@@ -25,11 +25,15 @@ class Home extends React.Component{
         console.log('home',this.state.homescreen)
         var divStyle = {
             pointerEvents: this.state.homescreen ? 'all': 'none',
+            // width: this.state.homescreen ? '100%': '90%',
         }
         return(
-            <div className="home-main" >
-
+            <div>
                 <Header data = {this.checkSideBar.bind(this)}/>
+            
+            <div className={this.state.homescreen ? "home-main":"home-blur"} >
+
+                
                 
                 <h2><span>Welcome to INVESCO!</span></h2>
                 <div className="options" style={divStyle}>
@@ -52,6 +56,7 @@ class Home extends React.Component{
                         </div> 
                     </Link>
                 </div>
+            </div>
             </div>
         );
     }   

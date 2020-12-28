@@ -5,7 +5,7 @@ import Login from './Login'
 import './StyleSheets/Home.css';
 import RealEstateMain from './RealEstateMainPage';
 import RealEstateAreaSearchBar from './Components/RealEstateAreaSearchBar'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route , Switch} from 'react-router-dom';
 import LandingPage from "./LandingPage";
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'

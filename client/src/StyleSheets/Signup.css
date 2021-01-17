@@ -4,7 +4,7 @@ body, .signup-main{
     width: 100%; */
     align-content: center;
   }
-  h1{
+  .signupForm h1{
     font-style: italic;
     text-align: center;
     letter-spacing: 0.2pc;
@@ -14,7 +14,7 @@ body, .signup-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    width: 40%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 10%;
@@ -28,15 +28,15 @@ body, .signup-main{
       float: left;
       height:100%;
       width:100%;
-      border: 1px solid black;
-      padding-left: 25%;
+      
+      padding-left: 20%;
   }
   .signupDataRow3{
       float: left;
       height:100%;
       width:100%;
-      border: 1px solid black;
-      padding-left: 25%;
+      
+      padding-left: 20%;
   }
 /*   
   .signupDataRow1,.signupDataRow2,.signupDataRow3{
@@ -59,7 +59,7 @@ body, .signup-main{
   }
   
   .signupDataRow2Col2{
-    margin-left: 25%;
+    margin-left: 20%;
   }
   
   .signupForm label{
@@ -107,7 +107,7 @@ body, .signup-main{
   }
 
   .signupDataRow2Col2 input{
-    width:239%; 
+    width:231%; 
   }
   .signupDataRow3Col2 input{
     width:114%; 
@@ -211,8 +211,8 @@ body, .signup-main{
     margin-left: 0%;
   }
   [class*="signupDataRow2"] {
-    width: 45.5%;
-    margin-left: 17.3%;
+    width: 46.2%;
+    margin-left: 13.6%;
   }
   [class*="signupDataRow3"] {
     width: 70%;
@@ -224,6 +224,9 @@ body, .signup-main{
   }
   .signupDataRow3Col2 input{
     width:100%; 
+  }
+  .hel{
+    margin-right: 15%;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -239,8 +242,8 @@ body, .signup-main{
     margin-left: 0%;
   }
   [class*="signupDataRow2"] {
-    width: 45.5%;
-    margin-left: 17.3%;
+    width: 46.2%;
+    margin-left: 13.6%;
   }
   [class*="signupDataRow3"] {
     width: 70%;
@@ -252,5 +255,8 @@ body, .signup-main{
   }
   .signupDataRow3Col2 input{
     width:100%; 
+  }
+  .hel{
+    margin-right: 15%;
   }
 }

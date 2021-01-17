@@ -4,7 +4,7 @@ body, .login-main{
     width: 100%;
   }
   
-  h1{
+  .loginData h1{
     font-style: italic;
     letter-spacing: 0.2pc;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;

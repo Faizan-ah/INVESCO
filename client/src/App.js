@@ -4,6 +4,8 @@ import Signup from './Signup'
 import Login from './Login'
 import './StyleSheets/Home.css';
 import RealEstateMain from './RealEstateMainPage';
+import ChangeEmail from './Components/ChangeEmail';
+import ChangePassword from './Components/ChangePassword';
 import RealEstateAreaSearchBar from './Components/RealEstateAreaSearchBar'
 import { BrowserRouter as Router, Route , Switch} from 'react-router-dom';
 import LandingPage from "./LandingPage";
@@ -23,6 +25,9 @@ class App extends React.Component{
           <Route path="/login" exact component={Login}/>
           {/*<Route path="/" exact component={Header}/>*/}
           <Route path = "/RealEstatePrediction" component={RealEstateMain} exact/>
+          <Route path = "/ChangeEmail" component={ChangeEmail} exact/>
+          <Route path = "/ChangePassword" component={ChangePassword} exact/>
+          
           {/* <Route path = "/search" component={RealEstateAreaSearchBar} exact/> */}
         </Router>
       </div>

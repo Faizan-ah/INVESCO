@@ -4,6 +4,7 @@ import {RiUserSettingsFill} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 // import * as FaIcon from 'react-icons/fa'
 // import * as AiIconX from 'react-icons/ai'
+
 import {SidebarData} from './SidebarData'
 
 class Header extends React.Component{
@@ -38,7 +39,7 @@ class Header extends React.Component{
                <nav className={this.state.sidebar ? 'nav-menu active': 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={this.showSideBar}>
                         <li className='navbar-toggle'>
-                            <Link t0="#" className="menu-bars">
+                            <Link to="#" className="menu-bars">
                                 <span>Account Settings</span>
                             </Link>
                             

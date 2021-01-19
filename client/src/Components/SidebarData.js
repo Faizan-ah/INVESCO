@@ -1,16 +1,17 @@
 import React from 'react';
 import * as AiIcon from 'react-icons/ai'
 import * as RiIcon from 'react-icons/ri'
+import ChangeEmail from './ChangeEmail'
 export const SidebarData = [
     {
         title:"Change Email",
-        path:"#",
+        path:"/ChangeEmail",
         icon: <AiIcon.AiOutlineMail/>,
         cName: 'nav-text'
     },
     {
         title:"Change Password",
-        path:"#",
+        path:"/ChangePassword",
         icon: <RiIcon.RiLockPasswordLine/>,
         cName: 'nav-text'
     },

@@ -30,33 +30,30 @@ class Home extends React.Component{
         return(
             <div>
                 <Header data = {this.checkSideBar.bind(this)}/>
-            
-            <div className={this.state.homescreen ? "home-main":"home-blur"} >
-
-                
-                
-                <h2><span>Welcome to INVESCO!</span></h2>
-                <div className="options" style={divStyle}>
-                    <Link className="home-div-links" to="/RealEstatePrediction">
-                        <div className="options-inside" onClick="3">
-                            <h3>Stock Predictor</h3>
-                            <p>Here you will be able to view stock companies of the KSE100 index. Select this to get more info..</p>
-                        </div>
-                    </Link>
-                    <Link className="home-div-links" to="/RealEstatePrediction">
-                        <div className="options-inside"> 
-                            <h3>Real Estate Predictor</h3>
-                            <p>Here you will be able to view areas in Islamabad. Select this to get more info..</p>
-                        </div>
-                    </Link>
-                    <Link className="home-div-links" to="/RealEstatePrediction">
-                        <div className="options-inside">
-                            <h3>Investment Recommendation</h3>
-                            <p>Our personal investment recommender. This will tell you where you need to invest right now!</p>
-                        </div> 
-                    </Link>
+                {/* <div className={this.state.homescreen ? "home-main":"home-blur"} >*/}
+                    <div className="home-main">
+                    <h2><span>Welcome to INVESCO!</span></h2>
+                    <div className="options" style={divStyle}>
+                        <Link className="home-div-links" to="/RealEstatePrediction">
+                            <div className="options-inside" onClick="3">
+                                <h3>Stock Predictor</h3>
+                                <p>Here you will be able to view stock companies of the KSE100 index. Select this to get more info..</p>
+                            </div>
+                        </Link>
+                        <Link className="home-div-links" to="/RealEstatePrediction">
+                            <div className="options-inside"> 
+                                <h3>Real Estate Predictor</h3>
+                                <p>Here you will be able to view areas in Islamabad. Select this to get more info..</p>
+                            </div>
+                        </Link>
+                        <Link className="home-div-links" to="/RealEstatePrediction">
+                            <div className="options-inside">
+                                <h3>Investment Recommendation</h3>
+                                <p>Our personal investment recommender. This will tell you where you need to invest right now!</p>
+                            </div> 
+                        </Link>
+                    </div>
                 </div>
-            </div>
             </div>
         );
     }   

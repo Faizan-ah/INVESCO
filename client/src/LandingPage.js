@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import LandingPageHeader from './Components/LandingPageHeader'
+import Footer from './Components/Footer'
 import './StyleSheets/LandingPage.css'
 import logo from "C:/Users/Faian/invvesco/client/src/StyleSheets/images/gra.jpg" 
 
@@ -50,6 +51,9 @@ class LandingPage extends React.Component{
                     <div className="graph-image">
                         <img alt="image" src={logo} />
                     </div>
+                </div>
+                <div>
+                    <Footer/>
                 </div>
                 
             </div>

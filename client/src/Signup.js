@@ -281,7 +281,7 @@ export class Signup extends Component {
                 </div>
                 <div class="hel">
                 <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
-                <label class="terms" for='termsCond'>Do you agree to our <span><a id="termsLink" href="#">Terms</a></span> and <span><a id="ppLink" href="#">Privacy Policy</a></span>?</label>                    
+                <label class="terms" for='termsCond'>Do you agree to our <a id="termsLink" href="#">Terms</a> and <a id="ppLink" href="#">Privacy Policy</a>?</label>                    
                 </div>
                 <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
                     <div id="circle"></div>

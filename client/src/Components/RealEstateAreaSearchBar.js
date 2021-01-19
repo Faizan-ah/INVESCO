@@ -24,7 +24,7 @@ export class RealEstateAreaSearchBar extends Component {
         }
         return (
             <div>
-                <div className="area-button" id="areaButton" style={buttonStyle}onClick={this.showSearchSidebar}>
+                <div className="area-button" id="areaButton" style={buttonStyle} onClick={this.showSearchSidebar}>
                     <Link to="#" className="area-bars">
                             <FaIcon.FaBars/>
                             <span>View Areas</span>

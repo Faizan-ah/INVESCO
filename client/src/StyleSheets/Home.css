@@ -23,13 +23,18 @@ body{
 } */
 .home-main{
     /* background-color: azure; */
+
+    /* position: absolute;
+    top:200; */
     background-color: #0c2d33; 
     align-self: center;
     margin-top:10%;
     padding-bottom: 5%;
+    
+    
     /* background-image: url("http://ayiekdesain.weebly.com/uploads/4/6/6/1/466103/3650002_orig.jpg?254"); */
 }
-.home-main h2{
+.home-main-heading h2{
     font-family: 'Audiowide', cursive;
     text-align: center;
     padding-top:10px;
@@ -121,3 +126,35 @@ body{
 	}
 }
 
+
+
+/* for cards */
+/* 
+.root {
+    max-width: 345;
+    float:'left';
+    margin-left: '200px';
+    margin-top: 200;
+    border : '2px solid black';
+    min-height: '300px';
+    [theme.breakpoints.down('xs')]:{
+        marginLeft:'70px',
+        width: '100%'
+    },
+    [theme.breakpoints.up('sm')]:{
+       
+        width: '100%'
+    }
+  }
+
+  .homeContent{
+    border : '2px solid black';
+    float:'left';
+    width:'100%';
+    margin-left:'auto';
+    margin-right:'auto';
+    align-content:'center';
+    background-color:'grey';
+    padding-bottom: 200;
+    margin-top:100;
+} */

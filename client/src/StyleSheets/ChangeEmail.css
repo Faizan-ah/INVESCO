@@ -1,5 +1,5 @@
 .change-field-heading h1{
-    color: honeydew;
+    color: black;
 }
 .change-field-inputs {
     display: flex;
@@ -13,7 +13,7 @@
     margin-left: 5%;
 }
 .change-field-inputs label{
-    color:honeydew;
+    color:black;
     font-size: 20px;
     /* border: 1px solid white; */
 }

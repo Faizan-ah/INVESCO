@@ -15,6 +15,7 @@ return(
   <AutoplaySlider
     fillParent = {true}
     play={true}
+    mobileTouch ={true}
     cancelOnInteraction={false} // should stop playing on user interaction
     interval={6000}
     // transitionDelay={2000}

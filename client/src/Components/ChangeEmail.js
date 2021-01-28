@@ -38,7 +38,7 @@ export class ChangeEmail extends Component {
                             <input type="email" name="prevEmail" value = {this.state.prevEmail} id="prevEmail" onChange={this.onChange} required></input>
                         </div>
                         <div className="change-field-inputs-content">    
-                            <label  for="Epassword">Password</label>
+                            <label  for="Epassword">Enter Password</label>
                             <input type="password" name="Epassword" value = {this.state.Epassword} id="Epassword" onChange={this.onChange} required></input>
                         </div>
                         <div class="change-field-button" onClick = {this.changeEmailVerify}>

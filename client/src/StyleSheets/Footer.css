@@ -1,6 +1,7 @@
 
 .footer-space{
-    background-color:  #0c2d33;
+    /* background-color:  #0c2d33; */
+    background-color:#fff;
 }
 .footer-body{
     background-color: rgb(26, 19, 19);
@@ -15,6 +16,7 @@
     margin-top: 100px;
     padding-top: 10px;
     height: 100%;
+    text-shadow:5px 5px 10px black;
 }
 
 .footer-content{
@@ -33,13 +35,15 @@
     /* border: 1px solid white; */
     padding: 0px;
     height: 200px;
+    
 }
 .contact-us h2{
     font-weight: 600;
     font-size: 25px;
+    color: honeydew;
 }
 .contact-us p{
-    font-weight: 300;
+    font-weight: 500;
     font-size: 16px;
 }
 .footer-links{
@@ -60,7 +64,7 @@
     margin-left: auto;
     margin-right: auto;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 500;
     /* border: 1px solid white; */
     margin-top: 35px;
 }

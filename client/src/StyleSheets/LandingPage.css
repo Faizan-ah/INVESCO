@@ -5,6 +5,7 @@
     margin-top: 5rem;
     margin-left: 10%;
     font-family: 'Audiowide', cursive;
+    text-shadow:5px 5px 10px black;
 }
 .bg-curve{
     background-color: goldenrod; 
@@ -16,6 +17,7 @@
     top: 50px;
     border-radius: 0px 0px 0px 0px; 
     display: flex;
+    text-shadow:5px 5px 10px black;
 }
 .graph-image img{
     height: 450px;
@@ -42,10 +44,11 @@
     /* border:1px solid black; */
     margin-left: auto;
     margin-right: auto;
-    background-image: url(C:\Users\Faian\invvesco\client\src\StyleSheets\images\header-cover.jpg);
+    /* background-image: url(C:\Users\Faian\invvesco\client\src\StyleSheets\images\header-cover.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment:fixed;
+    
 }
 .landing-info-box{
     /* border-width: 5px ;
@@ -56,16 +59,25 @@
     border-radius: 10px;
     margin-right: 1rem;
     width:30%;
+   
+}
+
+.landing-info-box h2{
+    text-shadow:2px 3px 3px goldenrod;
+    font-weight: 800;
 }
 
 .para p{
     margin-left: auto;
     margin-right: auto;
-    width: 60%;
+    width: 70%;
     margin-top: 0;
     margin-bottom: 10%;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 15px;
+    font-weight:bold;
+    color:black;
+    text-align: center;
+    font-family: 'lemonada';
     /* border:1px solid black; */
 }
 /* .landing-info p{
@@ -84,30 +96,35 @@
     width: 100%;
     /* height: 100%; */
     float: left;
-    background-color: #0c2d33;
+    /* background-color: #0c2d33; */
+    background-color:#fff;
 }
 .intro{
-    /* border: 1px solid white; */
+    /* border: 1px solid black; */
     width: 45%;
     float: left;
     margin-left: 5%;
+    padding-bottom: 10px;
 }
 .intro h1{
     font-family: 'Audiowide', cursive;
     letter-spacing:3pt;
-    color: white;  
+    color: black;  
     font-size: 40px; 
+    text-shadow:2px 3px 3px goldenrod;
 }
 .intro h3{
     font-size: 25px;
     color:rgb(63, 194, 107);
     margin-left: 5%;
+    text-shadow:2px 2px 3px black;
 }
 .intro p{
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 500;
     width: 60%;
     margin-left: 5%;
+    color:black;
     /* border: 1px solid black; */
 
 }
@@ -140,5 +157,8 @@
     .graph-image img{
         height: 322px;
         margin-top: 0px;
+    }
+    .intro p{
+        width:100%
     }
 }

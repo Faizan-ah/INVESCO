@@ -4,10 +4,64 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux'
+import { createLogger } from 'redux-logger';
+import {Provider} from 'react-redux'
+
+const initialUserState = {
+  user: null,
+  isAuth: false
+}
+const userReducer = (state = initialUserState , action)=>{
+  switch(action.type){
+      case 'nullUser':
+          console.log('user null')
+          state={
+              ...state,
+              user:null,
+              isAuth:false    
+          }
+      case 'setUser':
+          state = {
+              ...state,
+              user: action.payload,
+              isAuth: true,
+          }
+          break
+  }
+  return state;
+}
+
+
+//personal logger
+const myLogger  = (store) => (next) => (action) =>{
+  console.log('logged action: ', action)
+  next(action)
+}
+
+const store =  createStore(
+  combineReducers({
+      user: userReducer,
+  }),
+  {},
+  compose(
+      applyMiddleware(createLogger()),
+
+  )
+  
+)
+
+store.subscribe(()=>{
+console.log('store updated!', store.getState())
+})
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 

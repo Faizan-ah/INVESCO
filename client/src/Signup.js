@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { RiThunderstormsFill } from 'react-icons/ri';
 import { Link ,withRouter} from 'react-router-dom';
 import './StyleSheets/Signup.css';
+import fire from './config/fire'
 export class Signup extends Component {
     constructor(props){
         super(props);
@@ -22,61 +23,8 @@ export class Signup extends Component {
             checked:false       
         }
     }
-    componentDidMount(){
-        //used for future authentication
-        // const token =this.getFromStorage('the_main_app')
-        // if(token){
-        //     //verify token
-        //     fetch('/verify?token='+token)
-        //     .then(res=>res.json())
-        //     .then(json=>{
-        //         if(json.success){
-        //             this.setState({
-        //                 token:token,
-        //                 isLoading:false
-        //             })
-        //         }
-        //         else{
-        //             this.setState({
-        //                 isLoading:false,
-        //             })
-        //         }
-        //     })
-        // }
-        // else{
-        //     this.setState({
-        //         isLoading:false,
-        //     })
-        // }
-    }
-    //getting token 
-    getFromStorage =(key)=>{
-        if(!key){
-            return null;
-        }
-        try{
-            const valueStr = localStorage.getItem(key)
-            if(valueStr){
-                return JSON.parse(valueStr)
-            }
-            return null;
-        }catch(err){
-            return null;
-        }
-    }
-    //setting token
-    setInStorage =(key,obj)=>{
-        if(!key){
-            console.log("key missing");
-        }
-        try{
-            localStorage.setItem(key,JSON.stringify(obj))
-        }
-        catch(err){
-            console.log("errrr");
-        }
-    }
-    //blank inputs
+   
+   
     resetInputs = ()=>{
         this.setState({
             isLoading: false,
@@ -114,66 +62,47 @@ export class Signup extends Component {
     }
 
     //signup button event call
-    onSignup = (event) =>{
-        //event.preventDefault()
-        //Grab State
+    onSignup = ()=> {
         const {
             signUpFirstName,
             signUpLastName,
             signUpEmail,
-            signUpMobile,
             signUpPassword,
-            
-        } = this.state
-
-        this.setState({
-            isLoading:true,
-        })
-        this.validate()
-        console.log(this.validate())
-        // this.setState({
-        //     nameError:'',
-        //     emailError:'',
-        //     passwordError:'',
-        // })
+      } = this.state
         if(this.validate()){
-            //post request to backend
-            fetch('/account/signup', {
-                method:'POST',
-                headers:{
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    firstName:signUpFirstName,
-                    lastName:signUpLastName,
-                    email:signUpEmail,
-                    mobileNum:signUpMobile,
-                    password:signUpPassword,
-
-                }),
-            })
-            .then(res=>res.json())
-            .then(json =>{
-                console.log('json',json)
-                if(json.success){
-                    console.log(json.message," Successfull !");
-                    this.resetInputs();
-                    this.setState({
-                        success:true
-                    })
-                    this.signupButtonPush();
-                } else{
-                    alert(json.message)
-                    this.setState({
-                        isLoading:false,
-                    }) 
-                }
+            fire.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword)
+          .then((u) => {
+            console.log('Successfully Signed Up');
+            //login the user
+            fire.auth().signInWithEmailAndPassword(signUpEmail, signUpPassword)
+            console.log('login successfull')
+            //pushing to home
+            this.props.history.push('/home')
+            
+            //adding first name and last name
+            const user = fire.auth().currentUser
+            user.updateProfile({
+                displayName: signUpFirstName+ ","+ signUpLastName
             })
 
+
+            const dbh = fire.firestore();
+            dbh.collection("users").doc(user.uid).set({
+              firstName:signUpFirstName,
+              lastName:signUpLastName,
+              email:signUpEmail,
+            });
+
+
+            console.log('displayName: ', signUpFirstName, " , ", signUpLastName)
+          })
+          .catch((err) => {
+            console.log(err.toString());
+            alert(err.toString())
+          })
         }
-   
-    
-    }
+        
+      }
 
     validate = (event)=>{
         let fnameError = '';
@@ -293,9 +222,6 @@ export class Signup extends Component {
                 </div>
                 {/* check */}
             </form>
-            
-            
-           
         </div>
         )
     }

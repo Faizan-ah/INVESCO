@@ -15,7 +15,7 @@ body, .signup-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 40%;
+    width: 50%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 10%;
@@ -101,7 +101,8 @@ body, .signup-main{
   }
   .hel{
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
+    width:100%;
   }
   .signupForm input{
       height: 25px;
@@ -113,7 +114,7 @@ body, .signup-main{
     width:231%; 
   }
   .signupDataRow3Col2 input{
-    width:114%; 
+    width:124%; 
   }
   
   .button {
@@ -200,27 +201,27 @@ body, .signup-main{
     margin-left: 2px;
     width:200px;
 }
-@media only screen and (max-width: 1680px) {
+@media only screen and (max-width: 1280px) {
   /* For mobile phones: */
   [class*="signupForm"] {
-    width: 90%;
+    width: 70%;
     margin-right: auto;
     margin-left: auto;
-
+    margin-top: 40px;
   }
   [class*="signupDataRow1"] {
     width: 70%;
     float: none;
-    margin-left: 0%;
+    margin-left: 3%;
   }
   [class*="signupDataRow2"] {
     width: 46.2%;
-    margin-left: 13.6%;
+    margin-left: 17.1%;
   }
   [class*="signupDataRow3"] {
     width: 70%;
     float: none;
-    margin-left: 0%;
+    margin-left: 3%;
   }
   [class*="signupDataRow2Col2 input"]{
     width:100%; 
@@ -229,7 +230,8 @@ body, .signup-main{
     width:100%; 
   }
   .hel{
-    margin-right: 15%;
+    margin-right: 17%;
+    margin-left: 6%;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -242,16 +244,16 @@ body, .signup-main{
   [class*="signupDataRow1"] {
     width: 70%;
     float: none;
-    margin-left: 0%;
+    margin-left: 3%;
   }
   [class*="signupDataRow2"] {
     width: 46.2%;
-    margin-left: 13.6%;
+    margin-left: 17.3%;
   }
   [class*="signupDataRow3"] {
     width: 70%;
     float: none;
-    margin-left: 0%;
+    margin-left: 3%;
   }
   [class*="signupDataRow2Col2 input"]{
     width:100%; 
@@ -260,6 +262,7 @@ body, .signup-main{
     width:100%; 
   }
   .hel{
-    margin-right: 15%;
+    width: 100%;
+    margin-left: 1%;
   }
 }

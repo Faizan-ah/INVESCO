@@ -21,6 +21,10 @@ import introPropertyPic from "C:/Users/Faian/invvesco/client/src/StyleSheets/ima
 import introIRPic from "C:/Users/Faian/invvesco/client/src/StyleSheets/images/home-IR-intro.jpg";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import WOW from 'wowjs';
+import Login from './Login'
+
+import { connect } from 'react-redux';
+import fire from './config/fire';
 const theme = createMuiTheme({
   
 });
@@ -85,11 +89,10 @@ class Home extends React.Component{
 
     }
     componentDidMount(){
-        // console.log("jhekek",this.props.showSideBar(this.state.homescreen))
         console.log('sasdasd',this.state.homescreen)
-        new WOW.WOW().init();
+        new WOW.WOW().init();   
     }
-
+    
     checkSideBar = (item) =>{
         this.setState({
             homescreen: item
@@ -97,202 +100,223 @@ class Home extends React.Component{
     }
 
     
+    
     render(){
         const {classes} = this.props;
+
         console.log('home',this.state.homescreen)
         var divStyle = {
             pointerEvents: this.state.homescreen ? 'all': 'none',
             // width: this.state.homescreen ? '100%': '90%',
         }
-        return(
-            <div>    
-                {/*############################################## Header ############################################## */}
-                <Header data = {this.checkSideBar.bind(this)}/>
-                
-                {/*############################################## Slider ############################################## */}
-                <div style={divStyle}>
-                    <CarouselPage />
-                </div>
 
-                {/* <div className={this.state.homescreen ? "home-main":"home-blur"} >*/}
-                    <div className="home-main">
-                        <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="40" data-wow-duration="1.7s">
-                            <h2><span>Welcome to INVESCO!</span></h2>
-                        </div>
-                    {/* <div className="options" style={divStyle}>
-                        <Link className="home-div-links" to="/RealEstatePrediction">
-                            <div className="options-inside" onClick="3">
-                                <h3>Stock Predictor</h3>
-                                <p>Here you will be able to view stock companies of the KSE100 index. Select this to get more info..</p>
-                            </div>
-                        </Link>
-                        <Link className="home-div-links" to="/RealEstatePrediction">
-                            <div className="options-inside"> 
-                                <h3>Real Estate Predictor</h3>
-                                <p>Here you will be able to view areas in Islamabad. Select this to get more info..</p>
-                            </div>
-                        </Link>
-                        <Link className="home-div-links" to="/RealEstatePrediction">
-                            <div className="options-inside">
-                                <h3>Investment Recommendation</h3>
-                                <p>Our personal investment recommender. This will tell you where you need to invest right now!</p>
-                            </div> 
-                        </Link>
-                    </div> */}
+        const isAuthenticated = this.props.user.isAuth;
+        console.log('in home auth', isAuthenticated)
 
-                    {/*############################################## HOME INTRO ############################################## */}
-                    <div className='home-intro'>
-                        <div className='home-intro-stock'>                           
-                            <div className='wow slideInLeft' data-wow-duration="1" data-wow-offset="50" data-wow-duration="1.7s">
-                                <img src={introStockPic}></img>
-                            </div>
-                            <div className='home-intro-stock-content'>
-                                <div className='home-intro-stock-content-heading'>
-                                    <h2><span><a href="#stockCard">Stock Predictor</a></span></h2>
-                                </div>
-                                <div className='home-intro-stock-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="50" data-wow-duration="5s"> 
-                                    <p>Our Stock Predictor permits to show a few specialized markers for a solitary index on a similar graph. 
-                                        Our predictor utilizes multiple algorithms and techniques to predict the future stock prices.
-                                        Our newest options are the alert and subscribe options, where you can add alerts to a company when its stock reaches a specific point. 
-                                        Also subscribe to companies in which you are interested in to get notifications.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='home-intro-property'>
-                            <div className='wow slideInRight' data-wow-duration="1" data-wow-offset="80" data-wow-duration="1.7s">
-                                <img src={introPropertyPic}></img>
-                            </div>
-                            <div className='home-intro-property-content'>
-                                <div className='home-intro-property-content-heading'>
-                                    <h2><span><a href="#propertyCard">Property Predictor</a></span></h2>
-                                </div>
-                                <div className='home-intro-property-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="80" data-wow-duration="5s"> 
-                                    <p>
-                                        Find out where to invest in islamabad if you are interested in real-estate investment.
-                                        Our real-estate price predictor covers all areas in Islamabad and will tell you the average price per Marla or Kanal.
-                                        Alert and Subscribe options are also available in real-estate investment!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='home-intro-stock'>
-                            <div className='wow slideInLeft' data-wow-duration="1" data-wow-offset="50" data-wow-duration="1.7s">
-                                <img src={introIRPic}></img>
-                            </div>
-                            <div className='home-intro-stock-content'>
-                                <div className='home-intro-stock-content-heading'>
-                                    <h2><span><a href="#IRCard">Investment Recommendation</a></span></h2>
-                                </div>
-                                <div className='home-intro-stock-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="110" data-wow-duration="5s"> 
-                                    <p>
-                                        This system was made keeping in mind the fact that not everyone has the technical skills to predict future prices.
-                                        Whether they be stock or real-estate. Our system provides users an investment recommendation based on their interests.
-                                        Just some basic knowledge and you are good to go!  
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    {/*############################################## CARDS ############################################## */}
+        ///////an ! should be here
+        if(!isAuthenticated){
+            return(
+                <Login/>
+            )
+        }else{
+            return(
+                <div>    
+                    {/*############################################## Header ############################################## */}
+                    <Header data = {this.checkSideBar.bind(this)}/>
+                    
+                    {/*############################################## Slider ############################################## */}
                     <div style={divStyle}>
-                        <div className={classes.homeContent}>
-                            <Card id ='stockCard' className={classes.root}>
-                                <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
-                                    <CardMedia
-                                        style={{height: 200}}
+                        <CarouselPage />
+                    </div>
+    
+                    {/* <div className={this.state.homescreen ? "home-main":"home-blur"} >*/}
+                        <div className="home-main">
+                            <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="40" data-wow-duration="1.7s">
+                                <h2><span>Welcome to INVESCO!</span></h2>
+                            </div>
+                        {/* <div className="options" style={divStyle}>
+                            <Link className="home-div-links" to="/RealEstatePrediction">
+                                <div className="options-inside" onClick="3">
+                                    <h3>Stock Predictor</h3>
+                                    <p>Here you will be able to view stock companies of the KSE100 index. Select this to get more info..</p>
+                                </div>
+                            </Link>
+                            <Link className="home-div-links" to="/RealEstatePrediction">
+                                <div className="options-inside"> 
+                                    <h3>Real Estate Predictor</h3>
+                                    <p>Here you will be able to view areas in Islamabad. Select this to get more info..</p>
+                                </div>
+                            </Link>
+                            <Link className="home-div-links" to="/RealEstatePrediction">
+                                <div className="options-inside">
+                                    <h3>Investment Recommendation</h3>
+                                    <p>Our personal investment recommender. This will tell you where you need to invest right now!</p>
+                                </div> 
+                            </Link>
+                        </div> */}
+    
+                        {/*############################################## HOME INTRO ############################################## */}
+                        <div className='home-intro'>
+                            <div className='home-intro-stock'>                           
+                                <div className='wow slideInLeft' data-wow-duration="1" data-wow-offset="50" data-wow-duration="1.7s">
+                                    <img src={introStockPic}></img>
+                                </div>
+                                <div className='home-intro-stock-content'>
+                                    <div className='home-intro-stock-content-heading'>
+                                        <h2><span><a href="#stockCard">Stock Predictor</a></span></h2>
+                                    </div>
+                                    <div className='home-intro-stock-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="50" data-wow-duration="5s"> 
+                                        <p>Our Stock Predictor permits to show a few specialized markers for a solitary index on a similar graph. 
+                                            Our predictor utilizes multiple algorithms and techniques to predict the future stock prices.
+                                            Our newest options are the alert and subscribe options, where you can add alerts to a company when its stock reaches a specific point. 
+                                            Also subscribe to companies in which you are interested in to get notifications.</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div className='home-intro-property'>
+                                <div className='wow slideInRight' data-wow-duration="1" data-wow-offset="80" data-wow-duration="1.7s">
+                                    <img src={introPropertyPic}></img>
+                                </div>
+                                <div className='home-intro-property-content'>
+                                    <div className='home-intro-property-content-heading'>
+                                        <h2><span><a href="#propertyCard">Property Predictor</a></span></h2>
+                                    </div>
+                                    <div className='home-intro-property-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="80" data-wow-duration="5s"> 
+                                        <p>
+                                            Find out where to invest in islamabad if you are interested in real-estate investment.
+                                            Our real-estate price predictor covers all areas in Islamabad and will tell you the average price per Marla or Kanal.
+                                            Alert and Subscribe options are also available in real-estate investment!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div className='home-intro-stock'>
+                                <div className='wow slideInLeft' data-wow-duration="1" data-wow-offset="50" data-wow-duration="1.7s">
+                                    <img src={introIRPic}></img>
+                                </div>
+                                <div className='home-intro-stock-content'>
+                                    <div className='home-intro-stock-content-heading'>
+                                        <h2><span><a href="#IRCard">Investment Recommendation</a></span></h2>
+                                    </div>
+                                    <div className='home-intro-stock-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="110" data-wow-duration="5s"> 
+                                        <p>
+                                            This system was made keeping in mind the fact that not everyone has the technical skills to predict future prices.
+                                            Whether they be stock or real-estate. Our system provides users an investment recommendation based on their interests.
+                                            Just some basic knowledge and you are good to go!  
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        {/*############################################## CARDS ############################################## */}
+                        <div style={divStyle}>
+                            <div className={classes.homeContent}>
+                                <Card id ='stockCard' className={classes.root}>
+                                    <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
+                                        <CardMedia
+                                            style={{height: 200}}
+                                            component="img"
+                                            alt="Stock Predictor"
+                                            height="140"
+                                            image={stockpic}
+                                            title="Stock Predictor"
+                                            />
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                Stock Price Predictor
+                                            </Typography>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            Here you will be able to view stock companies of the KSE100 index.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')}  size="small" color="primary">
+                                            Go
+                                        </Button>
+                                        <Button className={classes.btn} size="small" color="primary">
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+    
+                                <Card id ='propertyCard' className={classes.root}>
+                                    <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
+                                        <CardMedia
+                                        style={{height: 200,width:350}}
                                         component="img"
-                                        alt="Stock Predictor"
+                                        alt="RealEstate Predictor"
                                         height="140"
-                                        image={stockpic}
-                                        title="Stock Predictor"
+                                        image={propertypic}
+                                        title="RealEstate Predictor"
                                         />
-                                    <CardContent>
+                                        <CardContent>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Stock Price Predictor
+                                            Real-Estate Price Predictor
                                         </Typography>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                        Here you will be able to view stock companies of the KSE100 index.
+                                            Here you will be able to view areas in Islamabad and decide which areas to invest into.
                                         </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')}  size="small" color="primary">
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')} size="small" color="primary">
+                                            Go
+                                        </Button>
+                                        <Button className={classes.btn} size="small" color="primary">
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                                <Card id ='IRCard' className={classes.root}>
+                                    <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
+                                        <CardMedia
+                                        style={{height: 200,}}
+                                        component="img"
+                                        alt="Investment Recommendation"
+                                        height="140"
+                                        image={investpic}
+                                        title="Investment Recommendation"
+                                        />
+                                        <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                        Investment Recommendation
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                        Our personal investment recommender. This will tell you where you need to invest right now!
+                                        </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions >
+                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')} size="small" color="primary">
                                         Go
-                                    </Button>
-                                    <Button className={classes.btn} size="small" color="primary">
+                                        </Button>
+                                        <Button className={classes.btn} size="small" color="primary">
                                         Learn More
-                                    </Button>
-                                </CardActions>
-                            </Card>
-
-                            <Card id ='propertyCard' className={classes.root}>
-                                <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
-                                    <CardMedia
-                                    style={{height: 200,width:350}}
-                                    component="img"
-                                    alt="RealEstate Predictor"
-                                    height="140"
-                                    image={propertypic}
-                                    title="RealEstate Predictor"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        Real-Estate Price Predictor
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        Here you will be able to view areas in Islamabad and decide which areas to invest into.
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions>
-                                    <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')} size="small" color="primary">
-                                        Go
-                                    </Button>
-                                    <Button className={classes.btn} size="small" color="primary">
-                                        Learn More
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                            <Card id ='IRCard' className={classes.root}>
-                                <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
-                                    <CardMedia
-                                    style={{height: 200,}}
-                                    component="img"
-                                    alt="Investment Recommendation"
-                                    height="140"
-                                    image={investpic}
-                                    title="Investment Recommendation"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                    Investment Recommendation
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                    Our personal investment recommender. This will tell you where you need to invest right now!
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardActions >
-                                    <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')} size="small" color="primary">
-                                    Go
-                                    </Button>
-                                    <Button className={classes.btn} size="small" color="primary">
-                                    Learn More
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                            
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                                
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div style={divStyle}>
-                        <Footer />
-                    </div>
-            </div>
-        );
+                        <div style={divStyle}>
+                            <Footer />
+                        </div>
+                </div>
+            );
+        }
+        
     }   
 }
-export default withStyles(useStyles)(Home);
+const mapStateToProps = (state)=>{
+    return {
+      //initialUserState 
+      user: state.user,
+      // math: state.mathReducer
+    }
+  }
+export default connect(mapStateToProps)(withStyles(useStyles)(Home));

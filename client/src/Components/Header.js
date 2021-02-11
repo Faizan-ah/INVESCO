@@ -2,6 +2,7 @@ import React from 'react';
 import '../StyleSheets/Header.css';
 import {RiUserSettingsFill} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import fire from '../config/fire'
 // import * as FaIcon from 'react-icons/fa'
 // import * as AiIconX from 'react-icons/ai'
 
@@ -26,6 +27,11 @@ class Header extends React.Component{
         this.props.data(this.state.homescreen)
     }
 
+    logout() {
+        fire.auth().signOut();
+        console.log('you are logged out')
+    }
+    
     render(){
         return(
             <div>
@@ -33,6 +39,7 @@ class Header extends React.Component{
                    <li><Link to="/Home">Home</Link></li>
                    <li><Link to="/news">News</Link></li>
                    <li><Link to="/contact">Contact</Link></li>
+                   <li><Link to="/" onClick={this.logout}>Logout</Link></li>
                    <li onClick={this.showSideBar}><Link to="#"><RiUserSettingsFill size='30px' color="white" /></Link></li>
                </ul>
 
@@ -48,10 +55,12 @@ class Header extends React.Component{
                             SidebarData.map((item,  index)=>{
                                 return(
                                     <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
+                                        {/* <div onClick={item.onClick}> */}
+                                            <Link to={item.path}>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        {/* </div> */}
                                     </li>
                                 )
                             })

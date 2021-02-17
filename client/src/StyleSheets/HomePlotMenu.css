@@ -1,0 +1,133 @@
+
+.house-menu-inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.house-menu-inputs-rows{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    width: 40%;
+    /* border: 1px solid black; */
+    margin-bottom: 25px;
+}
+
+.house-menu-inputs-rows input{
+    max-width: 500px;
+}
+
+.house-menu-inputs-row-1 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.house-menu-inputs-row-1 select {
+    margin-top: 13px;
+    width: 68px;
+}
+.house-menu-inputs-row-1 input {
+    width: 130px;
+}
+/* .dropdown-search{
+    width: 190px;
+    margin-top: 5.5px;
+} */
+#size{
+    padding: 7.2px;
+    margin-left: 3px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.house-menu-right{
+    width: 44%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-evenly;
+}
+/* button */
+.calculate-button{
+    background-color: red;
+    width: 120px;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    color:black;
+    font-weight: 600;
+    font-size: 17px;
+    height: 25px;
+}
+
+.calculated-price{
+    color: black;
+    font-size: 20px;
+    /* border: 1px solid black; */
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.calculated-price span{
+    border-bottom: 1px solid black;
+}
+/* asdasdasdasd */
+
+ table {
+     font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    color:black;
+  }
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  } 
+
+.plot-graph{
+    width: 50%;
+    border: 1px solid black
+}
+
+
+@media only screen and (max-width: 768px) {
+    .house-menu-inputs-rows{
+        width: 100%;
+    }
+    .house-menu-inputs-row-1 select {
+        margin-top: 14px;
+     
+    }
+    #size{
+        margin-left: 0px;
+    }
+    /* .plot-graph{
+        width: 100%;
+        height: 2000px
+    } */
+}
+
+@media only screen and (max-width: 1080px) {
+    .house-menu-inputs-rows{
+        width: 100%;
+    }
+    .house-menu-right{
+        width: 100%;
+    }
+    .house-menu-inputs-row-1 select {
+        margin-top: 13.5px;
+    }
+    .plot-graph{
+        width: 80%;
+    }
+    
+}

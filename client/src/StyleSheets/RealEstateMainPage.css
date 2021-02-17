@@ -1,0 +1,54 @@
+
+.realestate-main{
+    margin-top: 6%;
+    margin-left: 2%;
+}
+
+.realestate-main h1{
+    color:black;
+    font-family: ''Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif';
+    font-weight: 700;
+    text-shadow: 3px 2px 4px goldenrod;
+    text-align: center;
+}
+p{
+    color: white;
+    font-weight: 500;
+}
+.areas{
+    display: flex;
+    justify-content: space-evenly;
+}
+.areas div{
+    border: 1px solid black;
+    width: 5%;
+    text-align: center;
+    margin: 5px;
+    background-color: white;
+    border-radius: 10px;
+}
+.areas div p{
+    color: black;
+    font-weight: 500;
+}
+.areas div:hover{
+    background-color: #BFC0C0;
+    transition: all .50s ease-Out;
+    animation: bounce 1s;
+}
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-2px);
+		transform: translateY(-2px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-5px);
+		transform: translateY(-5px);
+	}
+}

@@ -1,0 +1,90 @@
+.change-field-heading h1{
+    color: black;
+}
+.change-field-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* border: 1px solid white; */
+}
+.change-field-inputs-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+}
+.change-field-inputs label{
+    color:black;
+    font-size: 20px;
+    /* border: 1px solid white; */
+}
+
+.change-field-inputs input{
+    /* width:50%;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 10px; */
+    width:20%;
+    height: 40px;
+    border-style: solid;
+    border-radius: 20px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+}
+
+.change-field-inputs input:focus{
+    border-color: rgb(63, 194, 107);
+    border-width: 4px;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: "Helvetica";
+}
+
+.change-field-button {
+    display: inline-flex;
+    height: 40px;
+    width: 150px;
+    margin: 20px 20px 20px 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-left: 5%;
+    background: #BFC0C0;
+}
+
+.change-field-button p{
+    font-family: "Helvetica";
+    position: relative;
+    transition: all .45s ease-Out;
+    text-decoration: none;
+    color: black;
+}
+.change-field-button:hover{
+    background: goldenrod;
+}
+@media only screen and (max-width: 1200px) {
+    /* For mobile phones: */
+    .change-field-inputs input{
+        width: 40%;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    /* For mobile phones: */
+    .change-field-inputs input{
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .change-field-inputs input{
+        width: 80%;
+    }
+}

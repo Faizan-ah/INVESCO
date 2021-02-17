@@ -11,7 +11,7 @@ class PlotChart extends React.Component{
 
     static defaultProps={
         displayTitle:true,
-        displayLegend:true,
+        displayLegend:false,
         legendPosition:'right'
     }
     render(){   
@@ -26,7 +26,7 @@ class PlotChart extends React.Component{
                         // maintainAspectRatio: false,
                         title: {
                             display:this.props.displayTitle,
-                            text: 'Plots',
+                            text: '',
                             fontSize:25,
                             fontColor:"green"
                         },

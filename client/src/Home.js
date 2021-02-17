@@ -13,12 +13,12 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import stockpic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/business-finance-terms-and-definitions-1-2.jpg'
-import investpic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/image.img.450.225.20191016091944.jpg'
-import propertypic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/Property-Investment-Tips.jpg'
-import introStockPic from "C:/Users/Faian/invvesco/client/src/StyleSheets/images/home-stock-prediction-intro.jpg";
-import introPropertyPic from "C:/Users/Faian/invvesco/client/src/StyleSheets/images/home-property-prediction-intro.jpg";
-import introIRPic from "C:/Users/Faian/invvesco/client/src/StyleSheets/images/home-IR-intro.jpg";
+import stockpic from './StyleSheets/images/business-finance-terms-and-definitions-1-2.jpg'
+import investpic from './StyleSheets/images/image.img.450.225.20191016091944.jpg'
+import propertypic from './StyleSheets/images/Property-Investment-Tips.jpg'
+import introStockPic from "./StyleSheets/images/home-stock-prediction-intro.jpg";
+import introPropertyPic from "./StyleSheets/images/home-property-prediction-intro.jpg";
+import introIRPic from "./StyleSheets/images/home-IR-intro.jpg";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import WOW from 'wowjs';
 import Login from './Login'

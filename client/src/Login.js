@@ -52,11 +52,24 @@ export class Login extends Component {
           } = this.state
     
       console.log('in login', this.state)
-      fire.auth().signInWithEmailAndPassword(signInEmail, signInPassword)
+    //   const user = fire.auth().currentUser
+    //   console.log('asdasda',user.emailVerified)
+    //   if(user.emailVerified){
+        fire.auth().signInWithEmailAndPassword(signInEmail, signInPassword)
           .then((u) => {
             console.log('Successfully Logged In');
-            
+            const user = fire.auth().currentUser
+            if(user.emailVerified){
             this.props.history.push('/home')
+            }
+            else{
+                this.setState({
+                    inputError:'Email not verified. Please check your email for verification.'
+                })
+                // this.props.history.push('/verificationEmail')
+                fire.auth().signOut()
+            }
+            // console.log('current user', user)
           })
           .catch((err) => {
             console.log(err.toString());
@@ -64,6 +77,12 @@ export class Login extends Component {
                     inputError: err.toString()
                 })
           })
+    //   }else{
+    //       this.setState({
+    //           inputError:'Email not verified. Please check your email for verification.'
+    //       })
+    //   } 
+      
       
     }
     

@@ -1,7 +1,6 @@
 import React from 'react';
 import * as AiIcon from 'react-icons/ai'
 import * as RiIcon from 'react-icons/ri'
-import ChangeEmail from './ChangeEmail'
 
 export const SidebarData = [
     {
@@ -28,11 +27,5 @@ export const SidebarData = [
         icon: <RiIcon.RiAccountCircleLine/>,
         cName: 'nav-text'
     },
-    {
-        title:"Logout",
-        path:"/",
-        icon: <RiIcon.RiLogoutBoxLine/>,
-        cName: 'nav-text',
-        // onClick: thisisLogout
-    },
+    
 ]

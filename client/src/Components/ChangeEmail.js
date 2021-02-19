@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../StyleSheets/ChangeEmail.css'
 import PropertyHeader from './PropertyHeader'
+import fire from '../config/fire'
 export class ChangeEmail extends Component {
     constructor(props){
         super(props);
@@ -19,10 +20,12 @@ export class ChangeEmail extends Component {
             })
         }
     changeEmailVerify = () => {
-
+        
     }
-    changeEmail = () => {
-
+    changeEmail = (email) => {
+        const {prevEmail,newEmail} = this.state
+        const user = fire.auth().currentUser
+        user.updateEmail(email)
     }
     render() {
         return (

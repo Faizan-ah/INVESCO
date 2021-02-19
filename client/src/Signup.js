@@ -60,7 +60,6 @@ export class Signup extends Component {
             this.props.history.push("/registration")
         }
     }
-
     //signup button event call
     onSignup = ()=> {
         const {
@@ -73,28 +72,35 @@ export class Signup extends Component {
             fire.auth().createUserWithEmailAndPassword(signUpEmail, signUpPassword)
           .then((u) => {
             console.log('Successfully Signed Up');
-            //login the user
-            fire.auth().signInWithEmailAndPassword(signUpEmail, signUpPassword)
-            console.log('login successfull')
-            //pushing to home
-            this.props.history.push('/home')
-            
-            //adding first name and last name
             const user = fire.auth().currentUser
-            user.updateProfile({
-                displayName: signUpFirstName+ ","+ signUpLastName
+            user.sendEmailVerification().then(()=>{
+                if(user.emailVerified){
+                    //login the user
+                    fire.auth().signInWithEmailAndPassword(signUpEmail, signUpPassword)
+                    console.log('login successfull')
+                    //pushing to home
+                    this.props.history.push('/home')
+                    //adding first name and last name
+                    // const user = fire.auth().currentUser
+                    user.updateProfile({
+                        displayName: signUpFirstName+ ","+ signUpLastName
+                    })
+                    const dbh = fire.firestore();
+                    dbh.collection("users").doc(user.uid).set({
+                    firstName:signUpFirstName,
+                    lastName:signUpLastName,
+                    email:signUpEmail,
+                    // isVerified:user.emailVerified
+                    });
+                    console.log('displayName: ', signUpFirstName, " , ", signUpLastName)
+                }
+                else{
+                    alert('An email verification link has been sent to you. Check your email.')
+                    // this.props.history.push('/login')
+                    this.resetInputs()
+                }
             })
-
-
-            const dbh = fire.firestore();
-            dbh.collection("users").doc(user.uid).set({
-              firstName:signUpFirstName,
-              lastName:signUpLastName,
-              email:signUpEmail,
-            });
-
-
-            console.log('displayName: ', signUpFirstName, " , ", signUpLastName)
+            
           })
           .catch((err) => {
             console.log(err.toString());
@@ -169,61 +175,69 @@ export class Signup extends Component {
         // if(!token){
         //     return(<div><p>token not set</p></div>)
         // }
-
-        return (
-        <div class='signup-main'>
-            <form class="signupForm">
-                
-                <h1>Welcome</h1>
-                            
-                <div class='signupDataRow1'>
-                    <div class='signupDataRow1Col1'>
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
-                        <span className="error-display">{this.state.fnameError}</span>
-                    </div>
-                    <div class='signupDataRow1Col2'>
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="signUpLastName" value={signUpLastName} onChange={this.onChange} ></input>
-                        <span className="error-display">{this.state.lnameError}</span>
-                    </div>
+        // const user = fire.auth().currentUser
+        // if(user.emailVerified){
+            return (
+                <div class='signup-main'>
+                    <form class="signupForm">
+                        
+                        <h1>Welcome</h1>
+                                    
+                        <div class='signupDataRow1'>
+                            <div class='signupDataRow1Col1'>
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
+                                <span className="error-display">{this.state.fnameError}</span>
+                            </div>
+                            <div class='signupDataRow1Col2'>
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="signUpLastName" value={signUpLastName} onChange={this.onChange} ></input>
+                                <span className="error-display">{this.state.lnameError}</span>
+                            </div>
+                        </div>
+        
+                        <div class='signupDataRow2'>
+                            <div class='signupDataRow2Col2'>
+                                <label for="email">Email</label>
+                                <input ref={focusInput =>{this.signUpEmail = focusInput}} type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>
+                                <span className="error-display">{this.state.emailError}</span>
+                            </div>
+                        </div>
+                        
+                        <div class='signupDataRow3'>
+                            <div class='signupDataRow3Col1'>
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="signUpPassword" value={signUpPassword} onChange={this.onChange} required></input>
+                                <span className="error-display">{this.state.passwordError}</span>
+                            </div>
+                            <div class='signupDataRow3Col2'>
+                                <label for="cpassword">Confirm Password</label>
+                                <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
+                            </div>
+                        </div>
+                        <div class="hel">
+                        <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
+                        <label class="terms" for='termsCond'>Do you agree to our <a id="termsLink" href="#">Terms</a> and <a id="ppLink" href="#">Privacy Policy</a>?</label>                    
+                        </div>
+                        <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
+                            <div id="circle"></div>
+                            <a href="#">SIGNUP</a>
+                        </div>
+        
+                        <div class="logLink">
+                            <Link id="loginLink" to="/login">Already have an account?</Link>
+                        </div>
+                        {/* check */}
+                    </form>
                 </div>
-
-                <div class='signupDataRow2'>
-                    <div class='signupDataRow2Col2'>
-                        <label for="email">Email</label>
-                        <input ref={focusInput =>{this.signUpEmail = focusInput}} type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>
-                        <span className="error-display">{this.state.emailError}</span>
-                    </div>
-                </div>
-                
-                <div class='signupDataRow3'>
-                    <div class='signupDataRow3Col1'>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="signUpPassword" value={signUpPassword} onChange={this.onChange} required></input>
-                        <span className="error-display">{this.state.passwordError}</span>
-                    </div>
-                    <div class='signupDataRow3Col2'>
-                        <label for="cpassword">Confirm Password</label>
-                        <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
-                    </div>
-                </div>
-                <div class="hel">
-                <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
-                <label class="terms" for='termsCond'>Do you agree to our <a id="termsLink" href="#">Terms</a> and <a id="ppLink" href="#">Privacy Policy</a>?</label>                    
-                </div>
-                <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
-                    <div id="circle"></div>
-                    <a href="#">SIGNUP</a>
-                </div>
-
-                <div class="logLink">
-                    <Link id="loginLink" to="/login">Already have an account?</Link>
-                </div>
-                {/* check */}
-            </form>
-        </div>
-        )
+                )
+        // }
+        // else{
+        //     <div>
+        //         verify email
+        //     </div>
+        // }
+        
     }
 }
 

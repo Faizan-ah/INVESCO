@@ -23,6 +23,10 @@
     border-right: none;
     float:right;
   }
+  .topbar li:nth-child(4) {
+    border-right: none;
+    float:right;
+  }
 
   .topbar li a {
     display: block;

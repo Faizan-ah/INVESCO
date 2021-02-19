@@ -12,7 +12,7 @@ import LandingPage from "./LandingPage";
 
 import { connect } from 'react-redux';
 import fire from './config/fire'
-import ForgotPassword from './ForgotPassword';
+import ForgotPassword from './Components/ForgotPassword';
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{

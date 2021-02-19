@@ -24,7 +24,7 @@ body, .login-main{
       justify-content:center;
       align-items: center;
       height: 420px;
-      width:500px;
+      width:30%;
       border-bottom-color: transparent;
       background-color: ivory;
       border-radius: 10px;
@@ -48,7 +48,7 @@ body, .login-main{
   .links{
       display: flex;
       justify-content: space-around;
-      width: 500px;    
+      width: 300px;    
       border-top-color: transparent;
       margin-top: 10px;;
       background-color: ivory;
@@ -129,4 +129,21 @@ body, .login-main{
     margin-right: 12px;
     width:200px;
   }
-  
+  @media only screen and (max-width: 1280px) {
+    .loginForm{
+      margin-top: 10%;
+    }
+    .loginData{
+      width: 50%;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .loginForm{
+      margin-top: 20%;
+    }
+    .loginData{
+      width: 95%;
+    }
+  }
+
+ 

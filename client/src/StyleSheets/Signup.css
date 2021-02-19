@@ -111,7 +111,7 @@ body, .signup-main{
   }
 
   .signupDataRow2Col2 input{
-    width:231%; 
+    width:235%; 
   }
   .signupDataRow3Col2 input{
     width:124%; 
@@ -201,7 +201,7 @@ body, .signup-main{
     margin-left: 2px;
     width:200px;
 }
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1480px) {
   /* For mobile phones: */
   [class*="signupForm"] {
     width: 70%;
@@ -223,8 +223,8 @@ body, .signup-main{
     float: none;
     margin-left: 3%;
   }
-  [class*="signupDataRow2Col2 input"]{
-    width:100%; 
+  .signupDataRow2Col2 input{
+    width:230%; 
   }
   .signupDataRow3Col2 input{
     width:100%; 
@@ -255,8 +255,8 @@ body, .signup-main{
     float: none;
     margin-left: 3%;
   }
-  [class*="signupDataRow2Col2 input"]{
-    width:100%; 
+  .signupDataRow2Col2 input{
+    width:230%; 
   }
   .signupDataRow3Col2 input{
     width:100%; 

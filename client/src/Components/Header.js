@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import fire from '../config/fire'
 // import * as FaIcon from 'react-icons/fa'
 // import * as AiIconX from 'react-icons/ai'
+import * as RiIcon from 'react-icons/ri'
+
 
 import {SidebarData} from './SidebarData'
 
@@ -39,7 +41,7 @@ class Header extends React.Component{
                    <li><Link to="/Home">Home</Link></li>
                    <li><Link to="/news">News</Link></li>
                    <li><Link to="/contact">Contact</Link></li>
-                   <li><Link to="/" onClick={this.logout}>Logout</Link></li>
+                   <li><Link to="/" onClick={this.logout}><RiIcon.RiLogoutBoxLine size={29}/></Link></li>
                    <li onClick={this.showSideBar}><Link to="#"><RiUserSettingsFill size='30px' color="white" /></Link></li>
                </ul>
 

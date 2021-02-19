@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Link,withRouter } from 'react-router-dom';
-import './StyleSheets/Login.css'
-import './StyleSheets/ForgotPassword.css'
+import '../StyleSheets/Login.css'
+import '../StyleSheets/ForgotPassword.css'
 import { connect } from 'react-redux';
-import fire from './config/fire'
+import fire from '../config/fire'
 
 export class ForgotPassword extends Component {
     constructor(props){

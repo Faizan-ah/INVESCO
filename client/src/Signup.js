@@ -79,7 +79,7 @@ export class Signup extends Component {
                     fire.auth().signInWithEmailAndPassword(signUpEmail, signUpPassword)
                     console.log('login successfull')
                     //pushing to home
-                    this.props.history.push('/home')
+                    this.props.history.push('/')
                     //adding first name and last name
                     // const user = fire.auth().currentUser
                     user.updateProfile({

@@ -36,13 +36,14 @@ body{
     /* background-image: url("http://ayiekdesain.weebly.com/uploads/4/6/6/1/466103/3650002_orig.jpg?254"); */
 }
 .home-main-heading h2{
-    font-family: 'Audiowide', cursive;
+    /* font-family: 'Audiowide', cursive;
+    font-family: 'Spartan', sans-serif; */
     text-align: center;
     padding-top:0px;
     font-size: 40px;
     color:black;
     letter-spacing: 0.25rem;
-    text-shadow:2px 3px 3px goldenrod;
+    /* text-shadow:2px 3px 3px goldenrod; */
     
     /* -webkit-text-stroke: 1px #000; */
 }

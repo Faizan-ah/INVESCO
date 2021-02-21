@@ -3,19 +3,18 @@ import '../StyleSheets/Header.css';
 import {RiUserSettingsFill} from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import fire from '../config/fire'
-// import * as FaIcon from 'react-icons/fa'
-// import * as AiIconX from 'react-icons/ai'
 import * as RiIcon from 'react-icons/ri'
-
-
+import {BiArrowBack} from 'react-icons/bi'
 import {SidebarData} from './SidebarData'
+// import Popover from 'react-awesome-popover'
 
 class Header extends React.Component{
     constructor(props){
         super(props);
-        this.state={
+        this.state= {
             sidebar:false,
-            homescreen:false
+            homescreen:false,
+            anchorEl:false,
         }
         console.log("qwe",this.state.homescreen)
     }
@@ -28,6 +27,7 @@ class Header extends React.Component{
         })
         this.props.data(this.state.homescreen)
     }
+    
 
     logout() {
         fire.auth().signOut();
@@ -35,13 +35,14 @@ class Header extends React.Component{
     }
     
     render(){
+        console.log('qwerty',this.state.anchorEl)
         return(
             <div>
                <ul className="topbar">
                    <li><Link to="/Home">Home</Link></li>
                    <li><Link to="/news">News</Link></li>
                    <li><Link to="/contact">Contact</Link></li>
-                   <li><Link to="/" onClick={this.logout}><RiIcon.RiLogoutBoxLine size={29}/></Link></li>
+                   <li><Link to="/" onClick={this.logout}><RiIcon.RiLogoutBoxLine size={29}/></Link></li> 
                    <li onClick={this.showSideBar}><Link to="#"><RiUserSettingsFill size='30px' color="white" /></Link></li>
                </ul>
 
@@ -49,20 +50,19 @@ class Header extends React.Component{
                     <ul className='nav-menu-items' onClick={this.showSideBar}>
                         <li className='navbar-toggle'>
                             <Link to="#" className="menu-bars">
-                                <span>Account Settings</span>
+                                <div id="back-arrow"><BiArrowBack size={25} /></div>
+                                
+                                <span>User Account</span>
                             </Link>
-                            
                         </li>
                         {
                             SidebarData.map((item,  index)=>{
                                 return(
                                     <li key={index} className={item.cName}>
-                                        {/* <div onClick={item.onClick}> */}
-                                            <Link to={item.path}>
-                                                {item.icon}
-                                                <span>{item.title}</span>
-                                            </Link>
-                                        {/* </div> */}
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
                                     </li>
                                 )
                             })

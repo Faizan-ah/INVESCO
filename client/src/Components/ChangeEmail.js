@@ -21,13 +21,26 @@ export class ChangeEmail extends Component {
         }
     changeEmailVerify = () => {
         
+
     }
-    changeEmail = (email) => {
-        const {prevEmail,newEmail} = this.state
+    changeEmail = () => {
+        console.log('in')
+        const {prevEmail,newEmail,Epassword} = this.state
         const user = fire.auth().currentUser
-        user.updateEmail(email)
+        const credential = fire.auth.EmailAuthProvider.credential(
+          prevEmail,Epassword
+        );
+        user.reauthenticateWithCredential(credential)
+        .then(()=>{
+            if(user.emailVerified){
+                user.updateEmail(newEmail);
+                console.log('email updated successfully')
+            }
+        }
+        )
     }
     render() {
+        console.log(this.state)
         return (
             <div>
                 <PropertyHeader/>
@@ -49,11 +62,11 @@ export class ChangeEmail extends Component {
                             </div>
                         <div>    
                             <div className="change-field-inputs-content"> 
-                                <label for="NewEmail">Enter New Email</label>
-                                <input type="email" name="NewEmail" value = {this.state.newEmail} id="NewEmail" onChange={this.onChange} required></input>
+                                <label for="newEmail">Enter New Email</label>
+                                <input type="email" name="newEmail" value = {this.state.newEmail} id="newEmail" onChange={this.onChange} required></input>
                             </div>
                             <div class="change-field-button" onClick = {this.changeEmail}>
-                                    <p>Done</p>
+                                <p>Done</p>
                             </div>
                         </div>
                     </div>

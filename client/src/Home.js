@@ -22,7 +22,7 @@ import introIRPic from "./StyleSheets/images/home-IR-intro.jpg";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import WOW from 'wowjs';
 import Login from './Login'
-
+import './StyleSheets/Footer.css'
 import { connect } from 'react-redux';
 import fire from './config/fire';
 const theme = createMuiTheme({
@@ -50,7 +50,6 @@ const useStyles = (theme) => ({
     },
     homeContent: {
         //   border : '2px solid black',
-    
           float:'left',
           width:'100%',
           marginLeft:'auto',
@@ -58,7 +57,7 @@ const useStyles = (theme) => ({
           alignContent:'center',
         //   backgroundColor:'grey',
           paddingBottom: 50,
-          marginTop:50,
+          marginTop:'10%',
           
     },
     picii : {
@@ -76,8 +75,6 @@ const useStyles = (theme) => ({
           transition: '1000ms',
         }
     }
-   
-  
   });
   
 class Home extends React.Component{
@@ -113,7 +110,8 @@ class Home extends React.Component{
         const isAuthenticated = this.props.user.isAuth;
         console.log('in home auth', isAuthenticated)
 
-        ///////an ! should be here
+        const user = fire.auth().currentUser
+        
         if(!isAuthenticated){
             return(
                 <Login/>
@@ -129,11 +127,12 @@ class Home extends React.Component{
                         <CarouselPage />
                     </div>
                         <div className="home-main">
-                            <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
+                            {/* <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
                                 <h2><span>Welcome to INVESCO!</span></h2>
-                            </div>
+                            </div> */}
 
                         {/*############################################## CARDS ############################################## */}
+                        
                         <div style={divStyle}>
                             <div className={classes.homeContent}>
                                 <Card id ='stockCard' className={classes.root}>
@@ -159,7 +158,7 @@ class Home extends React.Component{
                                         <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')}  size="small" color="primary">
                                             Go
                                         </Button>
-                                        <Button className={classes.btn} size="small" color="primary">
+                                        <Button className={classes.btn} size="small" color="primary" >
                                             Learn More
                                         </Button>
                                     </CardActions>
@@ -223,7 +222,9 @@ class Home extends React.Component{
                                 </Card>
                                 
                                 </div>
+                                <div style={{backgroundColor:'white',color:'white'}}></div>
                             </div>
+                            
                         </div>
 
                         {/*############################################## HOME INTRO ############################################## */}
@@ -234,9 +235,9 @@ class Home extends React.Component{
                                 </div>
                                 <div className='home-intro-stock-content'>
                                     <div className='home-intro-stock-content-heading'>
-                                        <h2><span><a href="#stockCard">Stock Predictor</a></span></h2>
+                                        <h2 ><span><a href="#stockCard">Stock Predictor</a></span></h2>
                                     </div>
-                                    <div className='home-intro-stock-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="100" data-wow-duration="5s"> 
+                                    <div id='stockinfo' className='home-intro-stock-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="100" data-wow-duration="5s"> 
                                         <p>Our Stock Predictor permits to show a few specialized markers for a solitary index on a similar graph. 
                                             Our predictor utilizes multiple algorithms and techniques to predict the future stock prices.
                                             Our newest options are the alert and subscribe options, where you can add alerts to a company when its stock reaches a specific point. 
@@ -251,7 +252,7 @@ class Home extends React.Component{
                                 </div>
                                 <div className='home-intro-property-content'>
                                     <div className='home-intro-property-content-heading'>
-                                        <h2><span><a href="#propertyCard">Property Predictor</a></span></h2>
+                                        <h2 id='propertyinfo'><span><a href="#propertyCard">Property Predictor</a></span></h2>
                                     </div>
                                     <div className='home-intro-property-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="140" data-wow-duration="5s"> 
                                         <p>
@@ -280,12 +281,34 @@ class Home extends React.Component{
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div style={{backgroundColor:'white',color:'white'}}>asd</div>
                         </div>
                         <div style={divStyle}>
-                            <Footer />
+                        <div className="footer-body">
+                                <div className="footer-title">
+                                    <h1>INVESCO</h1>
+                                </div>
+                                <div className="footer-content">
+                                    <div className="contact-us">
+                                        <h2>Contact Us</h2>
+                                        <p>Phone : +92324-6096102</p>
+                                        <p>Email : invescoDev@invesco.com</p>
+                                    </div>
+                                    <div className="footer-web-info">
+                                        <p>INVESCO is a system helping beginners to invest in stock and real estate.</p>
+                                    </div>
+                                    <div className="footer-links">
+                                        <Link>Terms and Conditions</Link>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
+                        
                 </div>
+               
+        
+                
             );
         }
         

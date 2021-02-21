@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(26, 19, 19);
+    background-color: #112349;
     /* background-color: transparent; */
     position: fixed;
     top: 0;
@@ -125,7 +125,14 @@
   span{
     margin-left: 16px;
   }
-
+  .menu-bars span{
+    margin-left: 5px;
+  }
+  #back-arrow{
+    margin-top: 5px;
+    float: left;
+    margin-left: 0px;
+  }
 /*   
   .active {
     background-color:royalblue;

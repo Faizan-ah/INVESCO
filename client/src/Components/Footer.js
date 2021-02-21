@@ -5,10 +5,9 @@ export class Footer extends Component {
     render() {
         return (
             <div>
-                <div className="footer-space">
+                {/* <div className="footer-space">
                     <span></span>
-                   
-                </div>
+                </div> */}
                 <div className="footer-body">
                     <div className="footer-title">
                         <h1>INVESCO</h1>

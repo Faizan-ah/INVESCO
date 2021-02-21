@@ -4,6 +4,7 @@ import './StyleSheets/Header.css'
 import './StyleSheets/RealEstateMainPage.css'
 import RealEstateAreaSearchBar from './Components/RealEstateAreaSearchBar'
 import HomePlotMenu from './Components/HomePlotMenu'
+import { connect } from 'react-redux';
 class RealEstateMain extends React.Component{
     render(){
         return(
@@ -18,4 +19,12 @@ class RealEstateMain extends React.Component{
         );
     }
 }
-export default RealEstateMain;
+const mapStateToProps = (state)=>{
+    return {
+      //initialUserState 
+      user: state.user,
+      // math: state.mathReducer
+    }
+  }
+export default connect(mapStateToProps)(RealEstateMain)
+// export default RealEstateMain;

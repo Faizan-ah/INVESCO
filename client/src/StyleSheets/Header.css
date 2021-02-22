@@ -1,6 +1,6 @@
 /* Header */
 .topbar {
-    list-style-type: none;
+    list-style-type: none; 
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -37,7 +37,7 @@
   }
   
   .topbar li a:hover {
-    background-color:goldenrod;
+    background-color:rgb(83, 169, 226);
     color: Black;
     transition: all .3s ease-in-out;
     transform: scale(1.1);
@@ -89,7 +89,7 @@
     height: 60px;
     font-family: 'Lato', 'sans-serif';
     width: 100%;
-    margin-right: 40rem;
+    margin-right: 4rem;
   }
   
   .nav-text a{
@@ -144,7 +144,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(26, 19, 19);
+    background-color: #112349;
     position: static;
     top: 0;
     width: 100%;
@@ -165,7 +165,7 @@
   }
   
   .property-topbar li a:hover {
-    background-color:goldenrod;
+    background-color:rgb(83, 169, 226);
     color: Black;
     transition: all .3s ease-in-out;
     transform: scale(1.1);

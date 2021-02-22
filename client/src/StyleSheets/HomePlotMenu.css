@@ -13,6 +13,7 @@
     width: 40%;
     /* border: 1px solid black; */
     margin-bottom: 25px;
+    margin-top: -10px;
 }
 
 .house-menu-inputs-rows input{
@@ -23,10 +24,13 @@
     display: flex;
     flex-direction: row;
     margin-left: 10px;
+    margin-top: 15px;
+    width: 35%;
+    /* border:1px solid black; */
 }
 
 .house-menu-inputs-row-1 select {
-    margin-top: 13px;
+    margin-top: 20px;
     width: 68px;
 }
 .house-menu-inputs-row-1 input {

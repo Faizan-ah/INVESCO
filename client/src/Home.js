@@ -25,6 +25,20 @@ import Login from './Login'
 import './StyleSheets/Footer.css'
 import { connect } from 'react-redux';
 import fire from './config/fire';
+import './StyleSheets/Header.css'
+
+
+
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import clsx from 'clsx';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+
+
+
 const theme = createMuiTheme({
   
 });
@@ -81,10 +95,22 @@ class Home extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            homescreen:true
+            homescreen:true,
+            sidebar:false,
+            right: false,
         }
-
+        this.checkSide = this.checkSide.bind(this)
     }
+
+    toggleDrawer = (anchor, open) => (event) => {
+        if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+    
+        this.setState({ ...this.state, [anchor]: open });
+      };
+
+      
     componentDidMount(){
         console.log('sasdasd',this.state.homescreen)
         new WOW.WOW().init();   
@@ -92,12 +118,18 @@ class Home extends React.Component{
     
     checkSideBar = (item) =>{
         this.setState({
-            homescreen: item
+            homescreen: item,
         })
     }
+    checkSide = (childValue) =>{
+        this.setState({
+            sidebar:childValue
+        })
+    } 
+    
 
-    
-    
+      
+
     render(){
         const {classes} = this.props;
 
@@ -111,19 +143,27 @@ class Home extends React.Component{
         console.log('in home auth', isAuthenticated)
 
         const user = fire.auth().currentUser
-        
+        console.log('in home class sidebar', this.state.sidebar)
+        console.log('in home class homescren', this.state.homescreen)
+
+
         if(!isAuthenticated){
             return(
                 <Login/>
             )
         }else{
             return(
+                // ()=>{
+                //     this.setState({
+                //     homescreen:!this.state.homescreen,
+                //     sidebar : !this.state.sidebar
+                // })}
                 <div>    
                     {/*############################################## Header ############################################## */}
-                    <Header data = {this.checkSideBar.bind(this)}/>
+                    <Header data = {this.checkSideBar.bind(this)} dataSide = {this.checkSide.bind(this)}/>
                     
                     {/*############################################## Slider ############################################## */}
-                    <div style={divStyle}>
+                    <div>
                         <CarouselPage />
                     </div>
                         <div className="home-main">
@@ -133,10 +173,10 @@ class Home extends React.Component{
 
                         {/*############################################## CARDS ############################################## */}
                         
-                        <div style={divStyle}>
+                        <div>
                             <div className={classes.homeContent}>
                                 <Card id ='stockCard' className={classes.root}>
-                                    <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
+                                    <CardActionArea onClick={()=> this.props.history.push('/StockPrediction')} className={classes.picii}>
                                         <CardMedia
                                             style={{height: 200}}
                                             component="img"
@@ -155,7 +195,7 @@ class Home extends React.Component{
                                         </CardContent>
                                     </CardActionArea>
                                     <CardActions>
-                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')}  size="small" color="primary">
+                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/StockPrediction')}  size="small" color="primary">
                                             Go
                                         </Button>
                                         <Button className={classes.btn} size="small" color="primary" >
@@ -283,7 +323,7 @@ class Home extends React.Component{
                             </div>
                             <div style={{backgroundColor:'white',color:'white'}}>asd</div>
                         </div>
-                        <div style={divStyle}>
+                        <div>
                         <div className="footer-body">
                                 <div className="footer-title">
                                     <h1>INVESCO</h1>

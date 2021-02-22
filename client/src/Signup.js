@@ -35,6 +35,7 @@ export class Signup extends Component {
             signUpEmail: '',
             signUpMobile: '',
             signUpPassword: '',
+            signUpConfirmPassword: '',
         })
     }
     //adding onChange event for text fields
@@ -96,8 +97,9 @@ export class Signup extends Component {
                 }
                 else{
                     alert('An email verification link has been sent to you. Check your email.')
-                    // this.props.history.push('/login')
+                    
                     this.resetInputs()
+                    this.props.history.push('/login')
                 }
             })
             

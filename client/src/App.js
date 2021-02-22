@@ -13,6 +13,7 @@ import LandingPage from "./LandingPage";
 import { connect } from 'react-redux';
 import fire from './config/fire'
 import ForgotPassword from './Components/ForgotPassword';
+import StockMainPage from './Components/StockMainPage';
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
@@ -52,6 +53,7 @@ class App extends React.Component{
           <Route path="/registration" exact component={Signup}/>
           <Route path="/login" exact component={Login}/>
           <Route path = "/RealEstatePrediction" component={RealEstateMain} exact/>
+          <Route path = "/StockPrediction" component={StockMainPage} exact/>
           <Route path = "/ChangeEmail" component={ChangeEmail} exact/>
           <Route path = "/ChangePassword" component={ChangePassword} exact/>
           <Route path = "/ForgotPassword" component={ForgotPassword} exact/>

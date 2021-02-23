@@ -14,24 +14,34 @@
     /* border: 1px solid black; */
     margin-bottom: 25px;
     margin-top: -10px;
+    /* border: 1px solid green; */
 }
 
 .house-menu-inputs-rows input{
     max-width: 500px;
+    
 }
 
 .house-menu-inputs-row-1 {
     display: flex;
     flex-direction: row;
-    margin-left: 10px;
     margin-top: 15px;
-    width: 35%;
+    width: 30%;
+
+    justify-content:space-evenly;
     /* border:1px solid black; */
 }
-
+.house-menu-inputs-row-1-col-2{
+    width: 30%;
+    /* border: 2px solid black; */
+}
+.house-menu-inputs-row-1-col-2 input{
+    width: 20%;
+    /* border: 2px solid black; */
+}
 .house-menu-inputs-row-1 select {
     margin-top: 20px;
-    width: 68px;
+    width: 100%
 }
 .house-menu-inputs-row-1 input {
     width: 130px;
@@ -93,7 +103,7 @@
     padding: 8px;
   }
   
-  tr:nth-child(even) {
+.techAnalysis-row:nth-child(even) {
     background-color: #dddddd;
   } 
 
@@ -101,7 +111,7 @@
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid black
+    /* border: 1px solid black */
 }
 
 
@@ -109,9 +119,15 @@
     .house-menu-inputs-rows{
         width: 100%;
     }
+    .house-menu-inputs-row-1{
+        width: 50%;
+    }
     .house-menu-inputs-row-1 select {
-        margin-top: 14px;
-     
+        width: 100%;
+    }
+    .house-menu-inputs-row-1-col-2{
+        width: 50%;
+        /* border: 2px solid black; */
     }
     #size{
         margin-left: 0px;

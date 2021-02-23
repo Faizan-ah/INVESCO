@@ -167,9 +167,9 @@ class Home extends React.Component{
                         <CarouselPage />
                     </div>
                         <div className="home-main">
-                            {/* <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
+                            <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
                                 <h2><span>Welcome to INVESCO!</span></h2>
-                            </div> */}
+                            </div>
 
                         {/*############################################## CARDS ############################################## */}
                         

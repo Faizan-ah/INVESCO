@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     '& > *': {
-      margin: theme.spacing(1),
+      // margin: theme.spacing(1),
     },
     // backgroundColor: theme.palette.background.paper,
     // backgroundColor: 'black',
@@ -206,7 +206,7 @@ export default function SimpleTabs() {
             <div className='house-menu-inputs'>
               <div className='house-menu-inputs-rows'>
                   <div className='house-menu-inputs-row-1'>
-                    <TextField size='large' style={{width:'170px'}} id="standard-basic" variant="outlined" label="Area Size" />
+                    <TextField size='large' id="standard-basic" variant="outlined" label="Area Size" />
                     <div>
                       <select name="size" id="size">
                         <option value="Marla">Marla</option>
@@ -214,9 +214,10 @@ export default function SimpleTabs() {
                       </select>
                     </div>
                   </div>
-                  <div style={{width:'230px'}}>
+                  <div className='house-menu-inputs-row-1-col-2'>
                       {/* <TextField size='small' id="standard-basic" label="Location e.g. F-10" /> */}
                       <Autocomplete
+
                         id="free-solo-demo"
                         freeSolo
                         options={top100Films.map((option) => option.title)}
@@ -254,33 +255,33 @@ export default function SimpleTabs() {
             <PlotChart chartData={chartData} style={{ height:'2000px'}}/>
           </div>
           <div className='techinalAnal-table'>
-              <table>
+              <table className='techAnalysis'>
                 <h1>Technical Analysis</h1>
-                <tr>
+                <tr className='techAnalysis-row'>
                   <th>Name</th>
                   <th>Action</th>
                 </tr>
-                <tr>
+                <tr className='techAnalysis-row'> 
                   <td>RSI Calculation</td>
                   <td>Maria Anders</td>
                 </tr>
-                <tr>
+                <tr className='techAnalysis-row'>
                   <td>On-Balance Volume</td>
                   <td>Francisco Chang</td>
                 </tr>
-                <tr>
+                <tr className='techAnalysis-row'>
                   <td>MACD Calculation</td>
                   <td>Roland Mendel</td>
                 </tr>
-                <tr>
+                <tr className='techAnalysis-row'>
                   <td>Average Directional Index</td>
                   <td>Helen Bennett</td>
                 </tr>
-                <tr>
+                <tr className='techAnalysis-row'>
                   <td>Distribution Line</td>
                   <td>Yoshi Tannamuri</td>
                 </tr>
-                <tr>
+                <tr className='techAnalysis-row'>
                   <td>Magazzini Alimentari Riuniti</td>
                   <td>Giovanni Rovelli</td>
                 </tr>

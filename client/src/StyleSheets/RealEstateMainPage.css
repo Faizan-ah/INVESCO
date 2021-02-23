@@ -1,6 +1,6 @@
 
 .realestate-main{
-    margin-top: 6%;
+    margin-top:6%;
     margin-left: 2%;
 }
 
@@ -10,6 +10,7 @@
     font-weight: 700;
     text-shadow: 3px 2px 4px goldenrod;
     text-align: center;
+    
 }
 p{
     color: white;
@@ -51,4 +52,9 @@ p{
 		-webkit-transform: translateY(-5px);
 		transform: translateY(-5px);
 	}
+}
+@media only screen and (max-width: 768px) {
+    .realestate-main{
+        margin-top: 20%;
+    }
 }

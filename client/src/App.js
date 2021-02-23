@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import fire from './config/fire'
 import ForgotPassword from './Components/ForgotPassword';
 import StockMainPage from './Components/StockMainPage';
+import HistoricalHooks from './Components/HistoricalHooks'
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
@@ -55,6 +56,7 @@ class App extends React.Component{
           <Route path = "/RealEstatePrediction" component={RealEstateMain} exact/>
           <Route path = "/StockPrediction" component={StockMainPage} exact/>
           <Route path = "/ChangeEmail" component={ChangeEmail} exact/>
+          {/* <Route path = "/StockPrediction" component={HistoricalHooks} exact/> */}
           <Route path = "/ChangePassword" component={ChangePassword} exact/>
           <Route path = "/ForgotPassword" component={ForgotPassword} exact/>
         </Router>

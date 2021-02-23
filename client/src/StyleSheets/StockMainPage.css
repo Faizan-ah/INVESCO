@@ -1,3 +1,24 @@
 .stock-page-main{
     margin-left: 2%;
 }
+.stock-graph{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.graph-and-selector{
+    display: flex;
+    flex-direction: row;
+}
+.stock-company-historical-table-div{
+    width: 50%;
+}
+
+@media only screen and (max-width:768px){
+    .stock-company-historical-table-div{
+        width: 100%;
+    }
+    .stock-graph{
+        width: 100%;
+    }
+}

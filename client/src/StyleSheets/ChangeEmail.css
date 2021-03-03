@@ -1,5 +1,6 @@
 .change-field-heading h1{
     color: black;
+    margin-top: 5%;
 }
 .change-field-inputs {
     display: flex;
@@ -34,8 +35,9 @@
 }
 
 .change-field-inputs input:focus{
-    border-color: rgb(63, 194, 107);
-    border-width: 4px;
+    /* border-color: rgb(63, 194, 107); */
+    border-color: black;
+    border-width: 2px;
     outline: none;
     padding-left: 10px;
     padding-right: 10px;
@@ -70,6 +72,14 @@
 .change-field-button:hover{
     background: goldenrod;
 }
+.errMsg-display{
+    color: red;
+    font-weight: bold;
+    margin-left: 5%;
+    width: 60%;
+    text-align: left;
+    
+}
 @media only screen and (max-width: 1200px) {
     /* For mobile phones: */
     .change-field-inputs input{
@@ -86,5 +96,8 @@
     /* For mobile phones: */
     .change-field-inputs input{
         width: 80%;
+    }
+    .change-field-heading h1{
+        margin-top: 12%;
     }
 }

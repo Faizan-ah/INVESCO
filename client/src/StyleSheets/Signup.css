@@ -15,7 +15,7 @@ body, .signup-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    width: 40%;
     margin-right: auto;
     margin-left: auto;
     margin-top: 10%;
@@ -63,6 +63,10 @@ body, .signup-main{
   
   .signupDataRow2Col2{
     margin-left: 20%;
+    text-align:left; 
+    /* border: 1px solid black; */
+    width: 100%;
+
   }
   
   .signupForm label{
@@ -109,12 +113,16 @@ body, .signup-main{
       /* width: 110%; */
       width:100%;
   }
-
+ 
   .signupDataRow2Col2 input{
-    width:235%; 
+    width: 60.5%; 
+  
+  }
+  .signupDataRow3Col2 {
+    width: 50%;
   }
   .signupDataRow3Col2 input{
-    width:124%; 
+    width:52%; 
   }
   
   .button {
@@ -201,7 +209,7 @@ body, .signup-main{
     margin-left: 2px;
     width:200px;
 }
-@media only screen and (max-width: 1480px) {
+@media only screen and (max-width: 1780px) {
   /* For mobile phones: */
   [class*="signupForm"] {
     width: 70%;

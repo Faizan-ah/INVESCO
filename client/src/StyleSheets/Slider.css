@@ -1,6 +1,6 @@
 .slider-image{
     width: 100%;
-    height: min-content;
+    height: max-content;
     z-index: 0;
     text-align: center;
     overflow: visible;

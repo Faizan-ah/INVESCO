@@ -32,7 +32,22 @@ const userReducer = (state = initialUserState , action)=>{
   }
   return state;
 }
-
+const initialCompState = {
+  inputText:''
+}
+const stockReducer = (state = initialCompState, action) => {
+  console.log('ouuttttt')
+  switch (action.type) {  
+    case 'UPDATE_INPUT':
+          state = {
+              inputText: action.payload
+          };
+          break
+      default:
+        state = initialCompState;
+  }
+  return state
+}
 
 //personal logger
 const myLogger  = (store) => (next) => (action) =>{
@@ -43,11 +58,11 @@ const myLogger  = (store) => (next) => (action) =>{
 const store =  createStore(
   combineReducers({
       user: userReducer,
+      stock: stockReducer
   }),
   {},
   compose(
       applyMiddleware(createLogger()),
-
   )
   
 )

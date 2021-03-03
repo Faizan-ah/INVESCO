@@ -47,8 +47,8 @@ const theme = createMuiTheme({
 const useStyles = (theme) => ({
     root: {
       maxWidth: 345,
-      float:'left',
-      marginLeft: '180px',
+    //   float:'left',
+    //   marginLeft: '180px',
     //   marginTop: 200,
     //   border : '2px solid black',
       minHeight: '300px',
@@ -63,16 +63,19 @@ const useStyles = (theme) => ({
       }
     },
     homeContent: {
-        //   border : '2px solid black',
-          float:'left',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        flexWrap:'wrap',
+        //   float:'left',
           width:'100%',
           marginLeft:'auto',
           marginRight:'auto',
           alignContent:'center',
+          paddingTop:40
         //   backgroundColor:'grey',
-          paddingBottom: 50,
-          marginTop:'10%',
-          
+        //   paddingBottom: 50,
+        //   border: '1px solid black'
     },
     picii : {
         '&:hover':{
@@ -167,10 +170,12 @@ class Home extends React.Component{
                         <CarouselPage />
                     </div>
                         <div className="home-main">
-                            <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
+                            {/* <div className='home-main-heading wow pulse' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
+                                <h2><span>Welcome to INVESCO!</span></h2>
+                            </div> */}
+                            <div className='home-main-heading' data-wow-duration="2" data-wow-iteration="3" data-wow-offset="30" data-wow-duration="1.7s">
                                 <h2><span>Welcome to INVESCO!</span></h2>
                             </div>
-
                         {/*############################################## CARDS ############################################## */}
                         
                         <div>
@@ -262,7 +267,6 @@ class Home extends React.Component{
                                 </Card>
                                 
                                 </div>
-                                <div style={{backgroundColor:'white',color:'white'}}></div>
                             </div>
                             
                         </div>
@@ -321,7 +325,7 @@ class Home extends React.Component{
                                     </div>
                                 </div>
                             </div>
-                            <div style={{backgroundColor:'white',color:'white'}}>asd</div>
+                            <div style={{backgroundColor:'white',color:'white'}}>.</div>
                         </div>
                         <div>
                         <div className="footer-body">

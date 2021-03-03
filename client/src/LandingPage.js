@@ -150,23 +150,23 @@ class LandingPage extends React.Component{
                             <div class="slider__contents">
                             <Avatar alt="Justin Sharp" src={maleImg2} className={classes.large}/>
                             <h2 class="slider__caption">Justin Sharp</h2>
-                            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+                            <p class="slider__txt">"You won't regret it. I have gotten at least 50 times the value from investment."</p>
                             </div>
                             <div class="slider__contents">
                             <Avatar alt="Travis Howard" src={maleImg1} className={classes.large}/>
       
                             <h2 class="slider__caption">Travis Howard</h2>
-                            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+                            <p class="slider__txt">"INVESCO has got everything I need. Best. Plaform. Ever! It did exactly what you said it does. I would also like to say thank you to all your staff."</p>
                             </div>
                             <div class="slider__contents">
                             <Avatar alt="Cindy Joe" src={femaleImg1} className={classes.large}/>
                             <h2 class="slider__caption">Cindy Joe</h2>
-                            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+                            <p class="slider__txt">"Keep up the excellent work. I just can't get enough of this!"</p>
                             </div>
                             <div class="slider__contents">
                             <Avatar alt="Hannah Baker" src={femaleImg2} className={classes.large}/>
                             <h2 class="slider__caption">Hannah Baker</h2>
-                            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+                            <p class="slider__txt">"Absolutely wonderful! This has impressed me on multiple levels. Thanks INVESCO!"</p>
                             </div>
                         </div>
                     </div>

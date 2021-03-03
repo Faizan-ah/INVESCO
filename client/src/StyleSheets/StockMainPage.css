@@ -1,10 +1,16 @@
 .stock-page-main{
-    margin-left: 2%;
+    /* margin-left: 2%; */
+    /* background-color: gainsboro; */
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid black; */
 }
 .stock-graph{
     width: 70%;
     margin-left: auto;
     margin-right: auto;
+    
 }
 .graph-and-selector{
     display: flex;
@@ -12,11 +18,38 @@
 }
 .stock-company-historical-table-div{
     width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
-
+.stock-main-heading h1{
+    margin-top: 5%;
+    text-align: center;
+    /* border: 1px solid black */
+}
+.stock-radio-buttons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid black; */
+}
+.stock-buttons{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom: 2%;
+}
 @media only screen and (max-width:768px){
     .stock-company-historical-table-div{
         width: 100%;
+    }
+    .stock-main-heading h1{
+        margin-top: 15%;
     }
     .stock-graph{
         width: 100%;

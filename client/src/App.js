@@ -15,6 +15,7 @@ import fire from './config/fire'
 import ForgotPassword from './Components/ForgotPassword';
 import StockMainPage from './Components/StockMainPage';
 import HistoricalHooks from './Components/HistoricalHooks'
+import StockTable from './Components/StockTable';
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
@@ -35,7 +36,7 @@ class App extends React.Component{
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log('asdasdasd')
+        // console.log('asdasdasd')
         this.setState({ user });
         this.props.confirmUserAuth(user)
       } else {
@@ -57,6 +58,7 @@ class App extends React.Component{
           <Route path = "/StockPrediction" component={StockMainPage} exact/>
           <Route path = "/ChangeEmail" component={ChangeEmail} exact/>
           {/* <Route path = "/StockPrediction" component={HistoricalHooks} exact/> */}
+          {/* <Route path = "/StockTable" component={StockTable} exact/>  */}
           <Route path = "/ChangePassword" component={ChangePassword} exact/>
           <Route path = "/ForgotPassword" component={ForgotPassword} exact/>
         </Router>

@@ -120,24 +120,22 @@ const useStyles = ({
                         <TableBody>
                         {this.rows.map((row) => (
                             <TableRow key={row.key}>
-                            <TableCell component="th" scope="row">
+                              <TableCell component="th" scope="row">
                                 <Link to='/StockPrediction' onClick={this.sendValue.bind(this, row)}>
                                     {row.key}
                                 </Link>
-                            
-                            </TableCell>
-                            <TableCell align="right">
-                                {row.Open}</TableCell>
-                            <TableCell align="right">{row.high}</TableCell>
-                            <TableCell align="right">{row.Low}</TableCell>
-                            <TableCell align="right">{row.Close}</TableCell>
-                            <TableCell align="right">{row.Change}</TableCell>
-                            <TableCell align="right">{row.Volume}</TableCell>
+                              </TableCell>
+                              <TableCell align="right">{row.Open}</TableCell>
+                              <TableCell align="right">{row.High}</TableCell>
+                              <TableCell align="right">{row.Low}</TableCell>
+                              <TableCell align="right">{row.Close}</TableCell>
+                              <TableCell align="right">{row.Change}</TableCell>
+                              <TableCell align="right">{row.Volume}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>
                     </Table>
-                    </TableContainer>
+                  </TableContainer>
             </div>
         )
     }

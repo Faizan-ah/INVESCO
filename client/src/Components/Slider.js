@@ -1,11 +1,11 @@
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
-import stockpic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/business-finance-terms-and-definitions-1-2.jpg'
+import stockpic from '../StyleSheets/images/business-finance-terms-and-definitions-1-2.jpg'
 // import begginerpic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/begginer.jpg'
-import begginerpic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/easy.jpg'
-import prosliderpic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/propertySlider.jpg'
-import algopic from 'C:/Users/Faian/invvesco/client/src/StyleSheets/images/algo.jpg'
+import begginerpic from '../StyleSheets/images/easy.jpg'
+import prosliderpic from '../StyleSheets/images/propertySlider.jpg'
+import algopic from '../StyleSheets/images/algo.jpg'
 import '../StyleSheets/Slider.css'
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 

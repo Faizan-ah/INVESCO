@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../StyleSheets/ChangeEmail.css'
 import PropertyHeader from './PropertyHeader'
 import fire from '../config/fire'
-import { Popover } from '@material-ui/core';
+import { Button, Popover } from '@material-ui/core';
 export class ChangeEmail extends Component {
     constructor(props){
         super(props);
@@ -11,7 +11,8 @@ export class ChangeEmail extends Component {
             Epassword: '',
             newEmail:'',
             msg:'',
-            errMsg:''
+            errMsg:'',
+            verMsg:''
         }
     }
     onChange = (event) =>{
@@ -32,58 +33,63 @@ export class ChangeEmail extends Component {
         })
         // user.verifyBeforeUpdateEmail(newEmail)
     }
-    changeEmail = () => {
-        console.log('in')
+
+    changeEmail = ()=>{
         const {prevEmail,newEmail,Epassword} = this.state
-       
+        const user = fire.auth().currentUser;
         if(this.validate()){
-
-        }
-        fire.auth()
-            .signInWithEmailAndPassword(prevEmail, Epassword)
-            .then(function(userCredential) {
-                userCredential.user.updateEmail(newEmail)
+            fire.auth().signInWithEmailAndPassword(prevEmail,Epassword)
+        .then(()=>{
+            const cUser = fire.auth().currentUser
+            if(user == cUser){
+                console.log('same users')
+                cUser.updateEmail(newEmail)
                 .then(()=>{
-                    console.log('email updated successfully')
-                    var user = fire.auth().currentUser;
-                    user.sendEmailVerification().then(()=>{
-                        if(user.emailVerified){
-                            console.log('verfied')
-                        }
-                        else{
-                            alert('An email verification link has been sent to you on your new mail.')
-                            // fire.auth().signOut();
-                            // this.resetInputs()
-                        }
-                          
-                    }) 
-                     
-                }).catch((e)=>{
-                    // this.setState({
-                    //     msg:'',
-                    //     errMsg: e.message,
-                    // })
-                })
+                    this.setState({
+                        msg: 'Email Updated Successfully!',
+                        errMsg:''
+                    },
+                    ()=>{
+                        cUser.sendEmailVerification().then(()=>{
+                            this.setState({
+                                ...this.state,
+                                errMsg:'',
+                                verMsg:'Verify Your Email Before You Login Next Time.'
+                            })
+                        },()=>{
+                            this.resetInputs()
 
-            }).catch((e)=>{
-               this.setState({
-                        msg:'',
-                        errMsg: e.message,
+                            setTimeout(()=>{
+                            },3000)
+                        })
+                        
                     })
+                }).catch((e)=>{
+                    this.setState({
+                        errMsg:e.message,
+                        msg:''
+                    })
+                })
+            }else{
+                // console.log('not same users')
+                // this.setState({
+                //     errMsg:'Invalid Email or Password',
+                //     msg:''
+                // })
+                alert('For Security Purposes we are logging you out')
+                fire.auth().signOut();
+                this.props.history.push('/login')
+            }
+                            
+        }).catch((e)=>{
+            
+            this.setState({
+                errMsg:'Invalid Email or Password',
+                msg:''
             })
-        // const {prevEmail,newEmail,Epassword} = this.state
-        // const user = fire.auth().currentUser
-        // const credential = fire.auth.EmailAuthProvider.credential(
-        //   prevEmail,Epassword
-        // );
-        // user.reauthenticateWithCredential(credential)
-        // .then(()=>{
-        //     if(user.emailVerified){
-        //         user.updateEmail(newEmail);
-        //         console.log('email updated successfully')
-        //     }
-        // }
-        // )
+        })
+        }
+        
     }
     resetInputs = ()=>{
         this.setState({
@@ -131,12 +137,21 @@ export class ChangeEmail extends Component {
                                 <label for="newEmail">Enter New Email</label>
                                 <input type="email" name="newEmail" value = {this.state.newEmail} id="newEmail" onChange={this.onChange} required></input>
                             </div>
-                            <div class="change-field-button" onClick = {this.changeEmail}>
-                                <p>Done</p>
+                            <div className="change-field-inputs-content">
+                            <Button variant="contained" color="primary" onClick = {this.changeEmail}>
+                                Done
+                            </Button>
                             </div>
+                            {/* <div class="change-field-button" onClick = {this.changeEmail}>
+                                <p>Done</p>
+                            </div> */}
                         </div>
-                        <span className='msg-display'>{this.state.msg}</span>
-                        <span className='errMsg-display'>{this.state.errMsg}</span>
+                        <div className='msg-display'>
+                            <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
+                            <br/>
+                            <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.verMsg}</span>
+                            <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
+                        </div>
                     </div>
                 </div>
             </div>

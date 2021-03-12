@@ -1,9 +1,9 @@
-
 .house-menu-inputs{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-top: 40px;
+    
 }
 
 .house-menu-inputs-rows{
@@ -26,17 +26,18 @@
     display: flex;
     flex-direction: row;
     margin-top: 15px;
-    width: 30%;
-
+    width: 40%;
+    margin-left: 10px;
     justify-content:space-evenly;
     /* border:1px solid black; */
 }
 .house-menu-inputs-row-1-col-2{
-    width: 30%;
-    /* border: 2px solid black; */
+    width: 37%;
+    margin-right: 10px;
+    /* border: 1px solid black; */
 }
 .house-menu-inputs-row-1-col-2 input{
-    width: 20%;
+    width: 100%;
     /* border: 2px solid black; */
 }
 .house-menu-inputs-row-1 select {
@@ -122,12 +123,16 @@
     }
     .house-menu-inputs-row-1{
         width: 50%;
+        margin-left: 0;
+        margin-right: 0;
+        /* border: 2px solid black; */
     }
     .house-menu-inputs-row-1 select {
         width: 100%;
     }
     .house-menu-inputs-row-1-col-2{
         width: 50%;
+        margin-right: 0;
         /* border: 2px solid black; */
     }
     #size{

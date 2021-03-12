@@ -13,6 +13,14 @@
     flex-direction: column;
     margin-left: 5%;
 }
+.change-field-inputs-content button{
+    margin-top: 10px;
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    /* letter-spacing: 1.5px; */
+    margin-bottom: 5px;
+}
 .change-field-inputs label{
     color:black;
     font-size: 20px;
@@ -79,6 +87,10 @@
     width: 60%;
     text-align: left;
     
+}
+
+.msg-display{
+    margin-left: 5%;
 }
 @media only screen and (max-width: 1200px) {
     /* For mobile phones: */

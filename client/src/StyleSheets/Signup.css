@@ -6,9 +6,8 @@ body, .signup-main{
     align-content: center;
   }
   .signupForm h1{
-    font-style: italic;
     text-align: center;
-    letter-spacing: 0.2pc;
+    letter-spacing: 0.1pc;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
   }
   .signupForm{

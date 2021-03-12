@@ -42,7 +42,7 @@
     overflow:visible;
     bottom:0;
     width: 100%;
-    background-image: url(C:\Users\Faian\invvesco\client\src\StyleSheets\images\wave-bottom.svg);
+    background-image: url('./images/wave-bottom.svg');
     height: 275px;
 }
 .landing-info{

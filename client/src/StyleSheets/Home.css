@@ -43,42 +43,8 @@ body{
     color:black;
     letter-spacing: 0.25rem;
     /* text-shadow:2px 3px 3px goldenrod; */
-    
+ 
     /* -webkit-text-stroke: 1px #000; */
-}
-
-.options{
-    margin-top: 4%;
-    width:100%;
-    height: 250px;
-}
-.options-inside{
-    float:left;
-    border: 1px solid black;
-    border-style: inset;
-    border-radius: 15px;
-    padding-top: 40px;
-    padding-right:10px ;
-    padding-left: 40px;
-    background-color: azure;
-    width: 25%;
-    height: 90%;
-    margin-left: 4%;
-}
-.options-inside h3{
-    letter-spacing: 0.25mm;
-}
-.options-inside p{
-    width: 80%;
-    height:100%;
-    color: black
-}
-
-.options-inside:hover{
-    background-color: #BFC0C0;
-    transition: all .50s ease-Out;
-    animation: bounce 1s;
-
 }
 
 .home-div-links{
@@ -335,13 +301,13 @@ body{
         text-align: center;
     }
     #stockCard{
-        margin-left: 10%;
+        margin-left: 1%;
     }
     #propertyCard{
-        margin-left: 10%;
+        margin-left: 1%;
     }
     #IRCard{
-        margin-left: 10%;
+        margin-left: 1%;
     }
     /*---------------- for stock ------------------- */
     .home-intro-stock{

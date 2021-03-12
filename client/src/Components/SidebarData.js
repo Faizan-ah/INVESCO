@@ -23,7 +23,7 @@ export const SidebarData = [
     },
     {
         title:"Delete Account",
-        path:"#",
+        path:"/DeleteAccount",
         icon: <RiIcon.RiAccountCircleLine/>,
         cName: 'nav-text'
     },

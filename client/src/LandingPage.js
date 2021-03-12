@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import LandingPageHeader from './Components/LandingPageHeader'
 import Footer from './Components/Footer'
 import './StyleSheets/LandingPage.css'
-import logo from "C:/Users/Faian/invvesco/client/src/StyleSheets/images/gra.jpg" 
+import logo from "./StyleSheets/images/gra.jpg" 
 import WOW from 'wowjs';
 import Avatar from '@material-ui/core/Avatar';
 import { withStyles } from '@material-ui/core/styles';
@@ -53,7 +53,7 @@ class LandingPage extends React.Component{
                     <div className="landing-info-box wow bounceInRight" data-wow-duration="1.8s">
                         <h2>Best For Beginners</h2>
                         <div className="para">
-                            <p>With the aid of the investment recommendation, NVESCO uses the already predicted data and provides an investment recommendation making it really easy for beginners to invest.</p>
+                            <p>With the aid of the investment recommendation, INVESCO uses the already predicted data and provides an investment recommendation making it really easy for beginners to invest.</p>
                         </div>
                     </div>
                 </div>

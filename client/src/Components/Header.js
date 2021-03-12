@@ -130,7 +130,7 @@ class Header extends React.Component{
                                 <div>
                                     <div style={{textAlign:'center', fontSize:'25px', marginBottom:'10px',display:'flex',flexDirection:'row', justifyContent:'space-evenly', marginTop:'10px'}}>
                                     <div>
-                                    <BiArrowBack style={{marginTop:'2'}} size={30} onClick={this.toggleDrawer(anchor,false)}/>
+                                    <BiArrowBack style={{marginTop:'2',cursor:'pointer'}} size={30} onClick={this.toggleDrawer(anchor,false)}/>
                                     </div>
                                     <div>
                                     Account Settings 

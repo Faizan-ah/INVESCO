@@ -1,184 +1,55 @@
-body, .signup-main{
-    /* background-color:  #0c2d33; */
-    background-color: #fff;
-    /* height: 100%;
-    width: 100%; */
-    align-content: center;
-  }
-  .signupForm h1{
-    text-align: center;
-    letter-spacing: 0.1pc;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
-  }
-  .signupForm{
+.signup-main{
+    background-image: url('./images/bg.jfif');
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 40%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 10%;
-    font-family: 'Ralway';
-    background-color: ivory;
-    border-radius: 10px;
-    align-content: center;
-    border: 3px solid black;
-    padding-bottom: 10px;
-  }
-  .signupDataRow1{
-      
-      float: left;
-      height:100%;
-      width:100%;
-      
-      padding-left: 20%;
-  }
-  .signupDataRow3{
-      float: left;
-      height:100%;
-      width:100%;
-      
-      padding-left: 20%;
-  }
-/*   
-  .signupDataRow1,.signupDataRow2,.signupDataRow3{
-      display: flex;
-      flex-direction: row;
-      justify-content:center;
-      
-      border-bottom-color: transparent;
-      background-color: ivory;
-      margin-left: 8%;
-  } */
-  .signupDataRow1Col1,.signupDataRow1Col2,.signupDataRow2Col1,.signupDataRow2Col2,.signupDataRow3Col1,.signupDataRow3Col2{
-    float: left;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  .signupDataRow1Col2,.signupDataRow3Col2{
-    margin-left: 8%;
-  }
-  
-  .signupDataRow2Col2{
-    margin-left: 20%;
-    text-align:left; 
-    /* border: 1px solid black; */
-    width: 100%;
-
-  }
-  
-  .signupForm label{
-      /*border: 4px solid black;*/
-      font-size: 20px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-  }
-  .tac {
-      width: 100%;
-      padding: 10px;
-      text-align: center;
-      margin: 0 auto;
-      
-  }
-  
-  
-  /*
-  .signupDataRow4>div>label{
-      font-size: 20px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-  }
-  */
-  #termsCond{
-    height: 18px;
-    width: 20px;
-    margin-left: 26%;
-    margin-top: 20px;
-  
-  }
-  .terms{
-    float: right;
-    width: 50%;
-    margin-top: 17px;
-  }
-  .hel{
-    display: flex;
-    flex-direction: row; 
-    width:100%;
-  }
-  .signupForm input{
-      height: 25px;
-      /* width: 110%; */
-      width:100%;
-  }
- 
-  .signupDataRow2Col2 input{
-    width: 60.5%; 
-  
-  }
-  .signupDataRow3Col2 {
-    width: 50%;
-  }
-  .signupDataRow3Col2 input{
-    width:52%; 
-  }
-  
-  .button {
-    display: inline-flex;
-    height: 40px;
-    width: 150px;
-    border: 2px solid #BFC0C0;
-    margin: 20px 20px 20px 20px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: .8em;
-    letter-spacing: 1.5px;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    align-self:center;
-  }
-  #button-signup {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  
-  #button-signup a {
-    font-family: "Helvetica";
-    position: relative;
-    transition: all .45s ease-Out;
-    text-decoration: none;
-    color: black;
-  }
-  #circle {
-    width: 0%;
-    height: 0%;
-    opacity: 0;
-    line-height: 40px;
-    border-radius: 50%;
-    background: #BFC0C0;
-    position: absolute;
-    transition: all .5s ease-Out;
-    top: 20px;
-    left: 70px;
-  }
-  #button-signup:hover #circle {
-    width: 200%;
-    height: 500%;
-    opacity: 1;
-    top: -70px;
-    left: -70px;
-  }
-  
-  #button-3:hover a {
-    color: #2D3142;
-  }
-  
+
+}
+
+.signupForm{
+    width: 30%;
+    /* height: 60%; */
+    margin-left: auto;
+    margin-right: 5%;
+    box-shadow: 0.5px 0.5px 15px 0.5px #1d1d1d;
+    background: linear-gradient(to bottom, #0c358f 0%, #287ac6 103%);
+}
+.signupForm h1{
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.2pc;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
+}
+.signupData{
+    font-family: 'Ralway';
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.signupData label{
+    font-size: 20px;
+}
+.signupData input{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.checkbox{
+    width: 75%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+
   .terms a{
     text-decoration: none;
-    color:#2d419b;
+    /* color:#2d419b; */
+    color:#A3BBDD;
   }
   #termsLink:hover{
     color:cadetblue;
@@ -191,85 +62,48 @@ body, .signup-main{
   .logLink{
     text-align: center;
     font-weight: bold;
+    margin-bottom: 20px;
   }
   #loginLink{
     text-decoration: none;
-    color:#2d419b;
+    /* color:#2d419b; */
+    color:#d5dfee;
   }
   #loginLink:hover{
     color:cadetblue;
     text-decoration: underline;
   }
-
-  .error-display{
+  .signupData span{
     color: red;
-    text-align: left;
-    /* border: 1px solid black; */
-    margin-left: 2px;
-    width:200px;
+    text-align: center;
+    width:20px;
 }
-@media only screen and (max-width: 1780px) {
-  /* For mobile phones: */
-  [class*="signupForm"] {
-    width: 70%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 40px;
+
+@media only screen and (max-width: 1280px) {
+    .signupForm{
+        width:40%;
+    }
+    .signupData{
+      width: 60%;
+    }
   }
-  [class*="signupDataRow1"] {
-    width: 70%;
-    float: none;
-    margin-left: 3%;
+  @media only screen and (max-width: 903px) {
+    .signupForm{
+        width:60%;
+        /* margin-right: auto;
+        margin-left: auto; */
+    }
+    .signupData{
+      width: 70%;
+    }
   }
-  [class*="signupDataRow2"] {
-    width: 46.2%;
-    margin-left: 17.1%;
+  @media only screen and (max-width: 768px) {
+    .signupForm{
+        width:80%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .signupData{
+      width: 70%;
+    }
   }
-  [class*="signupDataRow3"] {
-    width: 70%;
-    float: none;
-    margin-left: 3%;
-  }
-  .signupDataRow2Col2 input{
-    width:230%; 
-  }
-  .signupDataRow3Col2 input{
-    width:100%; 
-  }
-  .hel{
-    margin-right: 17%;
-    margin-left: 6%;
-  }
-}
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  [class*="signupForm"] {
-    width: 90%;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  [class*="signupDataRow1"] {
-    width: 70%;
-    float: none;
-    margin-left: 3%;
-  }
-  [class*="signupDataRow2"] {
-    width: 46.2%;
-    margin-left: 17.3%;
-  }
-  [class*="signupDataRow3"] {
-    width: 70%;
-    float: none;
-    margin-left: 3%;
-  }
-  .signupDataRow2Col2 input{
-    width:230%; 
-  }
-  .signupDataRow3Col2 input{
-    width:100%; 
-  }
-  .hel{
-    width: 100%;
-    margin-left: 1%;
-  }
-}

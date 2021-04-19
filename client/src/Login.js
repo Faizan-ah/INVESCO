@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link,withRouter } from 'react-router-dom';
 import './StyleSheets/Login.css'
-
 import { connect } from 'react-redux';
 import fire from './config/fire'
 export class Login extends Component {
@@ -97,16 +96,21 @@ export class Login extends Component {
         // }
         this.printRedux()
         return (
-           
+           <div className='asdasd'>
             <div class="login-main" >
                 <form method="post" class="loginForm" >
                     <div class='loginData'>
-                        <h1 style={{fontStyle:'normal'}}>Welcome</h1>
-                        <label for="email">Email</label>
-                        <input type="email" name="signInEmail" value = {this.state.signInEmail} id="email" onChange={this.onChange} required></input>
-                        <label for="password">Password</label>
-                        <input type="password" name="signInPassword" value = {this.state.signInPassword} id="password" onChange={this.onChange} required></input>
-                        <span className="error-display-login">{this.state.inputError}</span>
+                        <h1 style={{fontStyle:'normal', marginTop:'0px'}}>Welcome</h1>
+                        <div className='loginInputs'>
+                            <label for="email">Email</label>
+                            <input type="email" name="signInEmail" value = {this.state.signInEmail} id="email" onChange={this.onChange} required></input>
+                            <label for="password">Password</label>
+                            <input type="password" name="signInPassword" value = {this.state.signInPassword} id="password" onChange={this.onChange} required></input>    
+                        </div>
+                        <div className="error-display-login">
+                        <span >{this.state.inputError}</span>
+                        </div>
+                        
                         <div>
                             <div class="button" id="button-login" onClick = {this.onSignin}>
                                 <div id="circle"></div>
@@ -119,12 +123,12 @@ export class Login extends Component {
                             <Link id="regAcc" to="/registration">Register Account</Link>
                         </div>
                     </div>
-                    
+                   
                 </form>
 
                
             </div>
-            
+            </div>
         )
     }
 }

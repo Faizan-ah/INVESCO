@@ -184,8 +184,37 @@ export class Signup extends Component {
                     <form class="signupForm">
                         
                         <h1>Welcome</h1>
-                                    
-                        <div class='signupDataRow1'>
+                        <div className='signupData'>
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
+                            <div className="error-display">
+                                <span>{this.state.fnameError}</span>
+                            </div>
+                            
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" name="signUpLastName" value={signUpLastName} onChange={this.onChange} ></input>
+                            <div className="error-display">
+                                <span className="error-display">{this.state.lnameError}</span>
+                            </div>
+
+                            <label for="email">Email</label>
+                            <input ref={focusInput =>{this.signUpEmail = focusInput}} type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>
+                            <div className="error-display">
+                                <span className="error-display">{this.state.emailError}</span>
+                            </div>
+
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="signUpPassword" value={signUpPassword} onChange={this.onChange} required></input>
+                            <div className="error-display">
+                                <span className="error-display">{this.state.passwordError}</span>
+                            </div>
+
+                            <label for="cpassword">Confirm Password</label>
+                            <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
+                        </div>    
+
+
+                        {/* <div class='signupDataRow1'>
                             <div class='signupDataRow1Col1'>
                                 <label for="fname">First Name</label>
                                 <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
@@ -216,16 +245,21 @@ export class Signup extends Component {
                                 <label for="cpassword">Confirm Password</label>
                                 <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
                             </div>
+                        </div> */}
+                        <div class="checkbox">
+                            <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
+                            <label class="terms" for='termsCond'>Do you agree to our <a id="termsLink" href="#">Terms</a> and <a id="ppLink" href="#">Privacy Policy</a>?</label>                    
                         </div>
-                        <div class="hel">
-                        <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
-                        <label class="terms" for='termsCond'>Do you agree to our <a id="termsLink" href="#">Terms</a> and <a id="ppLink" href="#">Privacy Policy</a>?</label>                    
-                        </div>
-                        <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
+                        {/* <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
                             <div id="circle"></div>
                             <a href="#">SIGNUP</a>
+                        </div> */}
+                        <div>
+                            <div class="button" id="button-login" style={buttonStyle} onClick = {this.onSignup}>
+                                <div id="circle"></div>
+                                <p>SIGNUP</p>
+                            </div>
                         </div>
-        
                         <div class="logLink">
                             <Link id="loginLink" to="/login">Already have an account?</Link>
                         </div>

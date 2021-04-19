@@ -49,7 +49,7 @@ export class ForgotPassword extends Component {
     render() {
         return (
             <div class="fgp-main" >
-                <form method="post" class="loginForm" >
+                <form method="post" class="fgpForm" >
                     <div class='fgpData'>
                         <h1>Password Reset</h1>
                         <label for="email">Enter Email</label>

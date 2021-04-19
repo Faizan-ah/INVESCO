@@ -1,80 +1,77 @@
-body, .login-main{
-    /* background-color: #0c2d33; */
-    background-color:#fff;
-    height: 100%;
+.login-main{
+    background-image: url('./images/bg.jfif');
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+.loginForm{
+    width: 30%;
+    /* border: 1px solid black; */
+    margin-left: auto;
+    margin-right: 5%;
+    border-radius: 5px;
+    height: 50%;
+    box-shadow: 0.5px 0.5px 15px 0.5px #1d1d1d;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, #0c358f 0%, #287ac6 103%);
+}
+.loginData{
     width: 100%;
-    
-  }
-  
-  .loginData h1{
+}
+.loginData h1{
+    text-align: center;
     font-style: italic;
     letter-spacing: 0.2pc;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
-  }
-  .loginForm{
-      display: flex;
-      justify-content: center;
-      margin-top: 5%;
-      font-family: 'Ralway';
-      
-    }
-    .loginData{
-      display: flex;
-      flex-direction: column;
-      justify-content:center;
-      align-items: center;
-      height: 420px;
-      width:30%;
-      border-bottom-color: transparent;
-      background-color: ivory;
-      border-radius: 10px;
-      border: 3px solid black;
-    }
-    .loginData label{
-      /*border: 4px solid black;*/
-      font-size: 20px;
+}
+.loginInputs{
+    /* display: flex; */
+    /* flex-direction: column; */
+    font-family: 'Ralway';
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 2px solid green; */
+    /* flex-wrap: wrap; */
+}
+
+.loginInputs input{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.loginInputs label{
+    font-size: 20px;
       display: table-row;
-      align-self: flex-start;
-      margin-left:24% ;
       padding-top: 2px;
       padding-bottom: 2px;
-    }
-    
-    .loginData input{
-      height: 25px;
-      width: 50%;
-    }
-  
-  .links{
-      display: flex;
-      justify-content: space-around;
-      width: 300px;    
-      border-top-color: transparent;
-      margin-top: 10px;;
-      background-color: ivory;
-  
+}
+
+.error-display-login{
+    color: red;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+    font-weight:500;
+    width:60%;
   }
-  
-  .links a{
-    text-decoration: none;
-    color:#2d419b;
-    font-weight: bold;
-  }
-  #fpass:hover{
-    color:cadetblue;
-    text-decoration: underline;
-  }
-  #regAcc:hover {
-    color:cadetblue;
-    text-decoration: underline;
-  }
-  
+
   .button {
-    display: inline-flex;
+    /* display: inline-flex; */
+    text-align: center;
     height: 40px;
     width: 150px;
+    margin-left: auto;
+    margin-right: auto;
     border: 2px solid #BFC0C0;
-    margin: 20px 20px 20px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-transform: uppercase;
     text-decoration: none;
     font-size: .8em;
@@ -117,33 +114,43 @@ body, .login-main{
     top: -70px;
     left: -70px;
   }
-  
-  #button-3:hover p {
-    color: #2D3142;
+
+  .links a{
+    text-decoration: none;
+    /* color:#2d419b; */
+    color:#d5dfee;
+    font-weight: bold;
   }
-  
-  .error-display-login{
-    color: red;
-    text-align: center;
-    /* border: 1px solid black; */
-    margin-right: 12px;
-    width:200px;
+  #fpass:hover{
+    color:cadetblue;
+    text-decoration: underline;
   }
-  @media only screen and (max-width: 1280px) {
+  #regAcc:hover {
+    color:cadetblue;
+    text-decoration: underline;
+  }
+  .links{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    /* background-color: ivory; */
+
+}
+@media only screen and (max-width: 1280px) {
     .loginForm{
-      margin-top: 10%;
+        width:50%;
     }
     .loginData{
-      width: 50%;
+      width: 100%;
     }
   }
   @media only screen and (max-width: 768px) {
     .loginForm{
-      margin-top: 20%;
+        width:70%;
+        margin-right: auto;
+        margin-left: auto;
     }
     .loginData{
-      width: 95%;
+      width: 100%;
     }
   }
-
- 

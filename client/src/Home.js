@@ -36,6 +36,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import StockTable from './Components/StockTable'
 
 
 
@@ -181,7 +182,7 @@ class Home extends React.Component{
                         <div>
                             <div className={classes.homeContent}>
                                 <Card id ='stockCard' className={classes.root}>
-                                    <CardActionArea onClick={()=> this.props.history.push('/StockPrediction')} className={classes.picii}>
+                                    <CardActionArea onClick={()=> this.props.history.push('/StockTable')} className={classes.picii}>
                                         <CardMedia
                                             style={{height: 200}}
                                             component="img"
@@ -200,7 +201,7 @@ class Home extends React.Component{
                                         </CardContent>
                                     </CardActionArea>
                                     <CardActions>
-                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/StockPrediction')}  size="small" color="primary">
+                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/StockTable')}  size="small" color="primary">
                                             Go
                                         </Button>
                                         <Button className={classes.btn} size="small" color="primary" >

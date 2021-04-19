@@ -119,6 +119,7 @@ export class PredictedStock extends React.Component {
         console.log('in mount')
         // this.getHistoricalTableData()
         this.getHistoricalGraphData()
+        console.log('from link', this.props.location.state)
     }
    
         handleRadioChange = (event) => {

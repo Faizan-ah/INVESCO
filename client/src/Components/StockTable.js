@@ -9,11 +9,14 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import fire from '../config/fire';
-
+import PropertyHeader from './PropertyHeader' 
+import fire from '../config/fire'
 const useStyles = ({
     table: {
-      minWidth: 650,
+      // minWidth: '50%',
+      width: '70%',
+      marginRight: 'auto',
+      marginLeft: 'auto'
     },
   });
   
@@ -22,7 +25,9 @@ const useStyles = ({
         super(props);
         this.state = {
             value:'',
-            data:null
+            data:null,
+            companies:['APL','BOP','HASCOL','HUBC','KAPCO','KEL','SNGP'],
+            rows:[]
         }
     }
     componentDidMount(){
@@ -32,79 +37,40 @@ const useStyles = ({
         let data = []
         
         fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/`).on('value', (snapshot)=>{
-            var vall = snapshot.val();
-            // console.log(vall.APL)
-            let companies = ['APL','BOP','HASCOL','HUBC','KAPCO','KEL','SNGP']
-            var comp = []
-            var dataComp = []
-            for(let i=0; i<companies.length; i++){
-                var compName = companies[i]
-                comp.push(vall[compName])
-                // comp[i].
-                // for(let j =0; j<comp.length; j++){
-                //     dataComp.push(comp[j]) 
-                    
-                //     // for(let k =0; k<dataComp.length; k++){
-                //     //     console.log('test',dataComp[k])
-                //     // }
-                // }   
-            }
-            console.log('company data', comp)
             var qwe = []
             snapshot.forEach((ss)=>{
                 var val = ss.val()
-                qwe.push(val)
-                for(let i=0;i<qwe.length;i++){
-                    console.log(qwe[i].Open)
-                }
-                const ros = {open:val.Open,high:val.High,low:val.Low,close:val.Close,change:val.Change,volume:val.Volume,date:val.Date}
+                let x = Object.keys(val)
+                let lastVal = val[x[x.length-1]]
+                qwe.push(lastVal)
             })
-            console.log(qwe)
-            // console.log('test',dataComp)
-                // console.log('qweqweasdasd',vall)
-                // this.rows.push
-            // snapshot.forEach((openSnapShot)=>{
-            //     var val = openSnapShot.val();
-            //     console.log('asdasd',val)
-            //     const ros = {open:val.Open,high:val.High,low:val.Low,close:val.Close,change:val.Change,volume:val.Volume,date:val.Date}
-            //     data.push(ros)
-            // })
-            console.log('data',this.rows)
-            // this.setState({
-            //         data:  data   
-            // })
-            // console.log('in graph function')
+            this.setState({
+              ...this.state,
+              rows:qwe
+            })
+            
         })
     }
     createData = (name, calories, fat, carbs, protein, A,B) => {
         return { name, calories, fat, carbs, protein, A,B};
       }
-    rows = [
-        // this.createData('HASCOL', 159, 6.0, 24, 4.0,11,1),
-        // this.createData('SNGP', 237, 9.0, 37, 4.3,1,1),
-        // this.createData('Eclair', 262, 16.0, 24, 6.0,1,1),
-        // this.createData('Cupcake', 305, 3.7, 67, 4.3,1,1),
-        // this.createData('Gingerbread', 356, 16.0, 49, 3.9,1,1),
-      ];
-
       sendValue = (row)=>{
-        // this.setState({
-        //     value: row.name
-        // })
-        console.log('hellow')
         this.props.stockReducerValue(row.name)
         this.getLatestData()
         return 
       }
     render() {
         const {classes} = this.props
-        // console.log('state table value',this.state.value)
-        // console.log('redux value', this.props.stock.inputText)
         const {data} = this.state
         console.log('redux value', this.state.data)
         return (
+          <div>
+            <PropertyHeader/>
+            <div className="stock-main-heading">
+                <h1>STOCK TABLE</h1>
+            </div>
             <div className='stock-table'>
-                <TableContainer component={Paper}>
+                <TableContainer >
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                         <TableRow>
@@ -115,28 +81,36 @@ const useStyles = ({
                             <TableCell align="right">CLOSE</TableCell>
                             <TableCell align="right">CHANGE</TableCell>
                             <TableCell align="right">VOLUME</TableCell>
+                            <TableCell align="right">DATE</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {this.rows.map((row) => (
-                            <TableRow key={row.key}>
-                              <TableCell component="th" scope="row">
-                                <Link to='/StockPrediction' onClick={this.sendValue.bind(this, row)}>
-                                    {row.key}
-                                </Link>
-                              </TableCell>
-                              <TableCell align="right">{row.Open}</TableCell>
-                              <TableCell align="right">{row.High}</TableCell>
-                              <TableCell align="right">{row.Low}</TableCell>
-                              <TableCell align="right">{row.Close}</TableCell>
-                              <TableCell align="right">{row.Change}</TableCell>
-                              <TableCell align="right">{row.Volume}</TableCell>
-                            </TableRow>
-                        ))}
+                          {console.log('inside',this.state.rows)}
+                          {console.log('asda',this.state.companies)}
+                          
+                        {this.state.rows.map((row,index) => {
+                          return(
+                          <TableRow key={index}>
+                            <TableCell component="th" scope="row">
+                              <Link to={{pathname: '/StockPrediction', state: this.state.companies[index] }} onClick={this.sendValue.bind(this, row)}>
+                                {this.state.companies[index]}
+                              </Link>
+                            </TableCell>
+                            <TableCell align="right">{row.Open}</TableCell>
+                            <TableCell align="right">{row.High}</TableCell>
+                            <TableCell align="right">{row.Low}</TableCell>
+                            <TableCell align="right">{row.Close}</TableCell>
+                            <TableCell align="right">{row.Change}</TableCell>
+                            <TableCell align="right">{row.Volume}</TableCell>
+                            <TableCell align="right">{row.Date}</TableCell>
+                          </TableRow>)
+                            
+                      })}
                         </TableBody>
                     </Table>
                   </TableContainer>
             </div>
+          </div>
         )
     }
 }

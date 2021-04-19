@@ -44,7 +44,7 @@ export class StockMainPage extends React.Component {
         super(props);
         this.state = {
             // selectedValue:this.props.stock.inputText,
-            selectedValue: 'APL',
+            selectedValue: this.props.location.state,
             page:0,
             rowsPerPage:10,
             rows:[],
@@ -145,6 +145,7 @@ export class StockMainPage extends React.Component {
     }
     componentDidMount (){
         console.log('in mount')
+        console.log('from link', this.props.location.state)
         this.getHistoricalTableData()
         this.getHistoricalGraphData()
         // this.sendData()

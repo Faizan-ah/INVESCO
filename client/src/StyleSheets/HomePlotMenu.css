@@ -1,20 +1,23 @@
-.house-menu-inputs{
+ .house-menu-inputs{
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 40px;
-    
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    flex-wrap: wrap;
 }
-
+.house-menu-inputs-row-1{
+    display: flex;
+    flex-direction: row;
+}
+/*
 .house-menu-inputs-rows{
     display: flex;
     flex-direction: row;
     justify-content:space-around;
     width: 40%;
-    /* border: 1px solid black; */
     margin-bottom: 25px;
     margin-top: -10px;
-    /* border: 1px solid green; */
+    
 }
 
 .house-menu-inputs-rows input{
@@ -29,16 +32,20 @@
     width: 40%;
     margin-left: 10px;
     justify-content:space-evenly;
-    /* border:1px solid black; */
+    
 }
 .house-menu-inputs-row-1-col-2{
     width: 37%;
     margin-right: 10px;
-    /* border: 1px solid black; */
+    
 }
 .house-menu-inputs-row-1-col-2 input{
     width: 100%;
-    /* border: 2px solid black; */
+    
+}
+*/
+.autocomplete-bar{
+    width: 97%;
 }
 .house-menu-inputs-row-1 select {
     margin-top: 20px;
@@ -47,24 +54,27 @@
 .house-menu-inputs-row-1 input {
     width: 130px;
 }
-/* .dropdown-search{
-    width: 190px;
-    margin-top: 5.5px;
-} */
+
 #size{
     padding: 7.2px;
-    margin-left: 3px;
+    /* margin-left: 3px; */
     border-top: none;
     border-left: none;
     border-right: none;
 }
 
+
+
 .house-menu-right{
-    width: 44%;
-    /* border: 1px solid black; */
+    width: 40%;
     display: flex;
     justify-content: space-evenly;
-}
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+} 
+
+
 /* button */
 .calculate-button{
     background-color: #112349;
@@ -116,40 +126,44 @@
     /* border: 1px solid black */
 }
 
+@media only screen and (max-width: 375px) {
+    .house-menu-inputs-row-1 input{
+        width:100%;      
+    }
+}
 
-@media only screen and (max-width: 768px) {
-    .house-menu-inputs-rows{
-        width: 100%;
+@media only screen and (max-width: 320px) {
+    .house-menu-inputs{
+ 
+        width:100vw;;      
     }
-    .house-menu-inputs-row-1{
-        width: 50%;
-        margin-left: 0;
-        margin-right: 0;
-        /* border: 2px solid black; */
+}
+@media only screen and (max-width: 425px) {
+    .house-menu-inputs{
+        width: 10%;
     }
-    .house-menu-inputs-row-1 select {
-        width: 100%;
-    }
-    .house-menu-inputs-row-1-col-2{
-        width: 50%;
-        margin-right: 0;
-        /* border: 2px solid black; */
-    }
-    #size{
-        margin-left: 0px;
+    .house-menu-inputs-row-1 input{
+        width:100%;      
     }
     /* .plot-graph{
         width: 100%;
         height: 2000px
     } */
 }
-
-@media only screen and (max-width: 1080px) {
-    .house-menu-inputs-rows{
+@media only screen and (max-width: 768px) {
+    .autocomplete-bar{
         width: 100%;
     }
-    .house-menu-right{
+}
+@media only screen and (max-width: 1024px) {
+    .house-menu-inputs{
         width: 100%;
+
+    }
+    .house-menu-right{
+        width: 60%;
+        margin-left: 0;
+        margin-right: auto;
     }
     .house-menu-inputs-row-1 select {
         margin-top: 13.5px;
@@ -157,5 +171,49 @@
     .plot-graph{
         width: 80%;
     }
+    .autocomplete-bar{
+        width: 100%;
+    }
     
+}
+@media only screen and (max-width: 1950px) {
+    .house-menu-right{
+        width: 70%;
+        margin-left: 0;
+        margin-right: auto;
+    }
+}
+@media only screen and (max-width: 1650px) {
+    .house-menu-inputs{
+        width: 80%;
+    }
+    
+
+}
+@media only screen and (max-width: 1440px) {
+    .house-menu-inputs{
+        width: 90%;
+    }
+    
+}
+@media only screen and (max-width: 1300px) {
+    .house-menu-inputs{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 1170px) {
+    .house-menu-inputs{
+        width: 40%;
+    }
+    .autocomplete-bar{
+        width: 195%;
+    }
+}
+@media only screen and (max-width: 1161px) {
+    .house-menu-inputs{
+        width: 40%;
+    }
+    .autocomplete-bar{
+        width: 97%;
+    }
 }

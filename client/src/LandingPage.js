@@ -125,16 +125,6 @@ class LandingPage extends React.Component{
                         <p className='numbers'>99+</p>
                         <p className='numbers-label'>Stock Companies</p>
                     </div>
-
-                    {/* <div className='numbers'>
-                    <span class="animate" id='digit1'>1 2 3 4 5 6 7 8 9 0</span>
-                    </div>
-                    <div className='numbers'>
-                    <span class="animate" id='digit2'>1 2 3 4 5 6 7 8 9 0</span>
-                    </div>
-                    <div className='numbers'>
-                    <span class="animate" id='digit3'>1 2 3 4 5 6 7 8 9 0</span>
-                    </div> */}
                 </div>
                 <div className='testimonials'>
                     <div className='testimonials-intro'>

@@ -26,9 +26,11 @@ class DeleteAccount extends Component {
     deleteAccount = () => {
         const {prevEmail, Epassword} = this.state;
         const user = fire.auth().currentUser
+        const userID = fire.auth().currentUser.uid
         fire.auth().signInWithEmailAndPassword(prevEmail,Epassword)
         .then(()=>{
             const cUser = fire.auth().currentUser
+            
             if(user==cUser){
                 cUser.delete().then(()=>{
                 }).catch((e)=>{
@@ -36,6 +38,9 @@ class DeleteAccount extends Component {
                         errMsg:e.message
                     })
                 })
+                fire.database().ref('Users/'+userID).remove()
+                // console.log('asdasd',query)
+
                 alert('Your Account has been deleted. Logging you out.')
                 this.props.history.push('/login')
             }

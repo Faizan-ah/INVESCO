@@ -3,6 +3,7 @@ import { RiThunderstormsFill } from 'react-icons/ri';
 import { Link ,withRouter} from 'react-router-dom';
 import './StyleSheets/Signup.css';
 import fire from './config/fire'
+import { FaUserInjured } from 'react-icons/fa';
 export class Signup extends Component {
     constructor(props){
         super(props);
@@ -74,6 +75,7 @@ export class Signup extends Component {
           .then((u) => {
             console.log('Successfully Signed Up');
             const user = fire.auth().currentUser
+            const userID = fire.auth().currentUser.uid
             user.sendEmailVerification().then(()=>{
                 if(user.emailVerified){
                     //login the user
@@ -97,8 +99,17 @@ export class Signup extends Component {
                 }
                 else{
                     alert('An email verification link has been sent to you. Check your email.')
-                    
+                    let query = fire.database().ref('Users/'+userID)
+                    const userData = {
+                        firstName: signUpFirstName,
+                        lirstName: signUpLastName,
+                        email: signUpEmail,
+                    }
+                    query.push(userData)
+                    // fire.database().ref('messages').push(this.state.signUpLastName)
+
                     this.resetInputs()
+
                     this.props.history.push('/login')
                 }
             })

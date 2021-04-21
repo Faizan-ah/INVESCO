@@ -23,8 +23,15 @@ import TableRow from '@material-ui/core/TableRow';
 import Radio from '@material-ui/core/Radio';
 import PredictedStock from './PredictedStock'
 
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
 import Login from '../Login'
 import { connect } from 'react-redux';
+
+
+
 const useStyles = ((theme) => ({
     root: {
       flexGrow: 1,
@@ -37,13 +44,39 @@ const useStyles = ((theme) => ({
     container: {
         maxHeight: 440,
       },
+      modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+        color: 'black',
+      },
+      modalText:{
+          color: 'black'
+      },
+      modalInputs: {
+          width:'50px'
+      },
+      buttonDiv:{
+          width:'100%',   
+          textAlign:'center',
+          paddingTop: '10px',
+      },
   }));
 
 export class StockMainPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            // selectedValue:this.props.stock.inputText,
+            
+            green:false,
+            text:'Subscribe',
+            open: false,
             selectedValue: this.props.location.state,
             page:0,
             rowsPerPage:10,
@@ -92,6 +125,38 @@ export class StockMainPage extends React.Component {
             
         }
     }
+
+    handleOpen = () => {
+        this.setState({
+            open: true
+        })
+      };
+
+    handleClose = () => {
+        this.setState({
+            open: false
+        })
+      };
+
+      handleAlert = ()=>{
+        this.handleClose()
+      };
+
+      handleSubscribe= ()=>{
+        if(this.state.text=='Subscribe'){
+            this.setState({
+                green:"Primary",
+                text:'Subscribed',
+            })
+        }
+        else if(this.state.text=='Subscribed'){
+            this.setState({
+                color:"Secondary",
+                text:'Subscribe',
+            })
+        }
+      }
+
     sendData = ()=>{
         console.log('wrarara')
         fire.database().ref('historicaldatafyp-default-rtdb/Stocks/ABCD').set({'key':'value'})
@@ -103,7 +168,6 @@ export class StockMainPage extends React.Component {
         try{
             fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/${this.state.selectedValue}`).limitToLast(30).on('value', (snapshot)=>{
                 snapshot.forEach((openSnapShot)=>{
-                    // console.log('snappp',openSnapShot.val())
                     var val = openSnapShot.val();
                     console.log('val', val.Open)
                     const ros = {open: val.Open,high:val.High,low:val.Low,close:val.Close,change:val.Change,volume:val.Volume,date:val.Date}
@@ -111,9 +175,7 @@ export class StockMainPage extends React.Component {
                     })
                 this.setState({
                     rows : tableData
-                    // rows: getLast(data)      
                 })
-                // console.log('this.state.rows', this.state.rows)
             })
         }catch(e){
             console.log('error',e)
@@ -238,6 +300,10 @@ export class StockMainPage extends React.Component {
     render() {
         const isAuthenticated = this.props.user.isAuth
         const {classes}= this.props
+        const {theme} = this.props
+        const btnStyle = {
+            backgroundColor: this.state.text==="Subscribed" ? "#4caf50":"#f50057"
+        }
         console.log('predicted radio value', this.state.selectedValue)
         if(!isAuthenticated){
             return(
@@ -260,12 +326,41 @@ export class StockMainPage extends React.Component {
                         >
                             <div className='stock-page-main'>
                                 <div className='stock-buttons'>
-                                    <Button variant="contained" color="secondary">
-                                        Subscribe
+                                    <Button variant="contained" style={btnStyle} color='secondary' onClick={this.handleSubscribe}>
+                                        {this.state.text}
                                     </Button>
-                                    <Button variant="contained" color="secondary">
+                                    <Button variant="contained" color="secondary" onClick={this.handleOpen}>
                                         Alert
                                     </Button>
+                                    <Modal
+                                        aria-labelledby="transition-modal-title"
+                                        aria-describedby="transition-modal-description"
+                                        className={classes.modal}
+                                        open={this.state.open}
+                                        onClose={this.handleClose}
+                                        closeAfterTransition
+                                        BackdropComponent={Backdrop}
+                                        BackdropProps={{
+                                        timeout: 500,
+                                        }}
+                                    >
+                                        <Fade in={this.state.open}>
+                                        <div className={classes.paper}>
+                                            <h2 id="transition-modal-title">ALERT ME!</h2>
+                                            <label for='aboveInput' class={classes.modalText}>When Price Gets Above: </label>
+                                            <input type="number" className={classes.modalInputs} id='aboveInput'></input>
+                                            <br></br>
+                                            <label for='belowInput' class={classes.modalText}>When Price Gets Below: </label>
+                                            <input style={{marginLeft:'3px'}} type="number" className={classes.modalInputs} id='belowInput'></input>
+                                            <br></br>
+                                            <div className={classes.buttonDiv}>
+                                                <Button variant="contained" color="primary" onClick={this.handleAlert}>
+                                                Done
+                                                </Button>
+                                            </div>
+                                        </div>
+                                        </Fade>
+                                    </Modal>
                                 </div>
                                 
                                 <div className='graph-and-selector'>

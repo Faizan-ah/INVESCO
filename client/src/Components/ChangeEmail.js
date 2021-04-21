@@ -37,14 +37,23 @@ export class ChangeEmail extends Component {
     changeEmail = ()=>{
         const {prevEmail,newEmail,Epassword} = this.state
         const user = fire.auth().currentUser;
+        const userID = fire.auth().currentUser.uid
         if(this.validate()){
             fire.auth().signInWithEmailAndPassword(prevEmail,Epassword)
         .then(()=>{
             const cUser = fire.auth().currentUser
             if(user == cUser){
                 console.log('same users')
+                //updating in authentication
                 cUser.updateEmail(newEmail)
                 .then(()=>{
+                    //updating in realtime
+                    fire.database().ref('Users/'+userID).once('value', (data)=>{
+                        var datas = []
+                        data.forEach((doc)=>{
+                            fire.database().ref('Users/'+userID+'/'+doc.key).update({email: newEmail })
+                        })
+                    })
                     this.setState({
                         msg: 'Email Updated Successfully!',
                         errMsg:''
@@ -70,6 +79,7 @@ export class ChangeEmail extends Component {
                         msg:''
                     })
                 })
+                
             }else{
                 // console.log('not same users')
                 // this.setState({

@@ -141,10 +141,11 @@ const useStyles = makeStyles((theme) => ({
                       </select>
                     </div>
                   </div>
-                  <div className='house-menu-inputs-row-1-col-2'>
+                  {/* <div className='house-menu-inputs-row-1-col-2' > */}
                       {/* <TextField size='small' id="standard-basic" label="Location e.g. F-10" /> */}
                       <Autocomplete
-
+                        className='autocomplete-bar'
+                        // style={{width:'97%'}}
                         id="free-solo-demo"
                         freeSolo
                         options={top100Films.map((option) => option.title)}
@@ -152,16 +153,16 @@ const useStyles = makeStyles((theme) => ({
                           <TextField {...params} label="Location" margin="normal" variant="outlined" />
                         )}
                       />
-                  </div>
+                  {/* </div> */}
               </div>
-              <div className='house-menu-inputs-rows'>
+              {/* <div className='house-menu-inputs-rows'> */}
                 <TextField type='number' size='large' id="standard-basic" variant="outlined" label="Bath(s)" />
                 <TextField type='number' size='large' id="standard-basic" variant="outlined" label="Floor(s)"  />
-              </div>
-              <div className='house-menu-inputs-rows'>
+              {/* </div> */}
+              {/* <div className='house-menu-inputs-rows'> */}
                 <TextField type='number' size='large' id="standard-basic" variant="outlined" label="Bed(s)" />
                 <TextField size='large' id="standard-basic" variant="outlined" label="Built in (Year)" /> 
-              </div>
+              {/* </div> */}
             </div>
           </div>
           <div className='house-menu-right'>
@@ -169,8 +170,8 @@ const useStyles = makeStyles((theme) => ({
               Calculate
             </Button>
             <div className='calculated-price'>
-              Calculated Price: 
-              <span>199 Rs.</span>
+              Calculated Price : 
+              <span> 199 PKR </span>
             </div>
             
           </div>

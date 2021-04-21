@@ -97,7 +97,7 @@ export class PredictedStock extends React.Component {
         fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/${this.state.selectedValue}`).on('value', (snapshot)=>{
             snapshot.forEach((openSnapShot)=>{
                 var val = openSnapShot.val();
-                console.log('val.close', val.Close)
+                // console.log('val.close', val.Close)
                 let data1 = []
                 data1.push(val.Close)
                 data.push({
@@ -119,7 +119,7 @@ export class PredictedStock extends React.Component {
         console.log('in mount')
         // this.getHistoricalTableData()
         this.getHistoricalGraphData()
-        console.log('from link', this.props.location.state)
+        
     }
    
         handleRadioChange = (event) => {

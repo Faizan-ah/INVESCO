@@ -53,8 +53,7 @@ class Header extends React.Component{
         this.props.data(this.state.homescreen)
         this.props.dataSide(this.state.sidebar)
     }
-    
-
+  
     logout() {
         fire.auth().signOut();
         console.log('you are logged out')

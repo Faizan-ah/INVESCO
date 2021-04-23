@@ -75,9 +75,10 @@ export class StockMainPage extends React.Component {
         this.state = {
             
             green:false,
-            text:'Subscribe',
+            text:"Subscribe",
             open: false,
             selectedValue: this.props.location.state,
+            subscribed:[],
             page:0,
             rowsPerPage:10,
             rows:[],
@@ -142,23 +143,100 @@ export class StockMainPage extends React.Component {
         this.handleClose()
       };
 
-      handleSubscribe= ()=>{
-        if(this.state.text=='Subscribe'){
+      handleSubscribe= (e)=>{
+        // const cUser = fire.auth().currentUser
+        // const userID = fire.auth().currentUser.uid
+        console.log('hello',e.target.innerText)
+        fire.auth().onAuthStateChanged(async function(cUser) {
+            localStorage.setItem('uid',cUser.uid);
+         });
+        const userID = localStorage.getItem('uid');
+        if(e.target.innerText=='SUBSCRIBE'){
             this.setState({
-                green:"Primary",
-                text:'Subscribed',
+                subscribed:[...this.state.subscribed,this.state.selectedValue]
+            })
+            fire.database().ref('Users/'+userID).once('value', (snap)=>{
+                snap.forEach((doc)=>{
+                    fire.database().ref('Users/'+userID+'/'+doc.key).update({
+                        subscriptions: this.state.subscribed
+                    })
+                })
+            })
+        } else if(e.target.innerText=='SUBSCRIBED'){
+            const arr = this.state.subscribed.filter((company)=>{
+                return company!==this.state.selectedValue
+            }) 
+            console.log('qwe',arr)
+            this.setState({
+                subscribed: arr 
+            })
+            fire.database().ref('Users/'+userID).once('value', (snap)=>{
+                snap.forEach((doc)=>{
+                    fire.database().ref('Users/'+userID+'/'+doc.key).update({
+                        subscriptions: arr
+                    })
+                })
             })
         }
-        else if(this.state.text=='Subscribed'){
-            this.setState({
-                color:"Secondary",
-                text:'Subscribe',
+        // fire.auth().onAuthStateChanged(async function(cUser){
+        //     if(cUser){
+        //         const userID = cUser.uid
+        //         if(e.target.innerText=='SUBSCRIBE'){
+        //             this.setState({
+        //                 subscribed:[...this.state.subscribed,this.state.selectedValue]
+        //             })
+        //             fire.database().ref('Users/'+userID).once('value', (snap)=>{
+        //                 snap.forEach((doc)=>{
+        //                     fire.database().ref('Users/'+userID+'/'+doc.key).update({
+        //                         subscriptions: this.state.subscribed
+        //                     })
+        //                 })
+        //             })
+                    
+        //         }
+        //         else if(e.target.innerText=='SUBSCRIBED'){
+                    
+        //             const arr = this.state.subscribed.filter((company)=>{
+        //                 return company!==this.state.selectedValue
+        //             }) 
+        //             console.log('qwe',arr)
+        //             this.setState({
+        //                 subscribed: arr 
+        //             })
+        //             fire.database().ref('Users/'+userID).once('value', (snap)=>{
+        //                 snap.forEach((doc)=>{
+        //                     fire.database().ref('Users/'+userID+'/'+doc.key).update({
+        //                         subscriptions: arr
+        //                     })
+        //                 })
+        //             })
+        //             // this.setState({
+        //             //     color:"Secondary",
+        //             //     text:'Subscribe',
+        //             // })
+        //         }
+        //     }
+        //     else{
+
+        //     }
+        // } )
+        
+      }
+
+      getSubscriptions = async ()=>{
+             fire.auth().onAuthStateChanged(async function(cUser) {
+                 localStorage.setItem('uid',cUser.uid);
+              });
+             const uid = localStorage.getItem('uid');
+               const user = (await fire.database().ref('Users/'+uid).once('value'));
+               //key   
+               const userData=user.val()[Object.keys(user.val())[0]];
+              this.setState({
+                subscribed: userData.subscriptions==null ? []:userData.subscriptions
             })
-        }
       }
 
     sendData = ()=>{
-        console.log('wrarara')
         fire.database().ref('historicaldatafyp-default-rtdb/Stocks/ABCD').set({'key':'value'})
         console.log('pit')
     }
@@ -207,9 +285,10 @@ export class StockMainPage extends React.Component {
     }
     componentDidMount (){
         console.log('in mount')
-        console.log('from link', this.props.location.state)
+        this.forceUpdate();
         this.getHistoricalTableData()
         this.getHistoricalGraphData()
+        this.getSubscriptions()
         // this.sendData()
     }
    
@@ -219,10 +298,24 @@ export class StockMainPage extends React.Component {
             //   })
             this.setState({
                 ...this.state.selectedValue,
-                selectedValue: event.target.value
+                selectedValue: event.target.value,
             },()=>{
                 this.getHistoricalTableData()
                 this.getHistoricalGraphData()
+                // if(this.state.subscribed!=[]){
+                //     for(let i in this.state.subscribed){
+                //         if(this.state.subscribed[i]==this.state.selectedValue){
+                //             this.setState({
+                //                 text:'Subscribed'
+                //             })
+                //         }else{
+                //             this.setState({
+                //                 text:'Subscribe'
+                //             })
+                //         }
+                //     }
+                    
+                // }
             })
             
             // this.forceUpdate()
@@ -302,9 +395,10 @@ export class StockMainPage extends React.Component {
         const {classes}= this.props
         const {theme} = this.props
         const btnStyle = {
-            backgroundColor: this.state.text==="Subscribed" ? "#4caf50":"#f50057"
+            backgroundColor: this.state.subscribed.includes(this.state.selectedValue) ? "#4caf50":"#f50057"
         }
         console.log('predicted radio value', this.state.selectedValue)
+        console.log('sub',...this.state.subscribed)
         if(!isAuthenticated){
             return(
                 <Login/>
@@ -327,7 +421,7 @@ export class StockMainPage extends React.Component {
                             <div className='stock-page-main'>
                                 <div className='stock-buttons'>
                                     <Button variant="contained" style={btnStyle} color='secondary' onClick={this.handleSubscribe}>
-                                        {this.state.text}
+                                        {this.state.subscribed.includes(this.state.selectedValue) ? "Subscribed":"Subscribe"}
                                     </Button>
                                     <Button variant="contained" color="secondary" onClick={this.handleOpen}>
                                         Alert

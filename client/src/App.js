@@ -42,7 +42,7 @@ class App extends React.Component{
         this.props.confirmUserAuth(user)
       } else {
         console.log('here mf')
-        // this.setState({ user: null,isAuth:false });
+        this.setState({ user: null,isAuth:false });
       }
     })
   }

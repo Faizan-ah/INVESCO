@@ -22,12 +22,11 @@ const useStyles = ((theme) => ({
   }));
   
 class LandingPage extends React.Component{
-    onClickLogin = ()=>{
-        
-    }
+  
     componentDidMount(){
         new WOW.WOW().init();
     }
+    
     render(){
         const {classes} = this.props
         return(

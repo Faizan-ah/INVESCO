@@ -22,6 +22,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 const useStyles = ()=>({
     list: {
       width: 10,
@@ -40,21 +43,89 @@ class Header extends React.Component{
             homescreen:false,
             right:false,
             anchorEl: null,
-            data : ["SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
-            "PEL: OHLC for today is O:200 H:320 L:212 C: 212",
-            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
-            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
-            "PEL: OHLC for today is O:200 H:320 L:212 C: 212",
-            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
-            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
-            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
-            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
-            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
-            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
-            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
-            ]
+            data : [],
+            tempData: [],
+            loading:true
         }
         console.log("qwe",this.state.homescreen)
+    }
+    async componentDidMount(){
+        await this.getData()
+         this.saveInOriginal()
+    }
+    getData = async ()=>{
+        fire.auth().onAuthStateChanged(async function(cUser) {
+            localStorage.setItem('uid',cUser.uid);
+         });
+        const uid = localStorage.getItem('uid');
+        fire.database().ref('historicaldatafyp-default-rtdb/Stocks/')
+        const user = (await fire.database().ref('Users/'+uid).once('value'));
+        //key
+        const userData=user.val()[Object.keys(user.val())[0]];
+         var temp = []
+        for(let i in userData.subscriptions){
+            //company name
+            console.log(userData.subscriptions[i])
+            //latest value
+            const lastval = (await fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/${userData.subscriptions[i]}`).limitToLast(1).once('value'))
+            console.log(lastval.val())
+            var notif = ""
+            for(let j in lastval.val()){
+                const Close = lastval.val()[j].Close
+                const Date = lastval.val()[j].Date
+                const Open = lastval.val()[j].Open
+                const High = lastval.val()[j].High
+                const Low = lastval.val()[j].Low
+                notif = userData.subscriptions[i] + ': OHLC for '+ Date + " is "+ " O:"+Open+" H:"+High+" L:"+Low+" C:"+Close
+            }
+            console.log(notif)
+            temp.push(notif)
+            fire.database().ref('Users/'+uid).once('value', (snap)=>{
+                snap.forEach((doc)=>{
+                    fire.database().ref('Users/'+uid+'/'+doc.key).update({
+                        Notifications: temp
+                    })
+                })
+            })
+            // this.setState({
+            //     data:temp
+            // })
+        }  
+        console.log('tremp', temp)
+        var notifications = userData.Notifications
+        console.log('asdajsdasjd',notifications)
+        this.setState({
+            ...this.state,
+            tempData:notifications
+          })
+    }
+
+    saveInOriginal = async ()=>{
+        console.log('tempdata',this.state.tempData)
+        this.setState({
+            data: this.state.tempData,
+            loading:false
+        })
+        const uid = localStorage.getItem('uid');
+        const user = (await fire.database().ref('Users/'+uid).once('value'));
+        //key
+        const userData=user.val()[Object.keys(user.val())[0]];
+        var arr= []
+        for(let i in this.state.data){
+            for(let j in userData.RemovedNotifications)
+                var arr = this.state.data.filter((e)=>{
+                    if(this.state.data[i]===userData.RemovedNotifications[j]){
+                        return false;
+                    }else{
+                        return true
+                    }
+                })  
+        }
+        console.log('arrrrr',arr)
+        // this.setState({
+        //     data:arr
+        // })
+        console.log('qwe',userData.RemovedNotifications)
     }
 
     handleClick = (event) => {
@@ -114,13 +185,32 @@ class Header extends React.Component{
       );
 
       onCloseClick = (index)=>{
+        fire.auth().onAuthStateChanged(async function(cUser) {
+            localStorage.setItem('uid',cUser.uid);
+         });
+        const userID = localStorage.getItem('uid');
+        //deleted value
+        const delVal = this.state.data.filter((e,i) => {
+            return i==index
+        } ) 
+        //array without deleted value
         const newArr = this.state.data.filter((e,i) => {
             return i!==index
         } ) 
+        //setting state
         this.setState({
             data: newArr    
-        })  
-        console.log(newArr)
+        })
+        //setting database
+        fire.database().ref('Users/'+userID).once('value', (snap)=>{
+            snap.forEach((doc)=>{
+                fire.database().ref('Users/'+userID+'/'+doc.key).update({
+                    Notifications: newArr,
+                    RemovedNotifications: delVal
+                })
+            })
+        }) 
+        console.log('dleel',newArr)
         }
 
          
@@ -144,7 +234,11 @@ class Header extends React.Component{
                         onClose={this.handleClose}
                         className='notificationMenu'
                         >
-                        {this.state.data.map((key,index)=>{
+                        {this.state.loading==true ? 
+                        <div style={{textAlign:'center',marginTop:'20px',height:'50px',width:"320px"}}>
+                            <CircularProgress style={{}} disableShrink />
+                        </div> :
+                        this.state.data.map((key,index)=>{
                             return(
                                 <div>
                                     <div className="notifications" name={index} key={index}>

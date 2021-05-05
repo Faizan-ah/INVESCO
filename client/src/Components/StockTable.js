@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom';
 import PropertyHeader from './PropertyHeader' 
 import Header from './Header'
 import fire from '../config/fire'
+import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = ({
     table: {
       // minWidth: '50%',
@@ -28,7 +29,8 @@ const useStyles = ({
             companies:['ACPL','AGHA','APL','ASC','ASTL','ATRL','BOP','BYCO','DCL','DOL',
             'EFERT','EPCL','FCCL','FFBL','FFL','GAIL','GGL','GTYR','HASCOL','HBL','HUBC','HUMNL',
             'ICL','ISL','KAPCO','KEL','MDTL','PIAA','PRL','PSMC','SAZEW','SILK','SNGP','TELE','TRG','UNITY'],
-            rows:[]
+            rows:[],
+            isLoading: true
         }
     }
     componentDidMount(){
@@ -47,7 +49,8 @@ const useStyles = ({
             })
             this.setState({
               ...this.state,
-              rows:qwe
+              rows:qwe,
+              isLoading:false
             })
             
         })
@@ -86,12 +89,22 @@ const useStyles = ({
                         <TableBody>
                           {console.log('inside',this.state.rows)}
                           {console.log('asda',this.state.companies)}
+                          {/* <div style={{marginLeft:'auto',marginRight:'auto'}}>
+                          <CircularProgress disableShrink />
+                          </div> */}
                           
-                        {this.state.rows.map((row,index) => {
+                          
+                        {
+                        this.state.isLoading==true ?  
+                        <div style={{textAlign:'center',marginTop:'20px',height:'50px'}}>
+                          <CircularProgress style={{marginLeft:'300%',}} disableShrink />
+                        </div>
+                        : 
+                        this.state.rows.map((row,index) => {
                           return(
-                          <TableRow key={index}>
+                            <TableRow key={index}>
                             <TableCell component="th" scope="row">
-                              <Link to={{pathname: '/StockPrediction', state: this.state.companies[index] }} onClick={this.sendValue.bind(this, row)}>
+                              <Link to={{pathname: '/StockPrediction', state: this.state.companies[index] }} size='50' onClick={this.sendValue.bind(this, row)}>
                                 {this.state.companies[index]}
                               </Link>
                             </TableCell>
@@ -104,7 +117,8 @@ const useStyles = ({
                             <TableCell align="right">{row.Date}</TableCell>
                           </TableRow>)
                             
-                      })}
+                      })
+                      }
                         </TableBody>
                     </Table>
                   </TableContainer>

@@ -177,6 +177,7 @@
     height: 420px;
   }
   .notifications{
+    min-width: 320px;
     width: 320px;
     height: 60px;
     /* box-shadow: 1px 1px 1px 1px #888888; */

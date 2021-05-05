@@ -31,7 +31,11 @@ import Fade from '@material-ui/core/Fade';
 import Login from '../Login'
 import { connect } from 'react-redux';
 
+import ReactNotification from 'react-notification-component'
+import {store} from 'react-notification-component'
 
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const useStyles = ((theme) => ({
     root: {
@@ -80,6 +84,9 @@ export class StockMainPage extends React.Component {
             green:false,
             text:"Subscribe",
             open: false,
+            belowAlert: '',
+            aboveAlert:'',
+            notiArray:'',
             selectedValue: this.props.location.state,
             subscribed:[],
             page:0,
@@ -142,11 +149,40 @@ export class StockMainPage extends React.Component {
         })
       };
 
-      handleAlert = ()=>{
+    handleAlert = async ()=>{
+        fire.auth().onAuthStateChanged(async function(cUser) {
+            localStorage.setItem('uid',cUser.uid);
+         });
+        const uid = localStorage.getItem('uid');
+        const companyData = (await  fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/${this.state.selectedValue}`).limitToLast(1).once('value'))
+        var notif=""
+        var temp = []
+        console.log('last value', companyData.val())
+        for(let i in companyData.val()){
+            const Close = companyData.val()[i].Close
+            if(Close>this.state.aboveAlert || Close<this.state.belowAlert){
+                notif = this.state.selectedValue + ': ALERT! Closing Price is now '+ Close 
+            }
+        }
+        temp.push(notif)
+        console.log(temp)
+        if(notif!=""){
+            // fire.database().ref('Users/'+uid).once('value', (snap)=>{
+            //     snap.forEach((doc)=>{
+            //         fire.database().ref('Users/'+uid+'/'+doc.key+'/Notifications').set({ notif
+            //         })
+            //     })
+            // })
+            // this.setState({
+            //     notiArray:temp
+            // })
+            NotificationManager.success(notif, 'ALERT', 3600000);
+        }
+
         this.handleClose()
       };
 
-      handleSubscribe= (e)=>{
+    handleSubscribe= (e)=>{
         // const cUser = fire.auth().currentUser
         // const userID = fire.auth().currentUser.uid
         console.log('hello',e.target.innerText)
@@ -181,52 +217,10 @@ export class StockMainPage extends React.Component {
                 })
             })
         }
-        // fire.auth().onAuthStateChanged(async function(cUser){
-        //     if(cUser){
-        //         const userID = cUser.uid
-        //         if(e.target.innerText=='SUBSCRIBE'){
-        //             this.setState({
-        //                 subscribed:[...this.state.subscribed,this.state.selectedValue]
-        //             })
-        //             fire.database().ref('Users/'+userID).once('value', (snap)=>{
-        //                 snap.forEach((doc)=>{
-        //                     fire.database().ref('Users/'+userID+'/'+doc.key).update({
-        //                         subscriptions: this.state.subscribed
-        //                     })
-        //                 })
-        //             })
-                    
-        //         }
-        //         else if(e.target.innerText=='SUBSCRIBED'){
-                    
-        //             const arr = this.state.subscribed.filter((company)=>{
-        //                 return company!==this.state.selectedValue
-        //             }) 
-        //             console.log('qwe',arr)
-        //             this.setState({
-        //                 subscribed: arr 
-        //             })
-        //             fire.database().ref('Users/'+userID).once('value', (snap)=>{
-        //                 snap.forEach((doc)=>{
-        //                     fire.database().ref('Users/'+userID+'/'+doc.key).update({
-        //                         subscriptions: arr
-        //                     })
-        //                 })
-        //             })
-        //             // this.setState({
-        //             //     color:"Secondary",
-        //             //     text:'Subscribe',
-        //             // })
-        //         }
-        //     }
-        //     else{
-
-        //     }
-        // } )
         
       }
 
-      getSubscriptions = async ()=>{
+    getSubscriptions = async ()=>{
              fire.auth().onAuthStateChanged(async function(cUser) {
                  localStorage.setItem('uid',cUser.uid);
               });
@@ -306,6 +300,7 @@ export class StockMainPage extends React.Component {
             
             // this.forceUpdate()
         };
+
         handleChangePage = (event, newPage) => {
             this.setState({
                 page:newPage
@@ -376,6 +371,14 @@ export class StockMainPage extends React.Component {
         
         ];
 
+        alertOnChange = (event) =>{
+            const target = event.target;
+            const name = target.name;
+            const value = target.value;
+                this.setState({
+                    [name]:value
+                })
+            }
     render() {
         const isAuthenticated = this.props.user.isAuth
         const {classes}= this.props
@@ -393,6 +396,7 @@ export class StockMainPage extends React.Component {
             return (
                 <div className={classes.root}>
                     <Header/>
+                    <NotificationContainer />
                     <div className="stock-main-heading">
                         <h1>STOCK PRICE PREDICTOR</h1>
                     </div>
@@ -428,19 +432,20 @@ export class StockMainPage extends React.Component {
                                         <div className={classes.paper}>
                                             <h2 id="transition-modal-title">ALERT ME!</h2>
                                             <label for='aboveInput' class={classes.modalText}>When Price Gets Above: </label>
-                                            <input type="number" className={classes.modalInputs} id='aboveInput'></input>
+                                            <input type='number' className={classes.modalInputs} name='aboveAlert' id='aboveInput' onChange={this.alertOnChange} value={this.state.aboveAlert}></input>
                                             <br></br>
                                             <label for='belowInput' class={classes.modalText}>When Price Gets Below: </label>
-                                            <input style={{marginLeft:'3px'}} type="number" className={classes.modalInputs} id='belowInput'></input>
+                                            <input style={{marginLeft:'3px'}} type='number' className={classes.modalInputs} name='belowAlert' id='belowInput' value={this.state.belowAlert} onChange={this.alertOnChange}></input>
                                             <br></br>
                                             <div className={classes.buttonDiv}>
                                                 <Button variant="contained" color="primary" onClick={this.handleAlert}>
-                                                Done
+                                                    Done
                                                 </Button>
                                             </div>
                                         </div>
                                         </Fade>
                                     </Modal>
+                                    
                                 </div>
                                 
                                 <div className='graph-and-selector'>

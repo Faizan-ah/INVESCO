@@ -17,6 +17,8 @@ import StockMainPage from './Components/StockMainPage';
 import HistoricalHooks from './Components/HistoricalHooks'
 import StockTable from './Components/StockTable';
 import DeleteAccount from './Components/DeleteAccount';
+import InvestmentRec from './Components/InvestmentRec';
+import History from './Components/History';
 // import ProtectedRoute from './ProtectedRoute'
 //import Header from './Components/Header'
 class App extends React.Component{
@@ -63,6 +65,8 @@ class App extends React.Component{
           <Route path = "/ChangePassword" component={ChangePassword} exact/>
           <Route path = "/DeleteAccount" component={DeleteAccount} exact/>
           <Route path = "/ForgotPassword" component={ForgotPassword} exact/>
+          <Route path = "/InvestmentReccomendation" component={InvestmentRec} exact/>
+          <Route path = "/History" component={History} exact/>
         </Router>
       </div>
     );

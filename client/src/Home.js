@@ -239,7 +239,7 @@ class Home extends React.Component{
                                     </CardActions>
                                 </Card>
                                 <Card id ='IRCard' className={classes.root}>
-                                    <CardActionArea onClick={()=> this.props.history.push('/RealEstatePrediction')} className={classes.picii}>
+                                    <CardActionArea onClick={()=> this.props.history.push('/InvestmentReccomendation')} className={classes.picii}>
                                         <CardMedia
                                         style={{height: 200,}}
                                         component="img"
@@ -258,7 +258,7 @@ class Home extends React.Component{
                                         </CardContent>
                                     </CardActionArea>
                                     <CardActions >
-                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/RealEstatePrediction')} size="small" color="primary">
+                                        <Button className={classes.btn} onClick={()=> this.props.history.push('/InvestmentReccomendation')} size="small" color="primary">
                                         Go
                                         </Button>
                                         <Button className={classes.btn} size="small" color="primary">

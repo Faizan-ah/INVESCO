@@ -3,6 +3,7 @@ import '../StyleSheets/ChangeEmail.css'
 import PropertyHeader from './PropertyHeader'
 import fire from '../config/fire'
 import Button from '@material-ui/core/Button';
+import Header from './Header'
 class DeleteAccount extends Component {
     constructor(props){
         super(props);
@@ -80,7 +81,7 @@ class DeleteAccount extends Component {
         console.log(this.state)
         return (
             <div>
-                <PropertyHeader/>
+                <Header/>
                 <div>
                     <div className="change-field-heading">
                         <h1>Delete Your Account</h1>

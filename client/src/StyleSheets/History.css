@@ -1,0 +1,12 @@
+.history-element{
+    height: 55px;
+    /* border: 1px solid black */
+}
+.history-element-text{
+    font-size: large;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 20px;
+    border-bottom-width: 1px;
+    border-bottom-style:ridge ;
+}

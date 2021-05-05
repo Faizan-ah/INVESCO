@@ -23,7 +23,7 @@
     border-right: none;
     float:right;
   }
-  .topbar li:nth-child(4) {
+  .topbar li:nth-child(3) {
     border-right: none;
     float:right;
   }
@@ -170,4 +170,21 @@
     transition: all .3s ease-in-out;
     transform: scale(1.1);
     
+  }
+/* Notification Bar */
+  .notificationMenu{
+    margin-top: 35px;
+    height: 420px;
+  }
+  .notifications{
+    width: 320px;
+    height: 60px;
+    /* box-shadow: 1px 1px 1px 1px #888888; */
+    display: flex;  
+  }
+  .notifications p {
+    color: black;
+    width: 280px;
+    padding-left: 5px;
+    /* border: 1px solid green; */
   }

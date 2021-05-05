@@ -17,6 +17,11 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import CloseIcon from '@material-ui/icons/Close';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 const useStyles = ()=>({
     list: {
       width: 10,
@@ -25,16 +30,42 @@ const useStyles = ()=>({
       width: '0',
     },
   });
+
+
 class Header extends React.Component{
     constructor(props){
         super(props);
         this.state= {
             sidebar:false,
             homescreen:false,
-            right:false
+            right:false,
+            anchorEl: null,
+            data : ["SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
+            "PEL: OHLC for today is O:200 H:320 L:212 C: 212",
+            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
+            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
+            "PEL: OHLC for today is O:200 H:320 L:212 C: 212",
+            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
+            "KAPCO: OHLC for today is O:200 H:320 L:212 C: 212",
+            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
+            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
+            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
+            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
+            "SNGP: OHLC for today is O:200 H:320 L:212 C: 212",
+            ]
         }
         console.log("qwe",this.state.homescreen)
     }
+
+    handleClick = (event) => {
+        console.log('asdasdasdasdasd')
+        this.setState({anchorEl:event.currentTarget})
+      };
+      handleClose = () => {
+        console.log('asdasdasdasdasqweqwed')
+        this.setState({anchorEl:null});
+      };
+
     toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
@@ -81,42 +112,63 @@ class Header extends React.Component{
          
         </div>
       );
-    
+
+      onCloseClick = (index)=>{
+        const newArr = this.state.data.filter((e,i) => {
+            return i!==index
+        } ) 
+        this.setState({
+            data: newArr    
+        })  
+        console.log(newArr)
+        }
+
+         
     render(){
+        console.log(this.state.anchorEl)
         return(
             <div>
                <ul className="topbar">
                    <li><Link to="/Home">Home</Link></li>
-                   <li><Link to="/news">News</Link></li>
-                   <li><Link to="/contact">Contact</Link></li>
+                   <li><Link onClick={this.handleClick}><NotificationsIcon/></Link></li>
+                   
                    <li><Link to="/" onClick={this.logout}><RiIcon.RiLogoutBoxLine size={29}/></Link></li> 
                    <li onClick={this.toggleDrawer('right',true)}><Link to="#"><RiUserSettingsFill size='30px' color="white" /></Link></li>
                </ul>
-
-               {/* <nav className={this.state.sidebar ? 'nav-menu active': 'nav-menu'}>
-                    <ul className='nav-menu-items' onClick={this.showSideBar}>
-                        <li className='navbar-toggle'>
-                            <Link to="#" className="menu-bars">
-                                <div id="back-arrow"><BiArrowBack size={25} /></div>
+               <div>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={this.state.anchorEl}
+                        keepMounted
+                        open={Boolean(this.state.anchorEl)}
+                        onClose={this.handleClose}
+                        className='notificationMenu'
+                        >
+                        {this.state.data.map((key,index)=>{
+                            return(
+                                <div>
+                                    <div className="notifications" name={index} key={index}>
+                                        <p>{key}</p>
+                                        <CloseIcon 
+                                            fontSize='small' 
+                                            style={{marginTop:'20px'}} 
+                                            onClick={()=>this.onCloseClick(index)}
+                                        />
+                                    </div>
                                 
-                                <span>User Account</span>
-                            </Link>
-                        </li>
-                        {
-                            SidebarData.map((item,  index)=>{
-                                return(
-                                    <li key={index} className={item.cName}>
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-               </nav> */}
-                    
+                                </div>
+                                
+                                
+                            )
+                        })}
+                        {/* <div className="notifications">SNGP: OHLC for today is O:200 H:320 L:212 C: 212</div>
+                        <div className="notifications">PEL: OHLC for today is O:200 H:320 L:212 C: 212</div>
+                        <div className="notifications">KAPCO: OHLC for today is O:200 H:320 L:212 C: 212</div> */}
+                            {/* <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                            <MenuItem onClick={this.handleClose}>Logout</MenuItem> */}
+                    </Menu>
+                    </div>
                         {['right'].map((anchor) => (
                             <React.Fragment key={anchor}>
                             <Button onClick={this.toggleDrawer(anchor, true)}>{anchor}</Button>

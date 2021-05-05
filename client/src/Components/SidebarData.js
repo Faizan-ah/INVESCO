@@ -17,7 +17,7 @@ export const SidebarData = [
     },
     {
         title:"View History",
-        path:"#",
+        path:"/History",
         icon: <AiIcon.AiOutlineHistory/>,
         cName: 'nav-text'
     },

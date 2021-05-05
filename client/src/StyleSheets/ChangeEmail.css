@@ -1,6 +1,7 @@
 .change-field-heading h1{
     color: black;
-    margin-top: 5%;
+    margin-top: 3%;
+    padding-left: 10px;
 }
 .change-field-inputs {
     display: flex;

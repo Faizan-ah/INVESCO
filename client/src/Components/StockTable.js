@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropertyHeader from './PropertyHeader' 
+import Header from './Header'
 import fire from '../config/fire'
 const useStyles = ({
     table: {
@@ -24,9 +25,9 @@ const useStyles = ({
     constructor(props){
         super(props);
         this.state = {
-            value:'',
-            data:null,
-            companies:['APL','BOP','HASCOL','HUBC','KAPCO','KEL','SNGP'],
+            companies:['ACPL','AGHA','APL','ASC','ASTL','ATRL','BOP','BYCO','DCL','DOL',
+            'EFERT','EPCL','FCCL','FFBL','FFL','GAIL','GGL','GTYR','HASCOL','HBL','HUBC','HUMNL',
+            'ICL','ISL','KAPCO','KEL','MDTL','PIAA','PRL','PSMC','SAZEW','SILK','SNGP','TELE','TRG','UNITY'],
             rows:[]
         }
     }
@@ -61,11 +62,9 @@ const useStyles = ({
       }
     render() {
         const {classes} = this.props
-        const {data} = this.state
-        console.log('redux value', this.state.data)
         return (
           <div>
-            <PropertyHeader/>
+            <Header/>
             <div className="stock-main-heading">
                 <h1>STOCK TABLE</h1>
             </div>

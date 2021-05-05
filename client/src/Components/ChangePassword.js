@@ -5,7 +5,7 @@ import fire from '../config/fire'
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-
+import Header from './Header'
 const useStyles = ((theme) => ({
     paper: {
       position: 'absolute',
@@ -152,7 +152,7 @@ class ChangePassword extends Component {
     render() {
         return (
             <div>
-                <PropertyHeader/>
+                <Header/>
                 <div>
                     <div className="change-field-heading">
                         <h1>Change Password</h1>

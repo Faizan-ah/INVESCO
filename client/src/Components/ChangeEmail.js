@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../StyleSheets/ChangeEmail.css'
 import PropertyHeader from './PropertyHeader'
+import Header from './Header'
 import fire from '../config/fire'
 import { Button, Popover } from '@material-ui/core';
 export class ChangeEmail extends Component {
@@ -125,7 +126,7 @@ export class ChangeEmail extends Component {
         console.log(this.state)
         return (
             <div>
-                <PropertyHeader/>
+                <Header/>
                 <div>
                     <div className="change-field-heading">
                         <h1>Change Email</h1>

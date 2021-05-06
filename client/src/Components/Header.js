@@ -255,12 +255,6 @@ class Header extends React.Component{
                                 
                             )
                         })}
-                        {/* <div className="notifications">SNGP: OHLC for today is O:200 H:320 L:212 C: 212</div>
-                        <div className="notifications">PEL: OHLC for today is O:200 H:320 L:212 C: 212</div>
-                        <div className="notifications">KAPCO: OHLC for today is O:200 H:320 L:212 C: 212</div> */}
-                            {/* <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                            <MenuItem onClick={this.handleClose}>Logout</MenuItem> */}
                     </Menu>
                     </div>
                         {['right'].map((anchor) => (

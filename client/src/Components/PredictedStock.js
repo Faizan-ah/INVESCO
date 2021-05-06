@@ -38,7 +38,8 @@ export class PredictedStock extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            selectedValue:'APL',
+            selectedValue:this.props.selector,
+            mainCompanies:this.props.mainCompanies,
             page:0,
             rowsPerPage:10,
             rows:[],
@@ -115,11 +116,28 @@ export class PredictedStock extends React.Component {
             console.log('in graph function')
         })
     }
+    getPredictedStockData = ()=>{
+//         fetch(`https://ml-stock.herokuapp.com/predictions/?Ticker=${this.state.selectedValue}`, {
+//             mode: 'no-cors',
+//             method: "get",
+//             headers: {
+//                  "Content-Type": "application/json"
+//             },
+            
+//  }).then((results)=>{
+//     console.log(results.json())
+// })
+
+        fetch(`https://ml-stock.herokuapp.com/predictions/?Ticker=${this.state.selectedValue}`)
+        .then((results)=>{
+            console.log(results.json())
+        })
+    }
     componentDidMount (){
         console.log('in mount')
         // this.getHistoricalTableData()
         this.getHistoricalGraphData()
-        
+        this.getPredictedStockData()
     }
    
         handleRadioChange = (event) => {
@@ -148,141 +166,24 @@ export class PredictedStock extends React.Component {
             <div className={classes.root}>
                 <div className="stock-graph">
                     <ReactApexCharts options={this.state.options} series={this.state.series} type="line"/>
-                        <div className='stock-radio-buttons'>
+                    <div className='stock-radio-buttons'>
+                    {this.state.mainCompanies.map((row,index)=>{
+                        return(
                             <label>
-                                    <Radio
-                                        checked={this.state.selectedValue === 'APL'}
-                                        onChange={this.handleRadioChange}
-                                                value="APL"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'APL' }}
-                                                color='primary'
-                                            />
-                                            APL
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'BOP'}
-                                                onChange={this.handleRadioChange}
-                                                value="BOP"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'BOP' }}
-                                                color='primary'
-                                            />
-                                            BOP
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'GAIL'}
-                                                onChange={this.handleRadioChange}
-                                                value="GAIL"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'GAIL' }}
-                                                color='primary'
-                                            />
-                                            GAIL
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'HASCOL'}
-                                                onChange={this.handleRadioChange}
-                                                value="HASCOL"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'HASCOL' }}
-                                                color='primary'
-                                            />
-                                            HASCOL
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'HBL'}
-                                                onChange={this.handleRadioChange}
-                                                value="HBL"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'HBL' }}
-                                                color='primary'
-                                            />
-                                            HBL
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'HUBC'}
-                                                onChange={this.handleRadioChange}
-                                                value="HUBC"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'HUBC' }}
-                                                color='primary'
-                                            />
-                                            HUBC
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'KAPCO'}
-                                                onChange={this.handleRadioChange}
-                                                value="KAPCO"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'KAPCO' }}
-                                                color='primary'
-                                            />
-                                            KAPCO
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'KEL'}
-                                                onChange={this.handleRadioChange}
-                                                value="KEL"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'KEL' }}
-                                                color='primary'
-                                            />
-                                            KEL
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'PIAA'}
-                                                onChange={this.handleRadioChange}
-                                                value="PIAA"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'PIAA' }}
-                                                color='primary'
-                                            />
-                                            PIAA
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'PSMC'}
-                                                onChange={this.handleRadioChange}
-                                                value="PSMC"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'PSMC' }}
-                                                color='primary'
-                                            />
-                                            PSMC
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'SILK'}
-                                                onChange={this.handleRadioChange}
-                                                value="SILK"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'SILK' }}
-                                                color='primary'
-                                            />
-                                            SILK
-                                        </label>
-                                        <label>
-                                            <Radio
-                                                checked={this.state.selectedValue === 'SNGP'}
-                                                onChange={this.handleRadioChange}
-                                                value="SNGP"
-                                                name="radio-button-demo"
-                                                inputProps={{ 'aria-label': 'SNGP' }}
-                                                color='primary'
-                                            />
-                                            SNGP
-                                        </label>
-                                    </div>
-                                    </div>
+                            <Radio
+                                checked={this.state.selectedValue === row}
+                                onChange={this.handleRadioChange}
+                                value= {row}
+                                name="radio-button-demo"
+                                inputProps={{ 'aria-label': row }}
+                                color='primary'
+                             />
+                             {row}
+                                </label>
+                                )
+                            })}
+                    </div>
+                </div>
             </div>
         )
     }

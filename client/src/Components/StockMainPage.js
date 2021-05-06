@@ -280,6 +280,7 @@ export class StockMainPage extends React.Component {
             console.log('in graph function')
         })
     }
+    
     componentDidMount (){
         console.log('in mount')
         this.forceUpdate();
@@ -530,7 +531,7 @@ export class StockMainPage extends React.Component {
                         </TabPanel>
                         <TabPanel value="2">
                             Predicted Data
-                            <PredictedStock />
+                            <PredictedStock mainCompanies={this.state.mainCompanies} selector={this.state.selectedValue} />
                             <div className='techinalAnal-table'>
                             <table>
                                 <h1>Technical Analysis</h1>

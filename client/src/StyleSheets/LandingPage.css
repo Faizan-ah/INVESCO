@@ -453,11 +453,34 @@
       height: 412px;
       width: 610px;
       margin-top: 100px;
+      display: none;
   }
   .detail-row {
     width: 80%;
   }
+  .landing-content-stuff{
+    flex:80%;
+    border: 1px solid white
+  }
 }
+
+@media only screen and (max-width: 1624px) {
+  /*testing*/
+  .graph-image img{
+    display: none;
+      height: 412px;
+      margin-top: 100px;
+      width: 650px;
+      
+  }
+  .detail-row {
+    width: 95%;
+  }
+  .landing-content-stuff{
+    flex:100%;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   /*testing*/
   .graph-image img{

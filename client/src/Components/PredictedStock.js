@@ -18,7 +18,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Radio from '@material-ui/core/Radio';
 const useStyles = ((theme) => ({
     root: {
@@ -42,16 +42,33 @@ export class PredictedStock extends React.Component {
             mainCompanies:this.props.mainCompanies,
             page:0,
             rowsPerPage:10,
+            isLoading: true,
             rows:[],
             value:'1',
             series: [{
+                name:'Historical',
                 data: [{    
                       x:0,
-                      y: []
+                      y: [],
+                      color: 'black'
+
                     },
                 ]
-              }],
+              },
+            {  
+                 name:'Predicted',
+                data: [{    
+                      x:0,
+                      y: [1]
+                    },
+                ]
+              }
+            ],
               options: {
+                colors: ["#247BA0","#FF1654"],
+                grid: {
+                    borderColor: '#f1f1f1',
+                  },
                 chart: {
                   type: 'line',
                   height: 1050
@@ -64,12 +81,13 @@ export class PredictedStock extends React.Component {
                   align: 'left'
                 },
                 xaxis: {
-                  type: 'datetime'
+                  type: 'datetime',
                 },
                 yaxis: {
                   tooltip: {
                     enabled: true
-                  }
+                  },
+
                 }
               },
             
@@ -89,16 +107,15 @@ export class PredictedStock extends React.Component {
             this.setState({
                 rows : tableData
             })
-            console.log('this.state.rows', this.state.rows)
+            // console.log('this.state.rows', this.state.rows)
         })
     }
 
     getHistoricalGraphData = ()=>{
         let data = []
-        fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/${this.state.selectedValue}`).on('value', (snapshot)=>{
+        fire.database().ref(`historicaldatafyp-default-rtdb/Stocks/${this.state.selectedValue}`).limitToLast(30).on('value', (snapshot)=>{
             snapshot.forEach((openSnapShot)=>{
                 var val = openSnapShot.val();
-                // console.log('val.close', val.Close)
                 let data1 = []
                 data1.push(val.Close)
                 data.push({
@@ -107,7 +124,9 @@ export class PredictedStock extends React.Component {
                 )
             })
             this.setState({
+                ...this.state.series,
                 series: [{
+                    name:'Historical',
                     data: 
                       data
                 }
@@ -117,21 +136,29 @@ export class PredictedStock extends React.Component {
         })
     }
     getPredictedStockData = ()=>{
-//         fetch(`https://ml-stock.herokuapp.com/predictions/?Ticker=${this.state.selectedValue}`, {
-//             mode: 'no-cors',
-//             method: "get",
-//             headers: {
-//                  "Content-Type": "application/json"
-//             },
-            
-//  }).then((results)=>{
-//     console.log(results.json())
-// })
-
+        //need array of objects data = [{x:date,y:price}]
         fetch(`https://ml-stock.herokuapp.com/predictions/?Ticker=${this.state.selectedValue}`)
-        .then((results)=>{
-            console.log(results.json())
+        .then((response) => response.json())
+        .then(responseData => {
+          let myList = [];
+          Object.keys(responseData).map( (date,index) => {
+              myList.push({
+                  x: new Date(date),
+                  y: responseData[date]
+                });
+          })
+          //historical prices
+          var hist = this.state.series[0]
+          var histPluspred = []
+          //history + Predictions
+          histPluspred.push(hist,{name:'Predicted',data:myList})
+          this.setState({
+            ...this.state.series,
+            series: histPluspred,
+            isLoading: false
+        }) 
         })
+        // console.log('yeay dtaa',myList)
     }
     componentDidMount (){
         console.log('in mount')
@@ -146,6 +173,7 @@ export class PredictedStock extends React.Component {
                 selectedValue: event.target.value
             },()=>{
                 this.getHistoricalGraphData()
+                this.getPredictedStockData()
                 // this.getHistoricalTableData()
             })
             
@@ -165,7 +193,7 @@ export class PredictedStock extends React.Component {
         return (
             <div className={classes.root}>
                 <div className="stock-graph">
-                    <ReactApexCharts options={this.state.options} series={this.state.series} type="line"/>
+                    <ReactApexCharts options={this.state.options} series={this.state.series} type="line"/>                    
                     <div className='stock-radio-buttons'>
                     {this.state.mainCompanies.map((row,index)=>{
                         return(

@@ -13,6 +13,7 @@ import PropertyHeader from './PropertyHeader'
 import Header from './Header'
 import fire from '../config/fire'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Login from '../Login'
 const useStyles = ({
     table: {
       // minWidth: '50%',
@@ -64,77 +65,83 @@ const useStyles = ({
         return 
       }
     render() {
+      const isAuthenticated = this.props.user.isAuth
         const {classes} = this.props
-        return (
-          <div>
-            <Header/>
-            <div className="stock-main-heading">
-                <h1>STOCK TABLE</h1>
-            </div>
-            <div className='stock-table'>
-                <TableContainer >
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell>Companies</TableCell>
-                            <TableCell align="right">OPEN</TableCell>
-                            <TableCell align="right">HIGH</TableCell>
-                            <TableCell align="right">LOW</TableCell>
-                            <TableCell align="right">CLOSE</TableCell>
-                            <TableCell align="right">CHANGE</TableCell>
-                            <TableCell align="right">VOLUME</TableCell>
-                            <TableCell align="right">DATE</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {console.log('inside',this.state.rows)}
-                          {console.log('asda',this.state.companies)}
-                          {/* <div style={{marginLeft:'auto',marginRight:'auto'}}>
-                          <CircularProgress disableShrink />
-                          </div> */}
-                          
-                          
-                        {
-                        this.state.isLoading==true ?  
-                        <div style={{textAlign:'center',marginTop:'20px',height:'50px'}}>
-                          <CircularProgress style={{marginLeft:'300%',}} disableShrink />
-                        </div>
-                        : 
-                        this.state.rows.map((row,index) => {
-                          return(
-                            <TableRow key={index}>
-                            <TableCell component="th" scope="row">
-                              <Link to={{pathname: '/StockPrediction', state: this.state.companies[index] }} size='50' onClick={this.sendValue.bind(this, row)}>
-                                {this.state.companies[index]}
-                              </Link>
-                            </TableCell>
-                            <TableCell align="right">{row.Open}</TableCell>
-                            <TableCell align="right">{row.High}</TableCell>
-                            <TableCell align="right">{row.Low}</TableCell>
-                            <TableCell align="right">{row.Close}</TableCell>
-                            <TableCell align="right">{row.Change}</TableCell>
-                            <TableCell align="right">{row.Volume}</TableCell>
-                            <TableCell align="right">{row.Date}</TableCell>
-                          </TableRow>)
+        if(!isAuthenticated){
+          return(
+              <Login/>
+          )
+        }else{
+          return (
+            <div>
+              <Header/>
+              <div className="stock-main-heading">
+                  <h1>STOCK TABLE</h1>
+              </div>
+              <div className='stock-table'>
+                  <TableContainer >
+                      <Table className={classes.table} aria-label="simple table">
+                          <TableHead>
+                          <TableRow>
+                              <TableCell>Companies</TableCell>
+                              <TableCell align="right">OPEN</TableCell>
+                              <TableCell align="right">HIGH</TableCell>
+                              <TableCell align="right">LOW</TableCell>
+                              <TableCell align="right">CLOSE</TableCell>
+                              <TableCell align="right">CHANGE</TableCell>
+                              <TableCell align="right">VOLUME</TableCell>
+                              <TableCell align="right">DATE</TableCell>
+                          </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {console.log('inside',this.state.rows)}
+                            {console.log('asda',this.state.companies)}
+                            {/* <div style={{marginLeft:'auto',marginRight:'auto'}}>
+                            <CircularProgress disableShrink />
+                            </div> */}
                             
-                      })
-                      }
-                        </TableBody>
-                    </Table>
-                  </TableContainer>
+                            
+                          {
+                          this.state.isLoading==true ?  
+                          <div style={{textAlign:'center',marginTop:'20px',height:'50px'}}>
+                            <CircularProgress style={{marginLeft:'300%',}} disableShrink />
+                          </div>
+                          : 
+                          this.state.rows.map((row,index) => {
+                            return(
+                              <TableRow key={index}>
+                              <TableCell component="th" scope="row">
+                                <Link to={{pathname: '/StockPrediction', state: this.state.companies[index] }} size='50' onClick={this.sendValue.bind(this, row)}>
+                                  {this.state.companies[index]}
+                                </Link>
+                              </TableCell>
+                              <TableCell align="right">{row.Open}</TableCell>
+                              <TableCell align="right">{row.High}</TableCell>
+                              <TableCell align="right">{row.Low}</TableCell>
+                              <TableCell align="right">{row.Close}</TableCell>
+                              <TableCell align="right">{row.Change}</TableCell>
+                              <TableCell align="right">{row.Volume}</TableCell>
+                              <TableCell align="right">{row.Date}</TableCell>
+                            </TableRow>)
+                              
+                        })
+                        }
+                          </TableBody>
+                      </Table>
+                    </TableContainer>
+              </div>
             </div>
-          </div>
-        )
+          )
+        }
+        
     }
 }
 const mapStateToProps = (state)=>{
-    return {
-      //initialUserState 
-      stock: state.stock,
-      // math: state.mathReducer
-    }
+  return {
+      user: state.user,
+    stock: state.stock,
   }
-
+}
   const mapDispatchToProps = (dispatch)=>{
     return {
       stockReducerValue: (value)=>{

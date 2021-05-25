@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import PropertyHeader from './PropertyHeader'
 import '../StyleSheets/InvestmentRec.css'
 import { Button, Popover } from '@material-ui/core';
 import fire from '../config/fire';
 import Header from './Header'
-export default class InevstmentRec extends Component {
+import { connect } from 'react-redux';
+import Login from '../Login'
+class InevstmentRec extends Component {
     state = {
         checkboxVal:[],
         price:'',
@@ -88,52 +88,68 @@ export default class InevstmentRec extends Component {
         return true
     }
     render() {
+        const isAuthenticated = this.props.user.isAuth
         console.log(this.state.btnDisable)
         const buttonStyle = {
             pointerEvents: this.state.btnDisable ? 'none': 'all',
         }
-        return (
-            <div>
-                <Header />
-                <div className="realestate-main">
-                    <h1>INVESTMENT RECOMMENDATION</h1>
-                </div>
-                <div className='inv-content'>
-                    <div className='inv-inputs-container'>
-                        <label className='inv-labels' for='interest'>Select the field you're interested in</label>
-                        <div className='inv-checkbox'>
-                            <div>
-                                <input className='inv-label-check' type='checkbox' id='stock' value='stock' onChange={this.onPropertyCheckbox} ></input>
-                                <label for='stock'>Stock</label>
+        if(!isAuthenticated){
+           return (
+                <Login/>
+           ) 
+        }
+        else{
+            return (
+                <div>
+                    <Header />
+                    <div className="realestate-main">
+                        <h1>INVESTMENT RECOMMENDATION</h1>
+                    </div>
+                    <div className='inv-content'>
+                        <div className='inv-inputs-container'>
+                            <label className='inv-labels' for='interest'>Select the field you're interested in</label>
+                            <div className='inv-checkbox'>
+                                <div>
+                                    <input className='inv-label-check' type='checkbox' id='stock' value='stock' onChange={this.onPropertyCheckbox} ></input>
+                                    <label for='stock'>Stock</label>
+                                </div>
+                                <div>
+                                    <input className='inv-label-check' type='checkbox' id='property' value='property' onChange={this.onPropertyCheckbox}></input>
+                                    <label for='property'>Real-estate</label>
+                                </div>
+                                
                             </div>
-                            <div>
-                                <input className='inv-label-check' type='checkbox' id='property' value='property' onChange={this.onPropertyCheckbox}></input>
-                                <label for='property'>Real-estate</label>
-                            </div>
-                            
                         </div>
+                        <div className='inv-inputs-container'>
+                            <label className='inv-labels' for='range'>Enter your maximum <br/>investment (in PKR)</label>
+                            <input type="number" className='inv-inputs' name="price" value={this.state.price} onChange={this.onHandlePrice} placeholder='example: 200000' id='range'></input>
+                        </div>
+                        <div className='inv-inputs-container'>
+                            <label className='inv-labels' for='time'>Select your timeframe</label>
+                            <select  className='select-text' id='time' onChange={this.handleSelect}>
+                                <option className='option-text' value="1-6 months">1-6 months</option>
+                                <option className='option-text' value='6-12 months'>6-12 months</option>
+                                <option className='option-text' value='1-5 years'>1-5 years</option>
+                            </select>
+                        </div>
+                        <div className='inv-button'>
+                            <Button variant="contained"  color="primary" onClick = {this.getRec}>
+                                Get Recommendation
+                            </Button>
+                        </div>
+                        <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.error}</span>
+                        
                     </div>
-                    <div className='inv-inputs-container'>
-                        <label className='inv-labels' for='range'>Enter your maximum <br/>investment (in PKR)</label>
-                        <input type="number" className='inv-inputs' name="price" value={this.state.price} onChange={this.onHandlePrice} placeholder='example: 200000' id='range'></input>
-                    </div>
-                    <div className='inv-inputs-container'>
-                        <label className='inv-labels' for='time'>Select your timeframe</label>
-                        <select  className='select-text' id='time' onChange={this.handleSelect}>
-                            <option className='option-text' value="1-6 months">1-6 months</option>
-                            <option className='option-text' value='6-12 months'>6-12 months</option>
-                            <option className='option-text' value='1-5 years'>1-5 years</option>
-                        </select>
-                    </div>
-                    <div className='inv-button'>
-                        <Button variant="contained"  color="primary" onClick = {this.getRec}>
-                            Get Recommendation
-                        </Button>
-                    </div>
-                    <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.error}</span>
-                    
                 </div>
-            </div>
-        )
+            )
+        }
+        
     }
 }
+const mapStateToProps = (state)=>{
+    return {
+        user: state.user,
+      stock: state.stock,
+    }
+  }
+export default connect(mapStateToProps)(InevstmentRec);

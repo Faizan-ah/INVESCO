@@ -4,6 +4,8 @@ import PropertyHeader from './PropertyHeader'
 import fire from '../config/fire'
 import Button from '@material-ui/core/Button';
 import Header from './Header'
+import { connect } from 'react-redux';
+import Login from '../Login'
 class DeleteAccount extends Component {
     constructor(props){
         super(props);
@@ -79,41 +81,54 @@ class DeleteAccount extends Component {
     }
     render() {
         console.log(this.state)
-        return (
-            <div>
-                <Header/>
+        const isAuthenticated = this.props.user.isAuth
+        if(!isAuthenticated){
+            return <Login/>
+        }else{
+
+            return (
                 <div>
-                    <div className="change-field-heading">
-                        <h1>Delete Your Account</h1>
-                    </div>
-                    <div className="change-field-inputs">
-                        <div className="change-field-inputs-content">
-                            <label for="prevEmail">Enter Email</label>
-                            <input type="email" name="prevEmail" value = {this.state.prevEmail} id="prevEmail" onChange={this.onChange} required></input>
+                    <Header/>
+                    <div>
+                        <div className="change-field-heading">
+                            <h1>Delete Your Account</h1>
                         </div>
-                        <div className="change-field-inputs-content">    
-                            <label  for="Epassword">Enter Password</label>
-                            <input type="password" name="Epassword" value = {this.state.Epassword} id="Epassword" onChange={this.onChange} required></input>
-                        </div>
-                        <div className="change-field-inputs-content">
-                        <Button variant="contained" color="primary" onClick = {this.deleteAccount}>
-                            Delete
-                        </Button>
-                        </div>
-                        
-                        {/* <div class="change-field-button" onClick = {this.deleteAccount}>
-                                <p>Delete</p>
-                            </div> */}
-                        
-                        <div className='msg-display'>
-                            <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
-                            <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
+                        <div className="change-field-inputs">
+                            <div className="change-field-inputs-content">
+                                <label for="prevEmail">Enter Email</label>
+                                <input type="email" name="prevEmail" value = {this.state.prevEmail} id="prevEmail" onChange={this.onChange} required></input>
+                            </div>
+                            <div className="change-field-inputs-content">    
+                                <label  for="Epassword">Enter Password</label>
+                                <input type="password" name="Epassword" value = {this.state.Epassword} id="Epassword" onChange={this.onChange} required></input>
+                            </div>
+                            <div className="change-field-inputs-content">
+                            <Button variant="contained" color="primary" onClick = {this.deleteAccount}>
+                                Delete
+                            </Button>
+                            </div>
+                            
+                            {/* <div class="change-field-button" onClick = {this.deleteAccount}>
+                                    <p>Delete</p>
+                                </div> */}
+                            
+                            <div className='msg-display'>
+                                <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
+                                <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        
     }
 }
 
-export default DeleteAccount
+const mapStateToProps = (state)=>{
+    return {
+        user: state.user,
+      stock: state.stock,
+    }
+  }
+export default connect(mapStateToProps)(DeleteAccount)

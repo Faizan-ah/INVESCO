@@ -6,6 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Header from './Header'
+import { connect } from 'react-redux';
+import Login from '../Login'
 const useStyles = ((theme) => ({
     paper: {
       position: 'absolute',
@@ -150,61 +152,72 @@ class ChangePassword extends Component {
         </div>
       );
     render() {
-        return (
-            <div>
-                <Header/>
+        const isAuthenticated = this.props.user.isAuth
+        if(!isAuthenticated){
+            return <Login/>
+        }else{
+            return (
                 <div>
-                    <div className="change-field-heading">
-                        <h1>Change Password</h1>
-                    </div>
-                    <div className="change-field-inputs">
-                    <div className="change-field-inputs-content">
-                            <label for="email">Enter Email</label>
-                            <input type="email" name="email" value = {this.state.email} id="email" onChange={this.onChange} required></input>
+                    <Header/>
+                    <div>
+                        <div className="change-field-heading">
+                            <h1>Change Password</h1>
                         </div>
+                        <div className="change-field-inputs">
                         <div className="change-field-inputs-content">
-                            <label for="prevPassword">Enter Previous Password</label>
-                            <input type="password" name="prevPassword" value = {this.state.prevPassword} id="prevPassword" onChange={this.onChange} required></input>
-                        </div>
-                        {/* <div class="change-field-button" onClick = {this.changePasswordVerify}>
-                                <p>Verify</p>
-                            </div> */}
-                        <div>
-                            <div className="change-field-inputs-content"> 
-                                <label for="newPassword">Enter New Password</label>
-                                <input type="password" name="newPassword" value = {this.state.newPassword} id="newPassword" onChange={this.onChange} required></input>
+                                <label for="email">Enter Email</label>
+                                <input type="email" name="email" value = {this.state.email} id="email" onChange={this.onChange} required></input>
                             </div>
                             <div className="change-field-inputs-content">
-                                <label for="cNewPassword">Confirm Password</label>
-                                <input type="password" name="cNewPassword" value = {this.state.cNewPassword} id="cNewPassword" onChange={this.onChange} required></input>
-                            </div>    
-                            <div className="change-field-inputs-content">
-                                <Button variant="contained" color="primary" onClick = {this.changePassword}>
-                                    Done
-                                </Button>
+                                <label for="prevPassword">Enter Previous Password</label>
+                                <input type="password" name="prevPassword" value = {this.state.prevPassword} id="prevPassword" onChange={this.onChange} required></input>
                             </div>
-                            {/* <div class="change-field-button" onClick = {this.changePassword}>
-                                    <p>Done</p>
-                            </div> */}
-                            
+                            {/* <div class="change-field-button" onClick = {this.changePasswordVerify}>
+                                    <p>Verify</p>
+                                </div> */}
+                            <div>
+                                <div className="change-field-inputs-content"> 
+                                    <label for="newPassword">Enter New Password</label>
+                                    <input type="password" name="newPassword" value = {this.state.newPassword} id="newPassword" onChange={this.onChange} required></input>
+                                </div>
+                                <div className="change-field-inputs-content">
+                                    <label for="cNewPassword">Confirm Password</label>
+                                    <input type="password" name="cNewPassword" value = {this.state.cNewPassword} id="cNewPassword" onChange={this.onChange} required></input>
+                                </div>    
+                                <div className="change-field-inputs-content">
+                                    <Button variant="contained" color="primary" onClick = {this.changePassword}>
+                                        Done
+                                    </Button>
+                                </div>
+                                {/* <div class="change-field-button" onClick = {this.changePassword}>
+                                        <p>Done</p>
+                                </div> */}
+                                
+                            </div>
+                            <div className='msg-display'>
+                                <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
+                                <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
+                            </div>
                         </div>
-                        <div className='msg-display'>
-                            <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
-                            <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
-                        </div>
+                        <Modal
+                            open={this.state.open}
+                            onClose={this.handleClose}
+                            aria-labelledby="simple-modal-title"
+                            aria-describedby="simple-modal-description"
+                        >
+                            {this.body}
+                        </Modal>
                     </div>
-                    <Modal
-                        open={this.state.open}
-                        onClose={this.handleClose}
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
-                    >
-                        {this.body}
-                    </Modal>
                 </div>
-            </div>
-        )
+            )
+        }
+        
     }
 }
-
-export default withStyles(useStyles)(ChangePassword)
+const mapStateToProps = (state)=>{
+    return {
+        user: state.user,
+      stock: state.stock,
+    }
+  }
+export default connect(mapStateToProps)(withStyles(useStyles)(ChangePassword))

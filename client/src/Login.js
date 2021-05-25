@@ -58,6 +58,7 @@ export class Login extends Component {
           .then((u) => {
             console.log('Successfully Logged In');
             const user = fire.auth().currentUser
+            localStorage.setItem('uid',user.uid)
             if(user.emailVerified){
             this.props.history.push('/home')
             }
@@ -86,8 +87,8 @@ export class Login extends Component {
     }
     
   printRedux = ()=>{
-    console.log('redux state user', this.props.user.user)
-    console.log('redux state auth', this.props.user.isAuth)
+    // console.log('redux state user', this.props.user.user)
+    // console.log('redux state auth', this.props.user.isAuth)
   }
 
     render(props) {

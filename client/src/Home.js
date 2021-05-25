@@ -302,8 +302,8 @@ class Home extends React.Component{
                                     <div className='home-intro-property-content-para wow fadeIn' data-wow-duration="1" data-wow-offset="140" data-wow-duration="5s"> 
                                         <p>
                                             Find out where to invest in islamabad if you are interested in real-estate investment.
-                                            Our real-estate price predictor covers all areas in Islamabad and will tell you the average price per Marla or Kanal.
-                                            Alert and Subscribe options are also available in real-estate investment!
+                                            Our real-estate price predictor covers areas in Islamabad and will tell you the average price per Marla or Kanal. 
+                                            Our newest functionality is the House Price Calculator where you will be able to find out your house price based on the provided inputs.
                                         </p>
                                     </div>
                                 </div>

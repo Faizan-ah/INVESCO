@@ -16,6 +16,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { connect } from 'react-redux';
 
 
 import Menu from '@material-ui/core/Menu';
@@ -52,16 +53,22 @@ class Header extends React.Component{
     async componentDidMount(){
         await this.getData()
          this.saveInOriginal()
+         this.onCloseClick()
     }
     getData = async ()=>{
         fire.auth().onAuthStateChanged(async function(cUser) {
-            localStorage.setItem('uid',cUser.uid);
+            try {
+                localStorage.setItem('uid',cUser.uid);    
+            } catch (error) {
+                // console.log(error)
+            }
+            
          });
         const uid = localStorage.getItem('uid');
         fire.database().ref('historicaldatafyp-default-rtdb/Stocks/')
         const user = (await fire.database().ref('Users/'+uid).once('value'));
         //key
-        const userData=user.val()[Object.keys(user.val())[0]];
+        const userData=user.val()[Object.keys(user.val())[0]];    
          var temp = []
         for(let i in userData.subscriptions){
             //company name
@@ -101,31 +108,39 @@ class Header extends React.Component{
     }
 
     saveInOriginal = async ()=>{
-        console.log('tempdata',this.state.tempData)
-        this.setState({
-            data: this.state.tempData,
-            loading:false
-        })
-        const uid = localStorage.getItem('uid');
-        const user = (await fire.database().ref('Users/'+uid).once('value'));
-        //key
-        const userData=user.val()[Object.keys(user.val())[0]];
-        var arr= []
-        for(let i in this.state.data){
-            for(let j in userData.RemovedNotifications)
-                var arr = this.state.data.filter((e)=>{
-                    if(this.state.data[i]===userData.RemovedNotifications[j]){
-                        return false;
-                    }else{
-                        return true
-                    }
-                })  
+        const isAuthenticated = this.props.user.isAuth
+        if(!isAuthenticated){
+            console.log('')
+        }else{
+            console.log('tempdata',this.state.tempData)
+            this.setState({
+                data: this.state.tempData,
+                loading:false
+            })
+            
+    
+            const uid = localStorage.getItem('uid');
+            const user = (await fire.database().ref('Users/'+uid).once('value'));
+            //key
+            const userData=user.val()[Object.keys(user.val())[0]];
+            var arr= []
+            for(let i in this.state.data){
+                for(let j in userData.RemovedNotifications)
+                    var arr = this.state.data.filter((e)=>{
+                        if(this.state.data[i]===userData.RemovedNotifications[j]){
+                            return false;
+                        }else{
+                            return true
+                        }
+                    })  
+            }
+            console.log('arrrrr',arr)
+            // this.setState({
+            //     data:arr
+            // })
+            console.log('qwe',userData.RemovedNotifications)
         }
-        console.log('arrrrr',arr)
-        // this.setState({
-        //     data:arr
-        // })
-        console.log('qwe',userData.RemovedNotifications)
+        
     }
 
     handleClick = (event) => {
@@ -158,6 +173,7 @@ class Header extends React.Component{
   
     logout() {
         fire.auth().signOut();
+        
         console.log('you are logged out')
     }
 
@@ -186,7 +202,11 @@ class Header extends React.Component{
 
       onCloseClick = (index)=>{
         fire.auth().onAuthStateChanged(async function(cUser) {
-            localStorage.setItem('uid',cUser.uid);
+            try{
+                localStorage.setItem('uid',cUser.uid);
+            }catch(error){
+                console.log('error')
+            }
          });
         const userID = localStorage.getItem('uid');
         //deleted value
@@ -296,4 +316,10 @@ class Header extends React.Component{
     
     }
 }
-export default withStyles(useStyles)(Header);
+const mapStateToProps = (state)=>{
+    return {
+        user: state.user,
+      stock: state.stock,
+    }
+  }
+export default connect(mapStateToProps)(withStyles(useStyles)(Header));

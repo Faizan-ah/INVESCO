@@ -4,6 +4,8 @@ import PropertyHeader from './PropertyHeader'
 import Header from './Header'
 import fire from '../config/fire'
 import { Button, Popover } from '@material-ui/core';
+import { connect } from 'react-redux';
+import Login from '../Login'
 export class ChangeEmail extends Component {
     constructor(props){
         super(props);
@@ -124,50 +126,61 @@ export class ChangeEmail extends Component {
     }
     render() {
         console.log(this.state)
-        return (
-            <div>
-                <Header/>
+        const isAuthenticated = this.props.user.isAuth
+        if(!isAuthenticated){
+            return <Login/>
+        }else{
+            return (
                 <div>
-                    <div className="change-field-heading">
-                        <h1>Change Email</h1>
-                    </div>
-                    <div className="change-field-inputs">
-                        <div className="change-field-inputs-content">
-                            <label for="prevEmail">Enter Previous Email</label>
-                            <input type="email" name="prevEmail" value = {this.state.prevEmail} id="prevEmail" onChange={this.onChange} required></input>
+                    <Header/>
+                    <div>
+                        <div className="change-field-heading">
+                            <h1>Change Email</h1>
                         </div>
-                        <div className="change-field-inputs-content">    
-                            <label  for="Epassword">Enter Password</label>
-                            <input type="password" name="Epassword" value = {this.state.Epassword} id="Epassword" onChange={this.onChange} required></input>
-                        </div>
-                        {/* <div class="change-field-button" onClick = {this.changeEmailVerify}>
-                                <p>Verify</p>
-                            </div> */}
-                        <div>    
-                            <div className="change-field-inputs-content"> 
-                                <label for="newEmail">Enter New Email</label>
-                                <input type="email" name="newEmail" value = {this.state.newEmail} id="newEmail" onChange={this.onChange} required></input>
-                            </div>
+                        <div className="change-field-inputs">
                             <div className="change-field-inputs-content">
-                            <Button variant="contained" color="primary" onClick = {this.changeEmail}>
-                                Done
-                            </Button>
+                                <label for="prevEmail">Enter Previous Email</label>
+                                <input type="email" name="prevEmail" value = {this.state.prevEmail} id="prevEmail" onChange={this.onChange} required></input>
                             </div>
-                            {/* <div class="change-field-button" onClick = {this.changeEmail}>
-                                <p>Done</p>
-                            </div> */}
-                        </div>
-                        <div className='msg-display'>
-                            <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
-                            <br/>
-                            <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.verMsg}</span>
-                            <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
+                            <div className="change-field-inputs-content">    
+                                <label  for="Epassword">Enter Password</label>
+                                <input type="password" name="Epassword" value = {this.state.Epassword} id="Epassword" onChange={this.onChange} required></input>
+                            </div>
+                            {/* <div class="change-field-button" onClick = {this.changeEmailVerify}>
+                                    <p>Verify</p>
+                                </div> */}
+                            <div>    
+                                <div className="change-field-inputs-content"> 
+                                    <label for="newEmail">Enter New Email</label>
+                                    <input type="email" name="newEmail" value = {this.state.newEmail} id="newEmail" onChange={this.onChange} required></input>
+                                </div>
+                                <div className="change-field-inputs-content">
+                                <Button variant="contained" color="primary" onClick = {this.changeEmail}>
+                                    Done
+                                </Button>
+                                </div>
+                                {/* <div class="change-field-button" onClick = {this.changeEmail}>
+                                    <p>Done</p>
+                                </div> */}
+                            </div>
+                            <div className='msg-display'>
+                                <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.msg}</span>
+                                <br/>
+                                <span style={{color:'green',fontWeight:'bold',fontSize:'18px'}}>{this.state.verMsg}</span>
+                                <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.errMsg}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        
     }
 }
-
-export default ChangeEmail
+const mapStateToProps = (state)=>{
+    return {
+        user: state.user,
+      stock: state.stock,
+    }
+  }
+export default connect(mapStateToProps)(ChangeEmail)

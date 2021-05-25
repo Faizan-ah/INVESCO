@@ -221,8 +221,20 @@ export class StockMainPage extends React.Component {
       }
 
     getSubscriptions = async ()=>{
-             fire.auth().onAuthStateChanged(async function(cUser) {
-                 localStorage.setItem('uid',cUser.uid);
+        const isAuthenticated = this.props.user.isAuth
+        if(!isAuthenticated){
+            this.props.history.push('/login')
+        }else{
+            fire.auth().onAuthStateChanged(async function(cUser) {
+                 
+                try {
+                    localStorage.setItem('uid',cUser.uid);
+                } catch (error) {
+                    // alert('Please Login')
+                    
+                    // this.forceUpdate()
+                }
+                
               });
              const uid = localStorage.getItem('uid');
                const user = (await fire.database().ref('Users/'+uid).once('value'));
@@ -231,6 +243,8 @@ export class StockMainPage extends React.Component {
               this.setState({
                 subscribed: userData.subscriptions==null ? []:userData.subscriptions
             })
+        }
+             
       }
 
     sendData = ()=>{
@@ -530,7 +544,6 @@ export class StockMainPage extends React.Component {
                             </div>
                         </TabPanel>
                         <TabPanel value="2">
-                            Predicted Data
                             <PredictedStock mainCompanies={this.state.mainCompanies} selector={this.state.selectedValue} />
                             <div className='techinalAnal-table'>
                             <table>

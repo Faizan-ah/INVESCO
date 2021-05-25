@@ -1,13 +1,18 @@
  .house-menu-inputs{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 70%;
     flex-wrap: wrap;
+    /* border: 1px solid black; */
 }
 .house-menu-inputs-row-1{
     display: flex;
     flex-direction: row;
+}
+.house-menu-inputs-rows{
+    display: flex;
+    flex-direction: column;
 }
 /*
 .house-menu-inputs-rows{
@@ -66,12 +71,13 @@
 
 
 .house-menu-right{
-    width: 40%;
+    /* width: 40%; */
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
+    /* border: 1px solid green ; */
 } 
 
 
@@ -89,13 +95,15 @@
     height: 25px;
 }
 
-.calculated-price{
+.calculated-price{ 
     color: black;
     font-size: 20px;
     /* border: 1px solid black; */
     padding: 10px;
     text-align: center;
     border-radius: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .calculated-price span{
@@ -120,7 +128,7 @@
   } 
 
 .plot-graph{
-    width: 50%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     /* border: 1px solid black */
@@ -130,12 +138,40 @@
     .house-menu-inputs-row-1 input{
         width:100%;      
     }
+    .plot-graph{
+        width: 100%;
+        margin-top: 40px;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .plotAreas{
+        margin-left: auto;
+        margin-right: auto;        
+    }
 }
 
 @media only screen and (max-width: 320px) {
-    .house-menu-inputs{
- 
-        width:100vw;;      
+    .house-menu{
+        width: 100vw;
+        /* border: 1px solid yellowgreen */
+    }
+    .house-menu-left{
+        width: 100vw;
+    }
+    .house-menu-right{
+        width: 100vw;
+        /* border: 1px solid hotpink; */
+        flex-direction: column;
+        align-items: center;
+    }
+    .house-menu-inputs-rows{
+        /* border: 2px solid green;    */
+        width: 100vw;  
+    }
+    .house-menu-inputs {
+        /* border: 1px solid red; */
+        /* border: 1px solid black;       */
+        width: 100vw;
     }
 }
 @media only screen and (max-width: 425px) {
@@ -185,7 +221,7 @@
 }
 @media only screen and (max-width: 1650px) {
     .house-menu-inputs{
-        width: 80%;
+        width: 60%;
     }
     
 

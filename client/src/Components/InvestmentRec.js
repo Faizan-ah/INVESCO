@@ -9,9 +9,12 @@ class InevstmentRec extends Component {
     state = {
         checkboxVal:[],
         price:'',
-        timeframe:'1-6 months',
+        timeframe:'3 Month',
         btnDisable:true,
-        error:''
+        error:'',
+        stockRec:[],
+        propertyRec:[],
+        isLoading:true
     }
     componentDidMount(){
     }
@@ -50,24 +53,38 @@ class InevstmentRec extends Component {
     }
     getRec = ()=>{
         if(this.validate()){
-            console.log('1st')
-            fire.auth().onAuthStateChanged(async function(cUser) {
-                localStorage.setItem('uid',cUser.uid);
-             });
-             const userID = localStorage.getItem('uid');
-             fire.database().ref('Users/'+userID).once('value', (snap)=>{
-                snap.forEach((doc)=>{
-                    fire.database().ref('Users/'+userID+'/'+doc.key+'/History').push({
-                         
-                            checkboxVal: this.state.checkboxVal,
-                            price: this.state.price,
-                            timeframe: this.state.timeframe
-                        
-                    })
+            var stockArr=[]
+            var propertyArr=[]
+            fetch(`http://investmentrecommendation.herokuapp.com/stock/?time=${this.state.timeframe}&&amount=${this.state.price}`)
+            .then((response) => response.json())
+            .then(responseData=>{
+                    Object.keys(responseData).map(data=>{
+                    console.log(responseData[data])
+                    stockArr.push(responseData[data])
                 })
+                this.setState({
+                    stockRec:stockArr
+                })
+                console.log(this.state.stockRec)
+            })
+
+            fetch(`http://investmentrecommendation.herokuapp.com/plot/?time=${this.state.timeframe}&&amount=${this.state.price}`)
+            .then((response) => response.json())
+            .then(responseData=>{
+                
+                console.log(this.state.propertyRec)
+                Object.keys(responseData).map(data=>{
+                    console.log(responseData[data])
+                    propertyArr.push(responseData[data])
+                })
+                this.setState({
+                    propertyRec:propertyArr
+                })
+                console.log(this.state.propertyArr)
             })
             this.setState({
-                error: ''
+                error: '',
+                isLoading:false
             })
         }else{
             console.log('2st')
@@ -78,7 +95,7 @@ class InevstmentRec extends Component {
         
     }
     validate = ()=>{
-        if(this.state.price=='' || this.state.checkboxVal.length==0){
+        if(this.state.price==''){
             this.setState({
                 btnDisable: false,
                 error:'Please fulfill all fields'
@@ -90,8 +107,8 @@ class InevstmentRec extends Component {
     render() {
         const isAuthenticated = this.props.user.isAuth
         console.log(this.state.btnDisable)
-        const buttonStyle = {
-            pointerEvents: this.state.btnDisable ? 'none': 'all',
+        const tableStyle = {
+            display: this.state.isLoading ? 'none': 'block',
         }
         if(!isAuthenticated){
            return (
@@ -107,38 +124,75 @@ class InevstmentRec extends Component {
                     </div>
                     <div className='inv-content'>
                         <div className='inv-inputs-container'>
-                            <label className='inv-labels' for='interest'>Select the field you're interested in</label>
-                            <div className='inv-checkbox'>
-                                <div>
-                                    <input className='inv-label-check' type='checkbox' id='stock' value='stock' onChange={this.onPropertyCheckbox} ></input>
-                                    <label for='stock'>Stock</label>
-                                </div>
-                                <div>
-                                    <input className='inv-label-check' type='checkbox' id='property' value='property' onChange={this.onPropertyCheckbox}></input>
-                                    <label for='property'>Real-estate</label>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div className='inv-inputs-container'>
-                            <label className='inv-labels' for='range'>Enter your maximum <br/>investment (in PKR)</label>
+                            <label className='inv-labels' for='range'>Enter your maximum investment (in PKR)</label>
                             <input type="number" className='inv-inputs' name="price" value={this.state.price} onChange={this.onHandlePrice} placeholder='example: 200000' id='range'></input>
                         </div>
                         <div className='inv-inputs-container'>
                             <label className='inv-labels' for='time'>Select your timeframe</label>
                             <select  className='select-text' id='time' onChange={this.handleSelect}>
-                                <option className='option-text' value="1-6 months">1-6 months</option>
-                                <option className='option-text' value='6-12 months'>6-12 months</option>
-                                <option className='option-text' value='1-5 years'>1-5 years</option>
+                                <option className='option-text' value="3 Month">3 Month</option>
+                                <option className='option-text' value='6 Month'>6 Month</option>
+                                <option className='option-text' value='1 Year'>1 Year</option>
+                                <option className='option-text' value='3 Year'>3 Year</option>
+                                <option className='option-text' value='5 Year'>5 Year</option>
                             </select>
                         </div>
+                    </div>
+                    <div>
                         <div className='inv-button'>
-                            <Button variant="contained"  color="primary" onClick = {this.getRec}>
-                                Get Recommendation
-                            </Button>
+                                <Button variant="contained"  color="primary" onClick = {this.getRec}>
+                                    Get Recommendation
+                                </Button>
                         </div>
                         <span style={{color:'red',fontWeight:'bold',fontSize:'18px'}}>{this.state.error}</span>
-                        
+                    </div>
+                    <div style={tableStyle} className='invest-results'>
+                        <div className='invest-results-tables'>
+                            <h2>Stock Companies to Invest</h2> 
+                                <div className='invest-table' style={{width:'100%'}}>
+                                    <table className='techAnalysis'>
+                                        <tr  className='invest-row'>
+                                        <th>Name</th>
+                                        <th>Percent</th>
+                                        <th>Returned Amount</th> 
+                                        </tr>
+                                        {
+                                            this.state.stockRec.map((title)=>{
+                                                return(
+                                                    <tr  className='invest-row'> 
+                                                    <td>{title.Ticker}</td>
+                                                    <td>{title.Percent}</td>
+                                                    <td>{title.Amount}</td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        <div className='invest-results-tables'>
+                            <h2>Areas to Invest</h2>
+                            <div className='invest-table' style={{width:'100%'}}>
+                                    <table className='techAnalysis'>
+                                        <tr className='invest-row'>
+                                        <th>Name</th>
+                                        <th>Percent</th>
+                                        <th>Returned Amount</th> 
+                                        </tr>
+                                        {
+                                            this.state.propertyRec.map((title)=>{
+                                                return(
+                                                    <tr className='invest-row'> 
+                                                    <td>{title.Ticker}</td>
+                                                    <td>{title.Percent}</td>
+                                                    <td>{title.Amount}</td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </table>
+                                </div> 
+                        </div>
                     </div>
                 </div>
             )

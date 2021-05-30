@@ -1,191 +1,181 @@
 /* Header */
 .topbar {
-    list-style-type: none; 
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #112349;
-    /* background-color: transparent; */
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 50px;
-    z-index: 1;
-    box-shadow: 0 0 .5em rgba(0, 0, 0, .5);
-  }
-  
-  .topbar li {
-    float: left;
-    border-right:1px solid #bbb;
-  } 
-  
-  .topbar li:last-child {
-    border-right: none;
-    float:right;
-  }
-  .topbar li:nth-child(3) {
-    border-right: none;
-    float:right;
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #112349;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+}
 
-  .topbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 17px 20px;
-    text-decoration: none;
-  }
-  
-  .topbar li a:hover {
-    background-color:rgb(83, 169, 226);
-    color: Black;
-    transition: all .3s ease-in-out;
-    transform: scale(1.1);
-  }
-  
+.topbar li {
+  float: left;
+  border-right: 1px solid #bbb;
+}
+
+.topbar li:last-child {
+  border-right: none;
+  float: right;
+}
+.topbar li:nth-child(3) {
+  border-right: none;
+  float: right;
+}
+
+.topbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 17px 20px;
+  text-decoration: none;
+}
+
+.topbar li a:hover {
+  background-color: rgb(83, 169, 226);
+  color: Black;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
 /* sidebar */
-  .menu-bars {
-    background-color: black;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    background:none;
-    text-decoration: none;
-    color: black;
-    
-  }
+.menu-bars {
+  background-color: black;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  background: none;
+  text-decoration: none;
+  color: black;
+}
 
-  .menu-bars span{
-    text-decoration: none;
-    color: black;
-  }
-  
-  .nav-menu {
-    visibility:visible;
-    background-color: ivory;
-    width: 270px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top:0;
-    right:-100%;
-    transition: 850ms;
-    box-shadow: inset 10px -5px 10px grey;
-  }
+.menu-bars span {
+  text-decoration: none;
+  color: black;
+}
 
-  .nav-menu.active{
-    right: 0;
-    transition: 350ms;
-    z-index: 1;
-  }
+.nav-menu {
+  visibility: visible;
+  background-color: ivory;
+  width: 270px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 850ms;
+  box-shadow: inset 10px -5px 10px grey;
+}
 
-  .nav-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 0px 8px 16px;
-    list-style: none;
-    height: 60px;
-    font-family: 'Lato', 'sans-serif';
-    width: 100%;
-    margin-right: 4rem;
-  }
-  
-  .nav-text a{
-    text-decoration: none;
-    color:black;
-    font-size: 18px;
-    width: 95%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0px 16px;
-    border-radius: 4px;
-  }
+.nav-menu.active {
+  right: 0;
+  transition: 350ms;
+  z-index: 1;
+}
 
-  .nav-text a:hover{
-    /* background-color: #1a83ff; */
-    background-color: goldenrod;
-  }
-  
-  .nav-menu-items {
-    width: 100%;
-  }
+.nav-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+  font-family: "Lato", "sans-serif";
+  width: 100%;
+  margin-right: 4rem;
+}
 
-  .navbar-toggle{
-    background-color: ivory;
-    width: 100%;
-    height: 80px;
-    display:flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
+.nav-text a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 16px;
+  border-radius: 4px;
+}
 
-  .nav-text span{
-    margin-left: 16px;
-  }
-  .menu-bars span{
-    margin-left: 5px;
-  }
-  #back-arrow{
-    margin-top: 5px;
-    float: left;
-    margin-left: 0px;
-  }
-/*   
-  .active {
-    background-color:royalblue;
-  }
-  */
+.nav-text a:hover {
+  background-color: goldenrod;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+.navbar-toggle {
+  background-color: ivory;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nav-text span {
+  margin-left: 16px;
+}
+.menu-bars span {
+  margin-left: 5px;
+}
+#back-arrow {
+  margin-top: 5px;
+  float: left;
+  margin-left: 0px;
+}
+
 /* property header */
-  .property-topbar{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #112349;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 50px;
-    z-index: 1;
-  }
-  .property-topbar li{
-    float: left;
-    border-right:1px solid #bbb;
-  }
+.property-topbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #112349;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+}
+.property-topbar li {
+  float: left;
+  border-right: 1px solid #bbb;
+}
 
-  .property-topbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 17px 20px;
-    text-decoration: none;
-  }
-  
-  .property-topbar li a:hover {
-    background-color:rgb(83, 169, 226);
-    color: Black;
-    transition: all .3s ease-in-out;
-    transform: scale(1.1);
-    
-  }
+.property-topbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 17px 20px;
+  text-decoration: none;
+}
+
+.property-topbar li a:hover {
+  background-color: rgb(83, 169, 226);
+  color: Black;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+}
 /* Notification Bar */
-  .notificationMenu{
-    margin-top: 35px;
-    height: 420px;
-  }
-  .notifications{
-    min-width: 320px;
-    width: 320px;
-    height: 60px;
-    /* box-shadow: 1px 1px 1px 1px #888888; */
-    display: flex;  
-  }
-  .notifications p {
-    color: black;
-    width: 280px;
-    padding-left: 5px;
-    /* border: 1px solid green; */
-  }
+.notificationMenu {
+  margin-top: 35px;
+  height: 420px;
+}
+.notifications {
+  min-width: 320px;
+  width: 320px;
+  height: 60px;
+  display: flex;
+}
+.notifications p {
+  color: black;
+  width: 280px;
+  padding-left: 5px;
+}

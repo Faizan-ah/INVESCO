@@ -1,109 +1,103 @@
-.signup-main{
-    background-image: url('./images/bg.jfif');
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-
+.signup-main {
+  background-image: url("./images/bg.jfif");
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
 }
 
-.signupForm{
-    width: 30%;
-    /* height: 60%; */
-    margin-left: auto;
-    margin-right: 5%;
-    box-shadow: 0.5px 0.5px 15px 0.5px #1d1d1d;
-    background: linear-gradient(to bottom, #0c358f 0%, #287ac6 103%);
+.signupForm {
+  width: 30%;
+  margin-left: auto;
+  margin-right: 5%;
+  box-shadow: 0.5px 0.5px 15px 0.5px #1d1d1d;
+  background: linear-gradient(to bottom, #0c358f 0%, #287ac6 103%);
 }
-.signupForm h1{
-    text-align: center;
-    font-style: italic;
-    letter-spacing: 0.2pc;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
+.signupForm h1 {
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.2pc;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.signupData{
-    font-family: 'Ralway';
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+.signupData {
+  font-family: "Ralway";
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signupData label {
+  font-size: 20px;
+}
+.signupData input {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.checkbox {
+  width: 75%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+}
 
+.terms a {
+  text-decoration: none;
+  color: #a3bbdd;
 }
-.signupData label{
-    font-size: 20px;
+#termsLink:hover {
+  color: cadetblue;
+  text-decoration: underline;
 }
-.signupData input{
-    width: 100%;
-    height: 30px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+#ppLink:hover {
+  color: cadetblue;
+  text-decoration: underline;
 }
-.checkbox{
-    width: 75%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
+.logLink {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
-
-  .terms a{
-    text-decoration: none;
-    /* color:#2d419b; */
-    color:#A3BBDD;
-  }
-  #termsLink:hover{
-    color:cadetblue;
-    text-decoration: underline;
-  }
-  #ppLink:hover{
-    color:cadetblue;
-    text-decoration: underline;
-  }
-  .logLink{
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  #loginLink{
-    text-decoration: none;
-    /* color:#2d419b; */
-    color:#d5dfee;
-  }
-  #loginLink:hover{
-    color:cadetblue;
-    text-decoration: underline;
-  }
-  .signupData span{
-    color: red;
-    text-align: center;
-    width:20px;
+#loginLink {
+  text-decoration: none;
+  color: #d5dfee;
+}
+#loginLink:hover {
+  color: cadetblue;
+  text-decoration: underline;
+}
+.signupData span {
+  color: red;
+  text-align: center;
+  width: 20px;
 }
 
 @media only screen and (max-width: 1280px) {
-    .signupForm{
-        width:40%;
-    }
-    .signupData{
-      width: 60%;
-    }
+  .signupForm {
+    width: 40%;
   }
-  @media only screen and (max-width: 903px) {
-    .signupForm{
-        width:60%;
-        /* margin-right: auto;
-        margin-left: auto; */
-    }
-    .signupData{
-      width: 70%;
-    }
+  .signupData {
+    width: 60%;
   }
-  @media only screen and (max-width: 768px) {
-    .signupForm{
-        width:80%;
-        margin-right: auto;
-        margin-left: auto;
-    }
-    .signupData{
-      width: 70%;
-    }
+}
+@media only screen and (max-width: 903px) {
+  .signupForm {
+    width: 60%;
   }
+  .signupData {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .signupForm {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .signupData {
+    width: 70%;
+  }
+}

@@ -223,43 +223,9 @@ export class Signup extends Component {
                             <label for="cpassword">Confirm Password</label>
                             <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
                         </div>    
-
-
-                        {/* <div class='signupDataRow1'>
-                            <div class='signupDataRow1Col1'>
-                                <label for="fname">First Name</label>
-                                <input type="text" id="fname" name="signUpFirstName" value={signUpFirstName} onChange={this.onChange.bind(this)} required></input>
-                                <span className="error-display">{this.state.fnameError}</span>
-                            </div>
-                            <div class='signupDataRow1Col2'>
-                                <label for="lname">Last Name</label>
-                                <input type="text" id="lname" name="signUpLastName" value={signUpLastName} onChange={this.onChange} ></input>
-                                <span className="error-display">{this.state.lnameError}</span>
-                            </div>
-                        </div>
-        
-                        <div class='signupDataRow2'>
-                            <div class='signupDataRow2Col2'>
-                                <label for="email">Email</label>
-                                <input ref={focusInput =>{this.signUpEmail = focusInput}} type="email" id="email" name="signUpEmail" value={signUpEmail} onChange={this.onChange} required></input>
-                                <span className="error-display">{this.state.emailError}</span>
-                            </div>
-                        </div>
-                        
-                        <div class='signupDataRow3'>
-                            <div class='signupDataRow3Col1'>
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="signUpPassword" value={signUpPassword} onChange={this.onChange} required></input>
-                                <span className="error-display">{this.state.passwordError}</span>
-                            </div>
-                            <div class='signupDataRow3Col2'>
-                                <label for="cpassword">Confirm Password</label>
-                                <input type="password" id="cpassword" name="signUpConfirmPassword" value={signUpConfirmPassword} onChange={this.onChange} ></input> 
-                            </div>
-                        </div> */}
                         <div class="checkbox">
                             <input type='checkbox' id='termsCond' defaultChecked={this.state.checked} value={checked} onChange={this.onChangeCheckbox} required></input>
-                            <label class="terms" for='termsCond'>Do you agree to our <a id="termsLink" href="#">Terms</a> and <a id="ppLink" href="#">Privacy Policy</a>?</label>                    
+                            <label class="terms" for='termsCond'>Do you agree to our <Link id="termsLink" to='/TermsandConditions'>Terms and Conditions?</Link></label>                    
                         </div>
                         {/* <div class="button" id="button-signup" style={buttonStyle} onClick={this.onSignup}>
                             <div id="circle"></div>

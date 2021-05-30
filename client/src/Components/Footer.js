@@ -22,7 +22,7 @@ export class Footer extends Component {
                             <p>INVESCO is a system helping beginners to invest in stock and real estate.</p>
                         </div>
                         <div className="footer-links">
-                            <Link>Terms and Conditions</Link>
+                            <Link to='/TermsandConditions'>Terms and Conditions</Link>
                         </div>
                     </div>
                 </div>

@@ -111,29 +111,10 @@
 }
 /* asdasdasdasd */
 
- table {
-     font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 50%;
-    color:black;
-  }
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-  
-.techAnalysis-row:nth-child(even) {
-    background-color: #dddddd;
-  } 
 
-.plot-graph{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 1px solid black */
+.plotAreas{
+    z-index: -1;
 }
-
 @media only screen and (max-width: 375px) {
     .house-menu-inputs-row-1 input{
         width:100%;      

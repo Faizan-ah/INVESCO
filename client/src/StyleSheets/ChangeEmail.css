@@ -1,116 +1,107 @@
-.change-field-heading h1{
-    color: black;
-    margin-top: 3%;
-    padding-left: 10px;
+.change-field-heading h1 {
+  color: black;
+  margin-top: 3%;
+  padding-left: 10px;
 }
 .change-field-inputs {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.change-field-inputs-content{
-    display: flex;
-    flex-direction: column;
-    margin-left: 5%;
+.change-field-inputs-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
 }
-.change-field-inputs-content button{
-    margin-top: 10px;
-    height: 40px;
-    width: 150px;
-    border-radius: 20px;
-    /* letter-spacing: 1.5px; */
-    margin-bottom: 5px;
+.change-field-inputs-content button {
+  margin-top: 10px;
+  height: 40px;
+  width: 150px;
+  border-radius: 20px;
+  margin-bottom: 5px;
 }
-.change-field-inputs label{
-    color:black;
-    font-size: 20px;
-    /* border: 1px solid white; */
+.change-field-inputs label {
+  color: black;
+  font-size: 20px;
 }
 
-.change-field-inputs input{
-    /* width:50%;
-    height: 20px;
-    border: 1px solid white;
-    border-radius: 10px; */
-    width:20%;
-    height: 40px;
-    border-style: solid;
-    border-radius: 20px;
-    font-size: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: relative;
+.change-field-inputs input {
+  width: 20%;
+  height: 40px;
+  border-style: solid;
+  border-radius: 20px;
+  font-size: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
 }
 
-.change-field-inputs input:focus{
-    /* border-color: rgb(63, 194, 107); */
-    border-color: black;
-    border-width: 2px;
-    outline: none;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-family: "Helvetica";
+.change-field-inputs input:focus {
+  border-color: black;
+  border-width: 2px;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Helvetica";
 }
 
 .change-field-button {
-    display: inline-flex;
-    height: 40px;
-    width: 150px;
-    margin: 20px 20px 20px 20px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-size: .8em;
-    letter-spacing: 1.5px;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-left: 5%;
-    background: #BFC0C0;
+  display: inline-flex;
+  height: 40px;
+  width: 150px;
+  margin: 20px 20px 20px 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 0.8em;
+  letter-spacing: 1.5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-left: 5%;
+  background: #bfc0c0;
 }
 
-.change-field-button p{
-    font-family: "Helvetica";
-    position: relative;
-    transition: all .45s ease-Out;
-    text-decoration: none;
-    color: black;
+.change-field-button p {
+  font-family: "Helvetica";
+  position: relative;
+  transition: all 0.45s ease-Out;
+  text-decoration: none;
+  color: black;
 }
-.change-field-button:hover{
-    background: goldenrod;
+.change-field-button:hover {
+  background: goldenrod;
 }
-.errMsg-display{
-    color: red;
-    font-weight: bold;
-    margin-left: 5%;
-    width: 60%;
-    text-align: left;
-    
+.errMsg-display {
+  color: red;
+  font-weight: bold;
+  margin-left: 5%;
+  width: 60%;
+  text-align: left;
 }
 
-.msg-display{
-    margin-left: 5%;
+.msg-display {
+  margin-left: 5%;
 }
 @media only screen and (max-width: 1200px) {
-    /* For mobile phones: */
-    .change-field-inputs input{
-        width: 40%;
-    }
+  /* For mobile phones: */
+  .change-field-inputs input {
+    width: 40%;
+  }
 }
 @media only screen and (max-width: 1000px) {
-    /* For mobile phones: */
-    .change-field-inputs input{
-        width: 60%;
-    }
+  /* For mobile phones: */
+  .change-field-inputs input {
+    width: 60%;
+  }
 }
 @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    .change-field-inputs input{
-        width: 80%;
-    }
-    .change-field-heading h1{
-        margin-top: 12%;
-    }
+  /* For mobile phones: */
+  .change-field-inputs input {
+    width: 80%;
+  }
+  .change-field-heading h1 {
+    margin-top: 12%;
+  }
 }

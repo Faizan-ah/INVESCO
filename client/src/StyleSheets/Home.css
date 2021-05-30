@@ -123,6 +123,7 @@ body{
     font-size: 25px;
     color: black;
     padding-left: 10%;
+    text-align: justify;
 }
 
 
@@ -188,6 +189,7 @@ body{
     font-size: 25px;
     color: black;
     padding-right: 10%;
+    text-align: justify;
     /* border: 1px solid black; */
 }
 

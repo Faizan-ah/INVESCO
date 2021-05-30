@@ -1,113 +1,128 @@
-.stock-page-main{
-    /* margin-left: 2%; */
-    /* background-color: gainsboro; */
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 1px solid black; */
+.stock-page-main {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.stock-graph{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 0;
+.stock-graph {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
 }
-.graph-and-selector{
-    display: flex;
-    flex-direction: row;
+.graph-and-selector {
+  display: flex;
+  flex-direction: row;
 }
-.stock-company-historical-table-div{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+.stock-company-historical-table-div {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.stock-main-heading h1{
-    margin-top: 5%;
-    text-align: center;
-    /* border: 1px solid black */
+.stock-main-heading h1 {
+  margin-top: 5%;
+  text-align: center;
 }
-.stock-radio-buttons{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 1px solid black; */
+.stock-radio-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
 }
-.stock-buttons{
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-bottom: 2%;
+.stock-buttons {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 2%;
 }
-@media only screen and (max-width:768px){
-    .stock-company-historical-table-div{
-        width: 100%;
-    }
-    .stock-main-heading h1{
-        margin-top: 15%;
-    }
-    .stock-graph{
-        width: 100%;
-    }
-}.stock-page-main{
-    /* margin-left: 2%; */
-    /* background-color: gainsboro; */
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 1px solid black; */
+@media only screen and (max-width: 768px) {
+  .stock-company-historical-table-div {
+    width: 100%;
+  }
+  .stock-main-heading h1 {
+    margin-top: 15%;
+  }
+  .stock-graph {
+    width: 100%;
+  }
 }
-.stock-graph{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 0;
+.stock-page-main {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.graph-and-selector{
-    display: flex;
-    flex-direction: row;
+.stock-graph {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
 }
-.stock-company-historical-table-div{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+.graph-and-selector {
+  display: flex;
+  flex-direction: row;
 }
-.stock-main-heading h1{
-    margin-top: 5%;
-    text-align: center;
-    /* border: 1px solid black */
+.stock-company-historical-table-div {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.stock-radio-buttons{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-left: auto;
-    margin-right: auto;
-    /* border: 1px solid black; */
+.stock-main-heading h1 {
+  margin-top: 5%;
+  text-align: center;
 }
-.stock-buttons{
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-bottom: 2%;
+.stock-radio-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
 }
-@media only screen and (max-width:768px){
-    .stock-company-historical-table-div{
-        width: 100%;
-    }
-    .stock-main-heading h1{
-        margin-top: 15%;
-    }
-    .stock-graph{
-        width: 100%;
-    }
+.stock-buttons {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 2%;
+}
+
+.techinalAnal-table table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: auto;
+  margin-right: 15%;
+  color: black;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  width: 30%;
+  padding: 8px;
+}
+
+.techAnalysis-row:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.plot-graph {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (max-width: 768px) {
+  .stock-company-historical-table-div {
+    width: 100%;
+  }
+  .stock-main-heading h1 {
+    margin-top: 15%;
+  }
+  .stock-graph {
+    width: 100%;
+  }
 }

@@ -17,8 +17,7 @@ import StockTable from "./Components/StockTable";
 import DeleteAccount from "./Components/DeleteAccount";
 import InvestmentRec from "./Components/InvestmentRec";
 import TermsandConditions from "./Components/TermsandConditions";
-// import ProtectedRoute from './ProtectedRoute'
-//import Header from './Components/Header'
+
 class App extends React.Component {
   constructor(props) {
     super(props);

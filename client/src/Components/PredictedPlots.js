@@ -159,7 +159,7 @@ export class PredictedPlots extends Component {
           },
         },
       },
-      area: "DHA Phase 2",
+      area: "AGHOSH",
       isLoading: true,
     };
   }
@@ -245,9 +245,6 @@ export class PredictedPlots extends Component {
               label="Age"
               MenuProps={{ classes: { paper: classes.menuPaper } }}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               {this.state.plotAreas.map((options) => {
                 return <MenuItem value={options}>{options}</MenuItem>;
               })}

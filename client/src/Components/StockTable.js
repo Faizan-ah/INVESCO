@@ -12,19 +12,92 @@ import Header from "./Header";
 import fire from "../config/fire";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Login from "../Login";
-const useStyles = {
+
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import readXlsxFile from "read-excel-file";
+import fs from "fs";
+
+const useStyles = (theme) => ({
   table: {
     // minWidth: '50%',
     width: "70%",
     marginRight: "auto",
     marginLeft: "auto",
   },
-};
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  menuPaper: {
+    maxHeight: 300,
+  },
+});
 
 class StockTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cat: "ALL COMPANIES",
+      category: [
+        "ALL COMPANIES",
+        "OIL AND GAS",
+        "POWER",
+        "BANKS",
+        "AUTOMOBILE, TRANSPORT AND ACCESSORIES",
+        "CEMENT",
+        "CHEMICAL",
+        "TECHNOLOGY & COMMUNICATION",
+        "ENGINEERING",
+        "FERTILIZER",
+        "FOOD & PERSONAL CARE PRODUCTS",
+        "REFINERY",
+      ],
+      excel: [
+        "CEMENT",
+        "ENGINEERING",
+        "OIL AND GAS",
+        "FOOD & PERSONAL CARE PRODUCTS",
+        "ENGINEERING",
+        "REFINERY",
+        "BANKS",
+        "REFINERY",
+        "CEMENT",
+        "CHEMICAL",
+        "FERTILIZER",
+        "CHEMICAL",
+        "CEMENT",
+        "FERTILIZER",
+        "FOOD & PERSONAL CARE PRODUCTS",
+        "AUTOMOBILE, TRANSPORT AND ACCESSORIES",
+        "CHEMICAL",
+        "AUTOMOBILE, TRANSPORT AND ACCESSORIES",
+        "OIL AND GAS",
+        "BANKS",
+        "POWER",
+        "TECHNOLOGY & COMMUNICATION",
+        "CHEMICAL",
+        "ENGINEERING",
+        "POWER",
+        "POWER",
+        "TECHNOLOGY & COMMUNICATION",
+        "Type",
+        "AUTOMOBILE, TRANSPORT AND ACCESSORIES",
+        "REFINERY",
+        "AUTOMOBILE, TRANSPORT AND ACCESSORIES",
+        "AUTOMOBILE, TRANSPORT AND ACCESSORIES",
+        "BANKS",
+        "OIL AND GAS",
+        "TECHNOLOGY & COMMUNICATION",
+        "TECHNOLOGY & COMMUNICATION",
+        "FOOD & PERSONAL CARE PRODUCTS",
+      ],
       companies: [
         "ACPL",
         "AGHA",
@@ -65,6 +138,7 @@ class StockTable extends Component {
       ],
       rows: [],
       isLoading: true,
+      temp: [],
     };
   }
   componentDidMount() {
@@ -72,7 +146,6 @@ class StockTable extends Component {
   }
   getLatestData = () => {
     let data = [];
-
     fire
       .database()
       .ref(`historicaldatafyp-default-rtdb/Stocks/`)
@@ -80,6 +153,7 @@ class StockTable extends Component {
         var qwe = [];
         snapshot.forEach((ss) => {
           var val = ss.val();
+
           let x = Object.keys(val);
           let lastVal = val[x[x.length - 1]];
           qwe.push(lastVal);
@@ -99,7 +173,26 @@ class StockTable extends Component {
     this.getLatestData();
     return;
   };
+  handleChange = (event) => {
+    this.setState(
+      {
+        cat: event.target.value,
+      },
+      () => {
+        var temps = [];
+        for (let i in this.state.excel) {
+          if (this.state.excel[i] == this.state.cat) {
+            temps.push(i);
+          }
+        }
+        this.setState({
+          temp: temps,
+        });
+      }
+    );
+  };
   render() {
+    console.log("category", this.state.cat);
     const isAuthenticated = this.props.user.isAuth;
     const { classes } = this.props;
     if (!isAuthenticated) {
@@ -111,6 +204,27 @@ class StockTable extends Component {
           <div className="stock-main-heading">
             <h1>STOCK TABLE</h1>
           </div>
+          <FormControl variant="filled" className={classes.formControl}>
+            <InputLabel
+              style={{ height: "100px" }}
+              id="demo-simple-select-outlined-label"
+            >
+              Select Category
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={this.state.cat}
+              onChange={this.handleChange}
+              // onClick={this.fetchData}
+              label="Category"
+              MenuProps={{ classes: { paper: classes.menuPaper } }}
+            >
+              {this.state.category.map((options) => {
+                return <MenuItem value={options}>{options}</MenuItem>;
+              })}
+            </Select>
+          </FormControl>
           <div className="stock-table">
             <TableContainer>
               <Table className={classes.table} aria-label="simple table">
@@ -142,29 +256,36 @@ class StockTable extends Component {
                     </div>
                   ) : (
                     this.state.rows.map((row, index) => {
-                      return (
-                        <TableRow key={index}>
-                          <TableCell component="th" scope="row">
-                            <Link
-                              to={{
-                                pathname: "/StockPrediction",
-                                state: this.state.companies[index],
-                              }}
-                              size="50"
-                              onClick={this.sendValue.bind(this, row)}
-                            >
-                              {this.state.companies[index]}
-                            </Link>
-                          </TableCell>
-                          <TableCell align="right">{row.Open}</TableCell>
-                          <TableCell align="right">{row.High}</TableCell>
-                          <TableCell align="right">{row.Low}</TableCell>
-                          <TableCell align="right">{row.Close}</TableCell>
-                          <TableCell align="right">{row.Change}</TableCell>
-                          <TableCell align="right">{row.Volume}</TableCell>
-                          <TableCell align="right">{row.Date}</TableCell>
-                        </TableRow>
-                      );
+                      console.log(index, "asdasd", this.state.temp);
+                      if (
+                        this.state.temp.includes(index.toString()) ||
+                        this.state.temp.length == 0
+                      ) {
+                        console.log("asdasdasd");
+                        return (
+                          <TableRow key={index}>
+                            <TableCell component="th" scope="row">
+                              <Link
+                                to={{
+                                  pathname: "/StockPrediction",
+                                  state: this.state.companies[index],
+                                }}
+                                size="50"
+                                onClick={this.sendValue.bind(this, row)}
+                              >
+                                {this.state.companies[index]}
+                              </Link>
+                            </TableCell>
+                            <TableCell align="right">{row.Open}</TableCell>
+                            <TableCell align="right">{row.High}</TableCell>
+                            <TableCell align="right">{row.Low}</TableCell>
+                            <TableCell align="right">{row.Close}</TableCell>
+                            <TableCell align="right">{row.Change}</TableCell>
+                            <TableCell align="right">{row.Volume}</TableCell>
+                            <TableCell align="right">{row.Date}</TableCell>
+                          </TableRow>
+                        );
+                      }
                     })
                   )}
                 </TableBody>

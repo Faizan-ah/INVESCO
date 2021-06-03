@@ -102,8 +102,8 @@ td,
 th {
   border: 1px solid #dddddd;
   text-align: center;
-  width: 30%;
   padding: 8px;
+  /* width: 30%; */
 }
 
 .techAnalysis-row:nth-child(even) {

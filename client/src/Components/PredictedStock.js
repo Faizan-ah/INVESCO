@@ -5,6 +5,7 @@ import "../StyleSheets/StockMainPage.css";
 import ReactApexCharts from "react-apexcharts";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Radio from "@material-ui/core/Radio";
+import "../StyleSheets/predictStock.css";
 const useStyles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -208,11 +209,21 @@ export class PredictedStock extends React.Component {
     return (
       <div className={classes.root}>
         <div className="stock-graph">
-          <ReactApexCharts
-            options={this.state.options}
-            series={this.state.series}
-            type="line"
-          />
+          {this.state.isLoading == true ? (
+            <div style={{ height: "50vh" }}>
+              <CircularProgress
+                size={50}
+                style={{ marginLeft: "50%", marginTop: "20vh" }}
+              />
+            </div>
+          ) : (
+            <ReactApexCharts
+              options={this.state.options}
+              series={this.state.series}
+              type="line"
+            />
+          )}
+
           <div className="stock-radio-buttons">
             {this.state.mainCompanies.map((row, index) => {
               return (
@@ -230,14 +241,14 @@ export class PredictedStock extends React.Component {
               );
             })}
           </div>
-          <div className="techinalAnal-table">
+          <div className="techAnal-table">
             <table>
               <h1>Technical Analysis</h1>
-              <tr className="techAnalysis-row">
+              <tr className="techAnal-row">
                 <th>Name</th>
                 <th>Action</th>
               </tr>
-              <tr className="techAnalysis-row">
+              <tr className="techAnal-row">
                 <td>RSI Calculation</td>
 
                 <td>
@@ -248,7 +259,7 @@ export class PredictedStock extends React.Component {
                   )}
                 </td>
               </tr>
-              <tr className="techAnalysis-row">
+              <tr className="techAnal-row">
                 <td>On-Balance Volume</td>
                 <td>
                   {this.state.isLoading == true ? (
@@ -258,7 +269,7 @@ export class PredictedStock extends React.Component {
                   )}
                 </td>
               </tr>
-              <tr className="techAnalysis-row">
+              <tr className="techAnal-row">
                 <td>MACD Calculation</td>
                 <td>
                   {this.state.isLoading == true ? (

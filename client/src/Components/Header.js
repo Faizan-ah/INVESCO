@@ -48,11 +48,7 @@ class Header extends React.Component {
       delArray: [],
     };
   }
-  async componentDidMount() {
-    await this.getData();
-    this.saveInOriginal();
-    this.onCloseClick();
-  }
+  async componentDidMount() {}
   getData = async () => {
     const uid = localStorage.getItem("uid");
     fire.database().ref("historicaldatafyp-default-rtdb/Stocks/");
@@ -61,6 +57,7 @@ class Header extends React.Component {
       .ref("Users/" + uid)
       .once("value");
     //key
+
     const userData = user.val()[Object.keys(user.val())[0]];
     var temp = [];
     for (let i in userData.subscriptions) {
@@ -75,49 +72,53 @@ class Header extends React.Component {
         .limitToLast(1)
         .once("value");
       var notif = "";
-      for (let j in lastval.val()) {
-        const Close = lastval.val()[j].Close;
-        const Date = lastval.val()[j].Date;
-        const Open = lastval.val()[j].Open;
-        const High = lastval.val()[j].High;
-        const Low = lastval.val()[j].Low;
-        notif =
-          userData.subscriptions[i] +
-          ": OHLC for " +
-          Date +
-          " is " +
-          " O:" +
-          Open +
-          " H:" +
-          High +
-          " L:" +
-          Low +
-          " C:" +
-          Close;
-      }
-      temp.push(notif);
-      fire
-        .database()
-        .ref("Users/" + uid)
-        .once("value", (snap) => {
-          snap.forEach((doc) => {
-            fire
-              .database()
-              .ref("Users/" + uid + "/" + doc.key)
-              .update({
-                Notifications: temp,
-              });
+      if (lastval != undefined) {
+        for (let j in lastval.val()) {
+          const Close = lastval.val()[j].Close;
+          const Date = lastval.val()[j].Date;
+          const Open = lastval.val()[j].Open;
+          const High = lastval.val()[j].High;
+          const Low = lastval.val()[j].Low;
+          notif =
+            userData.subscriptions[i] +
+            ": OHLC for " +
+            Date +
+            " is " +
+            " O:" +
+            Open +
+            " H:" +
+            High +
+            " L:" +
+            Low +
+            " C:" +
+            Close;
+        }
+        temp.push(notif);
+        fire
+          .database()
+          .ref("Users/" + uid)
+          .once("value", (snap) => {
+            snap.forEach((doc) => {
+              fire
+                .database()
+                .ref("Users/" + uid + "/" + doc.key)
+                .update({
+                  Notifications: temp,
+                });
+            });
           });
-        });
-      // this.setState({
-      //     data:temp
-      // })
+        // this.setState({
+        //     data:temp
+        // })
+      }
+      var notifications = userData.Notifications;
+      notifications.reverse();
+
+      this.setState({
+        ...this.state,
+        tempData: notifications,
+      });
     }
-    var notifications = userData.Notifications;
-    this.setState({
-      ...this.state,
-      tempData: notifications,
-    });
   };
 
   saveInOriginal = async () => {
@@ -137,6 +138,7 @@ class Header extends React.Component {
         .once("value");
       //key
       const userData = user.val()[Object.keys(user.val())[0]];
+
       var arr = [];
       for (let i in this.state.data) {
         for (let j in userData.RemovedNotifications)
@@ -151,8 +153,13 @@ class Header extends React.Component {
     }
   };
 
-  handleClick = (event) => {
+  handleClick = async (event) => {
     this.setState({ anchorEl: event.currentTarget });
+    await this.getData();
+    await this.saveInOriginal();
+    await this.onCloseClick();
+
+    // this.handleClick();
   };
   handleClose = () => {
     this.setState({ anchorEl: null });
@@ -302,7 +309,7 @@ class Header extends React.Component {
               >
                 <CircularProgress style={{}} disableShrink />
               </div>
-            ) : (
+            ) : this.state.data.length > 0 ? (
               this.state.data.map((key, index) => {
                 return (
                   <div>
@@ -317,6 +324,17 @@ class Header extends React.Component {
                   </div>
                 );
               })
+            ) : (
+              <div
+                style={{
+                  textAlign: "center",
+                  marginTop: "20px",
+                  height: "50px",
+                  width: "320px",
+                }}
+              >
+                You don't have any notifications
+              </div>
             )}
           </Menu>
         </div>

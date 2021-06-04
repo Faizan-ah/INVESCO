@@ -205,8 +205,11 @@ export class StockMainPage extends React.Component {
     for (let i in companyData.val()) {
       const Close = companyData.val()[i].Close;
       if (Close > this.state.aboveAlert || Close < this.state.belowAlert) {
-        notif =
-          this.state.selectedValue + ": ALERT! Closing Price is now " + Close;
+        if (this.state.belowAlert == "" && this.state.aboveAlert == "") {
+        } else {
+          notif =
+            this.state.selectedValue + ": ALERT! Closing Price is now " + Close;
+        }
       }
     }
     temp.push(notif);

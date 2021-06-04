@@ -46,6 +46,7 @@ class Header extends React.Component {
       tempData: [],
       loading: true,
       delArray: [],
+      dontGet: false,
     };
   }
   async componentDidMount() {}
@@ -58,7 +59,7 @@ class Header extends React.Component {
       .once("value");
     //key
 
-    const userData = user.val()[Object.keys(user.val())[0]];
+    var userData = user.val()[Object.keys(user.val())[0]];
     var temp = [];
     for (let i in userData.subscriptions) {
       //company name
@@ -110,10 +111,13 @@ class Header extends React.Component {
         // this.setState({
         //     data:temp
         // })
+        console.log("come");
       }
-      var notifications = userData.Notifications;
+    }
+    var notifications = userData.Notifications;
+    console.log("noti", notifications);
+    if (notifications != undefined) {
       notifications.reverse();
-
       this.setState({
         ...this.state,
         tempData: notifications,
@@ -155,9 +159,10 @@ class Header extends React.Component {
 
   handleClick = async (event) => {
     this.setState({ anchorEl: event.currentTarget });
-    await this.getData();
-    await this.saveInOriginal();
-    await this.onCloseClick();
+    if (this.state.dontGet == false) {
+      await this.getData();
+      await this.saveInOriginal();
+    }
 
     // this.handleClick();
   };
@@ -215,6 +220,9 @@ class Header extends React.Component {
     </div>
   );
   onCloseClick = async (index) => {
+    this.setState({
+      dontGet: true,
+    });
     const userID = localStorage.getItem("uid");
 
     var temp = this.state.delArray;

@@ -69,6 +69,7 @@ function SimpleTabs(props) {
   const [houseVars, setHouseVars] = React.useState({
     size: "Marla",
     price: "0",
+    area: "",
   });
   const [isLoading, setLoading] = React.useState(false);
   const isAuthenticated = useSelector((state) => state.user);
@@ -80,69 +81,81 @@ function SimpleTabs(props) {
 
   const calculatePrice = () => {
     setLoading(true);
-    fetch(
-      `https://housingpredict.herokuapp.com/prediction/?size=${houseVars.area}%20${houseVars.size}&&baths=${houseVars.bath}&&beds=${houseVars.bed}&&location=${houseVars.location}`
-    ).then((response) => {
-      response
-        .json()
-        .then((responseData) => {
-          setLoading(false);
-          setHouseVars({ ...houseVars, price: responseData, error: "" });
-        })
-        .catch((e) => {
-          setLoading(false);
-          var negativeNum = new RegExp(
-            /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/
-          );
-          if (
-            houseVars.area == "e" ||
-            houseVars.area == "" ||
-            negativeNum.test(houseVars.area) ||
-            houseVars.area == "0"
-          ) {
-            setHouseVars({
-              ...houseVars,
-              price: "0",
-              error: "Enter Valid Area",
-              area: "",
-            });
-          } else if (
-            houseVars.bath == "e" ||
-            houseVars.bath == "" ||
-            !negativeNum.test(houseVars.bath)
-          ) {
-            setHouseVars({
-              ...houseVars,
-              price: "0",
-              error: "Enter Your Bathroom(s)",
-              bath: "",
-            });
-          } else if (
-            houseVars.bed == "e" ||
-            houseVars.bed == "" ||
-            !negativeNum.test(houseVars.bed)
-          ) {
-            setHouseVars({
-              ...houseVars,
-              price: "0",
-              error: "Enter Your Bedroom(s)",
-              bed: "",
-            });
-          } else if (
-            houseVars.location != top100Films.map((option) => option.title)
-          ) {
-            setHouseVars({
-              ...houseVars,
-              price: "0",
-              error: "Enter a Valid Location",
-              location: "",
-            });
-          } else {
-            setHouseVars({ ...houseVars, error: "" });
-          }
-        });
-    });
+    var negativeNum = new RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
+    if (houseVars.area == "0") {
+      setLoading(false);
+      setHouseVars({
+        ...houseVars,
+        price: "0",
+        error: "Enter Valid Area",
+        area: "",
+      });
+    } else {
+      fetch(
+        `https://housingpredict.herokuapp.com/prediction/?size=${houseVars.area}%20${houseVars.size}&&baths=${houseVars.bath}&&beds=${houseVars.bed}&&location=${houseVars.location}`
+      ).then((response) => {
+        response
+          .json()
+          .then((responseData) => {
+            setLoading(false);
+            setHouseVars({ ...houseVars, price: responseData, error: "" });
+          })
+          .catch((e) => {
+            setLoading(false);
+            negativeNum = new RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
+            if (
+              houseVars.area == "e" ||
+              houseVars.area == "" ||
+              // ||
+              !negativeNum.test(houseVars.area)
+              // houseVars.area == "0"
+            ) {
+              console.log("we");
+              setHouseVars({
+                ...houseVars,
+                price: "0",
+                error: "Enter Valid Area",
+                // area: "",
+              });
+            } else if (
+              houseVars.bath == "e" ||
+              houseVars.bath == "" ||
+              !negativeNum.test(houseVars.bath)
+            ) {
+              setHouseVars({
+                ...houseVars,
+                price: "0",
+                error: "Enter Your Bathroom(s)",
+                bath: "",
+              });
+            } else if (
+              houseVars.bed == "e" ||
+              houseVars.bed == "" ||
+              !negativeNum.test(houseVars.bed)
+            ) {
+              setHouseVars({
+                ...houseVars,
+                price: "0",
+                error: "Enter Your Bedroom(s)",
+                bed: "",
+              });
+            } else if (
+              houseVars.location != top100Films.map((option) => option.title)
+            ) {
+              setHouseVars({
+                ...houseVars,
+                price: "0",
+                error: "Enter a Valid Location",
+                location: "",
+              });
+            } else {
+              setHouseVars({ ...houseVars, error: "" });
+            }
+          });
+      });
+    }
   };
+
   const onChangeInputs = (event) => {
     const target = event.target;
     const name = target.name;

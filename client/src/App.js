@@ -17,6 +17,7 @@ import StockTable from "./Components/StockTable";
 import DeleteAccount from "./Components/DeleteAccount";
 import InvestmentRec from "./Components/InvestmentRec";
 import TermsandConditions from "./Components/TermsandConditions";
+import Favourites from "./Components/Favourites";
 
 class App extends React.Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class App extends React.Component {
           <Route path="/ChangePassword" component={ChangePassword} exact />
           <Route path="/DeleteAccount" component={DeleteAccount} exact />
           <Route path="/ForgotPassword" component={ForgotPassword} exact />
+          <Route path="/Favourites" component={Favourites} exact />
           <Route
             path="/InvestmentReccomendation"
             component={InvestmentRec}

@@ -143,6 +143,7 @@ export class PredictedPlots extends Component {
           type: "line",
           height: 1050,
         },
+        datalabels: {},
         stroke: {
           width: 2,
         },
@@ -253,11 +254,28 @@ export class PredictedPlots extends Component {
         </div>
         <div className="plot-graph">
           {this.state.isLoading == true ? (
-            <CircularProgress
-              style={{ marginLeft: "50%", marginTop: "50px" }}
-              size={60}
-              disableShrink
-            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column-reverse",
+                color: "black",
+                textAlign: "center",
+              }}
+            >
+              <span style={{ fontFamily: "Do Hyeon, sans-serif" }}>
+                The Graph will be displayed in a Jiffy :)
+              </span>
+              <CircularProgress
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                }}
+                size={60}
+                disableShrink
+              />
+            </div>
           ) : (
             <ReactApexCharts
               options={this.state.options}

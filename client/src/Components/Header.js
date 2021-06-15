@@ -313,9 +313,23 @@ class Header extends React.Component {
                   marginTop: "20px",
                   height: "50px",
                   width: "320px",
+                  color: "black",
+                  flexDirection: "column-reverse",
+                  display: "flex",
                 }}
               >
-                <CircularProgress style={{}} disableShrink />
+                <span
+                  style={{
+                    // fontFamily: "Do Hyeon, sans-serif",
+                    marginBottom: "5px",
+                  }}
+                >
+                  Here comes your notifications (>.>)//
+                </span>
+                <CircularProgress
+                  style={{ marginLeft: "auto", marginRight: "auto" }}
+                  disableShrink
+                />
               </div>
             ) : this.state.data.length > 0 ? (
               this.state.data.map((key, index) => {

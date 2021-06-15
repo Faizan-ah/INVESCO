@@ -18,7 +18,13 @@ export const SidebarData = [
   {
     title: "Delete Account",
     path: "/DeleteAccount",
-    icon: <RiIcon.RiAccountCircleLine />,
+    icon: <AiIcon.AiOutlineUserDelete />,
+    cName: "nav-text",
+  },
+  {
+    title: "Favourites",
+    path: "/Favourites",
+    icon: <RiIcon.RiStarLine />,
     cName: "nav-text",
   },
 ];

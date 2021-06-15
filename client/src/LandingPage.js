@@ -107,15 +107,16 @@ class LandingPage extends React.Component {
                   <h3>Stock Price Predictor</h3>
                   <p>
                     Get predicted stock prices for the companies in the KSE100
-                    index. Change your models and decide when and where to
-                    invest!{" "}
+                    index. Watch and study the historical prices and get your
+                    investments up!{" "}
                   </p>
                 </div>
                 <div>
                   <h3>Real Estate Price Predictor</h3>
                   <p>
-                    Looking for property investment? Our system provides
-                    predicted real estate prices in Islamabad.
+                    Looking for property investment or a house? Our system
+                    predicted real estate prices in Islamabad and will calculate
+                    your house value!
                   </p>
                 </div>
                 <div>
@@ -142,7 +143,7 @@ class LandingPage extends React.Component {
             <p className="numbers-label">Areas</p>
           </div>
           <div className="detail-box">
-            <p className="numbers">99+</p>
+            <p className="numbers">35+</p>
             <p className="numbers-label">Stock Companies</p>
           </div>
         </div>

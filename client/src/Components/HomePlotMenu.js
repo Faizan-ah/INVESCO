@@ -16,6 +16,8 @@ import PlotChart from "./PlotChart";
 import Login from "../Login";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import PredictedPlots from "./PredictedPlots";
+import Paper from "@material-ui/core/Paper";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -82,7 +84,7 @@ function SimpleTabs(props) {
   const calculatePrice = () => {
     setLoading(true);
     var negativeNum = new RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
-    if (houseVars.area == "0") {
+    if (houseVars.area == "0" || !negativeNum.test(houseVars.area)) {
       setLoading(false);
       setHouseVars({
         ...houseVars,
@@ -105,9 +107,9 @@ function SimpleTabs(props) {
             negativeNum = new RegExp(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/);
             if (
               houseVars.area == "e" ||
-              houseVars.area == "" ||
+              houseVars.area == ""
               // ||
-              !negativeNum.test(houseVars.area)
+
               // houseVars.area == "0"
             ) {
               console.log("we");
@@ -374,78 +376,110 @@ function SimpleTabs(props) {
               <div>
                 <h1 style={{ color: "black" }}>House Price Calculator</h1>
               </div>
-              <div className="house-menu-inputs">
-                <div className="house-menu-inputs-rows">
-                  {/* AREA AND SEARCH BAR */}
-                  <div className="house-menu-inputs-row-1">
-                    <TextField
-                      size="large"
-                      id="standard-basic"
-                      type="number"
-                      name="area"
-                      value={houseVars.area}
-                      onChange={onChangeInputs}
-                      variant="outlined"
-                      label="Area Size"
-                    />
-                    <div>
-                      <select
-                        onChange={(e) => {
-                          setHouseVars({ ...houseVars, size: e.target.value });
-                        }}
-                        name="size"
-                        id="size"
-                      >
-                        <option value="Marla">Marla</option>
-                        <option value="Kanal">Kanal</option>
-                      </select>
-                    </div>
-                  </div>
-                  <Autocomplete
-                    className="autocomplete-bar"
-                    id="free-solo-demo"
-                    onChange={(event, value) => {
-                      setHouseVars({ ...houseVars, location: value });
-                    }}
-                    freeSolo
-                    options={top100Films.map((option) => option.title)}
-                    renderInput={(params) => (
+              <div className="house-main">
+                <div className="house-menu-inputs">
+                  <div className="house-menu-inputs-rows">
+                    {/* AREA AND SEARCH BAR */}
+                    <div className="house-menu-inputs-row-1">
                       <TextField
-                        {...params}
-                        name="location"
-                        value={houseVars.location}
-                        onClick={onChangeInputs}
-                        label="Location"
-                        margin="normal"
+                        size="large"
+                        id="standard-basic"
+                        type="number"
+                        name="area"
+                        value={houseVars.area}
+                        onChange={onChangeInputs}
                         variant="outlined"
+                        label="Area Size"
                       />
-                    )}
+                      <div>
+                        <select
+                          onChange={(e) => {
+                            setHouseVars({
+                              ...houseVars,
+                              size: e.target.value,
+                            });
+                          }}
+                          name="size"
+                          id="size"
+                        >
+                          <option value="Marla">Marla</option>
+                          <option value="Kanal">Kanal</option>
+                        </select>
+                      </div>
+                    </div>
+                    <Autocomplete
+                      className="autocomplete-bar"
+                      id="free-solo-demo"
+                      onChange={(event, value) => {
+                        setHouseVars({ ...houseVars, location: value });
+                      }}
+                      freeSolo
+                      options={top100Films.map((option) => option.title)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          name="location"
+                          value={houseVars.location}
+                          onClick={onChangeInputs}
+                          label="Location"
+                          margin="normal"
+                          variant="outlined"
+                        />
+                      )}
+                    />
+                  </div>
+                  {/* BATH */}
+                  <TextField
+                    type="number"
+                    size="large"
+                    min="0"
+                    oninput="validity.valid||(value='');"
+                    name="bath"
+                    value={houseVars.bath}
+                    onChange={onChangeInputs}
+                    id="standard-basic"
+                    variant="outlined"
+                    label="Bath(s)"
+                  />
+                  {/* BEDS */}
+                  <TextField
+                    type="number"
+                    size="large"
+                    name="bed"
+                    value={houseVars.bed}
+                    onChange={onChangeInputs}
+                    id="standard-basic"
+                    variant="outlined"
+                    label="Bed(s)"
                   />
                 </div>
-                {/* BATH */}
-                <TextField
-                  type="number"
-                  size="large"
-                  min="0"
-                  oninput="validity.valid||(value='');"
-                  name="bath"
-                  value={houseVars.bath}
-                  onChange={onChangeInputs}
-                  id="standard-basic"
-                  variant="outlined"
-                  label="Bath(s)"
-                />
-                {/* BEDS */}
-                <TextField
-                  type="number"
-                  size="large"
-                  name="bed"
-                  value={houseVars.bed}
-                  onChange={onChangeInputs}
-                  id="standard-basic"
-                  variant="outlined"
-                  label="Bed(s)"
-                />
+                <div>
+                  <div className="house-instr">
+                    <h3
+                      style={{
+                        color: "black",
+                      }}
+                    >
+                      Instructions
+                    </h3>
+                    <ul style={{ marginTop: "-20px" }}>
+                      <li>
+                        <b>Area Size:</b> Enter your house size in Marla/Kanal.
+                      </li>
+                      <li>
+                        <b>Bath(s):</b> Enter the required number of bathrooms
+                        in your house.
+                      </li>
+                      <li>
+                        <b>Bed(s):</b> Enter the required number of bedrooms in
+                        your house.
+                      </li>
+                      <li>
+                        <b>Location:</b> Select a location from the search bar.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="house-menu-right">

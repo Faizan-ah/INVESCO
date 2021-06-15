@@ -210,10 +210,29 @@ export class PredictedStock extends React.Component {
       <div className={classes.root}>
         <div className="stock-graph">
           {this.state.isLoading == true ? (
-            <div style={{ height: "50vh" }}>
+            <div
+              style={{
+                height: "20vh",
+                display: "flex",
+                flexDirection: "column-reverse",
+                textAlign: "center",
+                marginBottom: "30vh",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "Do Hyeon, sans-serif",
+                  marginTop: "5px",
+                }}
+              >
+                The Graph will be displayed in a Jiffy :)
+              </span>
               <CircularProgress
                 size={50}
-                style={{ marginLeft: "50%", marginTop: "20vh" }}
+                style={{
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
               />
             </div>
           ) : (
